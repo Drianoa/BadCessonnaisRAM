@@ -20,20 +20,16 @@ public class AdherentInitSingleton {
 		
 		
 		if(facadeAdherent.getListAdherent().isEmpty()){
-			facadeAdherent.ajouterAdherent(createMajor("BELLEMAR"));
-			facadeAdherent.ajouterAdherent(createMajor("EMI"));
-			facadeAdherent.ajouterAdherent(createMajor("SONY"));
-			facadeAdherent.ajouterAdherent(createMajor("MyMajorCompany"));
+			facadeAdherent.ajouterAdherent(createAdherent("AUCHART"));
+			facadeAdherent.ajouterAdherent(createAdherent("ROBERT"));
+			facadeAdherent.ajouterAdherent(createAdherent("MERLY"));
+			facadeAdherent.ajouterAdherent(createAdherent("BELLEMAR"));
 		}
-		
-
-		
-		
 		
 	}
 
 	
-	private Adherent createMajor(String nom){
+	private Adherent createAdherent(String nom){
 		Adherent a = new Adherent();
 		a.setNom(nom);
 		return a;

@@ -6,13 +6,12 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.Pattern;
 
@@ -27,7 +26,6 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Data
 @FieldDefaults(level=AccessLevel.PRIVATE)
-@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of={"id"})
 @ToString
@@ -49,7 +47,7 @@ public class Adherent implements Serializable{
 	private String id = UUID.randomUUID().toString();
 	
 	@Version
-	private long version;
+	private Long version;
 
 	
 	//@Pattern(regexp="[A-Za-z]*")
