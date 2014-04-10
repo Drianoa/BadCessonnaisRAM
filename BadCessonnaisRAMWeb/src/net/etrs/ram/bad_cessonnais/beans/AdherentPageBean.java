@@ -18,7 +18,7 @@ public class AdherentPageBean {
 	@EJB
 	FacadeAdherent facadeAdherent;
 	
-	@Getter @Setter
+	@Getter	@Setter
 	Adherent adherent;
 	
 	
@@ -29,11 +29,11 @@ public class AdherentPageBean {
 	
 
 	public void enregistrerAdherent(){
-		
+		facadeAdherent.ajouterAdherent(adherent);
 	}
 	
 	
-	public List<Adherent> getAdherent(){
+	public List<Adherent> getAdherents(){
 		return facadeAdherent.getListAdherent();
 	
 	}
