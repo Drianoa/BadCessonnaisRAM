@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -7,34 +7,34 @@
 
 <h:head>
 	<title><ui:insert name="pageTitle">Club Badminton Cessonnais</ui:insert></title>
-	
+
 	<h:outputStylesheet library="css" name="bootstrap.min.css" />
 	<h:outputStylesheet library="css" name="bootstrap-theme.min.css" />
 	<h:outputStylesheet library="css" name="local.css" />
 	<h:outputScript library="primefaces" name="jquery/jquery.js" />
 	<h:outputScript library="js" name="bootstrap.min.js"></h:outputScript>
-	
-	
+
+
 	<ui:insert name="pageHead"></ui:insert>
 </h:head>
 <h:body>
 
 	<ui:include src="/WEB-INF/templates/menu.xhtml" />
 
-	<div class="container">
+	<p:panel id="idContainer" styleClass="container">
+		<p:panel id="idConteneur" styleClass="conteneur">
 
-		<div class="conteneur"> 
 			<ui:insert name="content">
 				contenu par defaut
-			</ui:insert> 
-		</div>
-		<footer class="text-muted">
-		<center>
-			<small>© Copyright 2014, Le Club Badminton Cessonnais réalisé
-				par l'équipe RAM</small>
-		</center>
-		</footer>
-	</div>
+		</ui:insert>
+			<footer class="text-muted">
+				<center>
+					<small>© Copyright 2014, Le Club Badminton Cessonnais
+						réalisé par l'équipe RAM</small>
+				</center>
+			</footer>
+		</p:panel>
+	</p:panel>
 </h:body>
 
 </html>
