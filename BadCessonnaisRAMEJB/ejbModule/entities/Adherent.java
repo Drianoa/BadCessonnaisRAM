@@ -48,6 +48,7 @@ public class Adherent implements Serializable{
 	
 	
 	
+	public Adherent(){}
 	
 	
 	

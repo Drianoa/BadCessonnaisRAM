@@ -20,7 +20,7 @@ public class AdherentInitSingleton {
 		
 		
 		if(facadeAdherent.getListAdherent().isEmpty()){
-			facadeAdherent.ajouterAdherent(createMajor("Warner"));
+			facadeAdherent.ajouterAdherent(createMajor("BELLEMAR"));
 			facadeAdherent.ajouterAdherent(createMajor("EMI"));
 			facadeAdherent.ajouterAdherent(createMajor("SONY"));
 			facadeAdherent.ajouterAdherent(createMajor("MyMajorCompany"));
