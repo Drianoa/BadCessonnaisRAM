@@ -6,8 +6,6 @@ import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
@@ -42,7 +40,7 @@ public class Adherent extends Utilisateur implements Serializable{
 	
 	//champs techniques
 	@Id
-	@Column(columnDefinition="VARCHAR(36)")
+	@Column(length=36)
 	private String id = UUID.randomUUID().toString();
 	
 	@Version
@@ -50,20 +48,20 @@ public class Adherent extends Utilisateur implements Serializable{
 
 	
 	//@Pattern(regexp="[A-Za-z]*")
-	@Column(columnDefinition="VARCHAR(40)")
+	@Column(length=40)
 	private String nom;
 	
 	
 	//@Pattern(regexp="[A-Za-z]*")
-	@Column(columnDefinition="VARCHAR(40)")
+	@Column(length=40)
 	private String prenom;
 	
 	@Pattern(regexp="[0-9]*")
-	@Column(columnDefinition="VARCHAR(10)")
+	@Column(length=10)
 	private String licenceFcd;
 	
 	@Pattern(regexp="[0-9]*")
-	@Column(columnDefinition="VARCHAR(10)")
+	@Column(length=10)
 	private String licenceFFBa;
 	
 	@Temporal(TemporalType.DATE)

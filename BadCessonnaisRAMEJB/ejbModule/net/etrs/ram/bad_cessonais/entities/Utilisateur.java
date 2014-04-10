@@ -28,8 +28,8 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @NamedQueries(
 		{
-	//@NamedQuery(name="findAllUtilisateur", query="SELECT a FROM Adherent a"),
-	//@NamedQuery(name="findGroupeLikeName", query="SELECT gm FROM GroupeMusique gm WHERE gm.nom LIKE :nomGroupe")
+	//@NamedQuery(name="findAllUtilisateur", query="SELECT u FROM Utilisateur u"),
+	//@NamedQuery(name="findUtilisateurLikeName", query="SELECT u FROM Utilisateur u WHERE gm.nom LIKE :nomGroupe")
 		}
 )
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
@@ -41,7 +41,7 @@ public class Utilisateur implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(columnDefinition="VARCHAR(36)")
+	@Column(length=36)
 	private String id = UUID.randomUUID().toString();
 	private String login;
 	private String password;
