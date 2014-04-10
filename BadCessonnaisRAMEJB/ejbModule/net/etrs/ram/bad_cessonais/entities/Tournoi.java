@@ -19,47 +19,35 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of={"id"})
-@ToString
 @NamedQueries(
 		{
 	@NamedQuery(name="findAllTournoi", query="SELECT t FROM Tournoi t"),
-	//@NamedQuery(name="findGroupeLikeName", query="SELECT gm FROM GroupeMusique gm WHERE gm.nom LIKE :nomGroupe")
+	@NamedQuery(name="countAllTournoi", query="SELECT count(t) FROM Tournoi as t")
 		}
 )
 public class Tournoi implements Serializable{
 
-
-	private static final long serialVersionUID = 1L;
-
-	
 	//champs technique
 	@Id
-	@Column(columnDefinition="VARCHAR(36)")
-	private String id = UUID.randomUUID().toString();
+	@Column(length=36)
+	String id = UUID.randomUUID().toString();
 	@Version
-	private long version;
+	Long version;
 
-	
-	//@Pattern(regexp="[A-Za-z]*")
-	@Column(columnDefinition="VARCHAR(40)")
-	private String nom;
+	@Column(length=40)
+	String nom;
 	
 	
 	@Temporal(TemporalType.DATE)
-	private Date dateTournoi;
-	
-	
-	
-
-	
+	Date dateTournoi;
 
 }

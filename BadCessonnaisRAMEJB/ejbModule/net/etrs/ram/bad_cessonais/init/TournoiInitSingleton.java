@@ -24,7 +24,7 @@ public class TournoiInitSingleton {
 	public void init() throws ParseException{
 		
 		
-		if(facadeTournoi.getListTournoi().isEmpty()){
+		if(facadeTournoi.countTournoi() == 0){
 			facadeTournoi.ajouterTournoi(createTournoi("Tournoi de l'ascension",sdf.parse("29/05/2014")));
 			facadeTournoi.ajouterTournoi(createTournoi("Tournoi fou de bad",sdf.parse("29/05/2014")));
 			facadeTournoi.ajouterTournoi(createTournoi("Tournoi de noël",sdf.parse("20/12/2013")));
