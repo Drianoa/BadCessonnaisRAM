@@ -1,5 +1,5 @@
 body {
-	background-image: url("../img/badminton1-1980-web-flou.jpg");
+	background-image: url("#{resource['img:badminton1-1980-web-flou.jpg']}");
 	/*background-image: url("../img/one-shuttle_97181-1920x1200.jpg");*/
 	background-repeat: no-repeat;
 	background-position:center center;
