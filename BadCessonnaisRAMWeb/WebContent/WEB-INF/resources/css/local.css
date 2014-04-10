@@ -1,0 +1,134 @@
+body {
+	background-image: url("../img/badminton1-1980-web-flou.jpg");
+	/*background-image: url("../img/one-shuttle_97181-1920x1200.jpg");*/
+	background-repeat: no-repeat;
+	background-position:center center;
+	background-attachment:fixed;
+}
+
+.container{
+	background-color: rgba(255,255,255, 0.95);
+	border-radius : 5px;
+	padding-top: 15px;
+}
+
+form .leftmargin{
+	margin-left: 15px;
+}
+.conteneur{
+	min-height: 450px;
+	
+}
+
+form .navbarlogin{
+	padding: 3px 6px;
+	margin-left: 3px;
+}
+
+.poule{
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 10px;
+}
+
+.poule th{
+  text-align: center;
+  background-color: rgb(127, 207, 245);
+  text-transform: capitalize;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.titre a{
+  text-decoration-color: #111;
+  text-transform: capitalize;
+  color: #fff;
+  padding: 2px;
+}
+
+.titre  {
+  background-color: #333;
+  font-weight: bolder;
+}
+
+.actu{
+  height: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-style: solid;
+  border-width: 1px;
+  border-bottom-width: 1px;
+  border-color: #a8a8a8;
+  margin-bottom: 2px;
+  margin-right: 0px;
+}
+
+.resume{
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 2px;
+}
+
+.grosseactu{
+  border-style: solid;
+  border-width: 1px;
+  padding: 0px;
+  width: auto;
+  margin-bottom: 2px;
+    
+}
+
+.grosseactu img{
+  z-index: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grostitre{
+  background-color: #111;
+  height: 40px;
+  color: #fff;
+  padding: 7px;
+  font-size:  17px;
+  z-index: 2;
+}
+
+.grostitre:hover{
+    text-decoration: underline;
+}
+
+.bouton-image{
+  height: 170px;
+  margin-left: 25px;
+  margin-right: 25px;
+  
+}
+
+.boutton-panel{
+  text-align: center;
+}
+
+.cssdemerde{
+  height: 160px;
+}
+
+
+.stats{
+  padding-left: 10px;
+  
+}
+
+.gros{
+  width: 750px;
+}
+.petit{
+  margin-top: 20px;
+  width: 750px;
+  margin-bottom: 20px;
+}
