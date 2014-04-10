@@ -1,12 +1,12 @@
-package init;
+package net.etrs.ram.bad_cessonais.init;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
-import entities.Adherent;
-import sessions.FacadeAdherent;
+import net.etrs.ram.bad_cessonais.entities.Adherent;
+import net.etrs.ram.bad_cessonais.sessions.FacadeAdherent;
 
 @Singleton
 @Startup       //se lance au demarrage

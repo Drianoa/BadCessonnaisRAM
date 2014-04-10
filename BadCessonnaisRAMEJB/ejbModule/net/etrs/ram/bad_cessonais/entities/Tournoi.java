@@ -1,5 +1,5 @@
 
-package entities;
+package net.etrs.ram.bad_cessonais.entities;
 
 import java.io.Serializable;
 import java.util.Date;

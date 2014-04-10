@@ -1,4 +1,4 @@
-package sessions;
+package net.etrs.ram.bad_cessonais.sessions;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import entities.Tournoi;
+import net.etrs.ram.bad_cessonais.entities.Tournoi;
 
 @Stateless
 public class FacadeTournoi {

@@ -1,4 +1,4 @@
-package init;
+package net.etrs.ram.bad_cessonais.init;
 
 import java.util.Date;
 
@@ -7,8 +7,8 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
-import sessions.FacadeTournoi;
-import entities.Tournoi;
+import net.etrs.ram.bad_cessonais.entities.Tournoi;
+import net.etrs.ram.bad_cessonais.sessions.FacadeTournoi;
 
 @Singleton
 @Startup       //se lance au demarrage
