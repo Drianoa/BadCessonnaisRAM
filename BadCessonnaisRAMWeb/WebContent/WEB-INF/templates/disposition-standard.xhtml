@@ -1,48 +1,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-      
-		<h:head>
-			<title><ui:insert name="pageTitle">Page Title</ui:insert></title>
-		
-		</h:head>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-<body bgcolor="#ffffff">
-<table style="border:1px solid #CAD6E0"  align="center" cellpadding="0" cellspacing="0" border="0" width="400">
-<tbody>
-
-	<tr>
-		<td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">
-			<ui:insert name="pageHeader">Page Header</ui:insert>
-		</td>
-	</tr>
-	<tr>
-		<td height="1" width="100%" bgcolor="#CAD6E0"></td>
-	</tr>	
-
-	<tr>
-		<td width="100%"  colspan="2">
-			<table width="100%" style="height:150px" align="left" cellpadding="0" cellspacing="0" border="0">
-			<tbody>
-				<tr>
-					<td align="center" width="100%" valign="middle">
-					
-					<ui:insert name="body">Page Body</ui:insert>
-					
-					</td>
-				</tr>
-			</tbody>
-			</table>
-		</td>
-	</tr>	
+<h:head>
+	<title><ui:insert name="pageTitle">Club Badminton Cessonnais</ui:insert></title>
 	
-	<tr>
-		<td colspan="2"  valign="bottom" height="1" width="100%" bgcolor="#CAD6E0"></td>
-	</tr>
-</tbody>
-</table>
-</body>
-		
+	<h:outputStylesheet library="css" name="local.css" />
+	<ui:insert name="pageHead"></ui:insert>
+</h:head>
+<h:body>
+
+	<ui:include src="/WEB-INF/templates/menu.xhtml" />
+
+	<div class="container">
+
+		<div class="conteneur"> 
+			<ui:insert name="content">
+				contenu par defaut
+			</ui:insert> 
+		</div>
+		<footer class="text-muted">
+		<center>
+			<small>© Copyright 2014, Le Club Badminton Cessonnais réalisé
+				par l'équipe RAM</small>
+		</center>
+		</footer>
+	</div>
+</h:body>
+
 </html>
