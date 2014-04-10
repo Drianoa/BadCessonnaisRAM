@@ -2,7 +2,9 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +16,21 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.Pattern;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
+
 @Entity
+@Data
+@FieldDefaults(level=AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(of={"id"})
+@ToString
 @NamedQueries(
 		{
 	@NamedQuery(name="findAllAdherent", query="SELECT a FROM Adherent a"),
@@ -27,87 +43,37 @@ public class Adherent implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	
-	//champs tehcnique
+	//champs techniques
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	@Column(columnDefinition="VARCHAR(36)")
+	private String id = UUID.randomUUID().toString();
+	
 	@Version
 	private long version;
 
 	
 	//@Pattern(regexp="[A-Za-z]*")
+	@Column(columnDefinition="VARCHAR(40)")
 	private String nom;
+	
+	
 	//@Pattern(regexp="[A-Za-z]*")
+	@Column(columnDefinition="VARCHAR(40)")
 	private String prenom;
 	
 	@Pattern(regexp="[0-9]*")
-	private int licenceFcd;
+	@Column(columnDefinition="VARCHAR(10)")
+	private String licenceFcd;
+	
+	@Pattern(regexp="[0-9]*")
+	@Column(columnDefinition="VARCHAR(10)")
+	private String licenceFFBa;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	
 	
-	
-	public Adherent(){}
-	
-	
-	
-	public String getNom() {
-		return nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public String getPrenom() {
-		return prenom;
-	}
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-	public int getLicenceFcd() {
-		return licenceFcd;
-	}
-	public void setLicenceFcd(int licenceFcd) {
-		this.licenceFcd = licenceFcd;
-	}
-	public Date getDateNaissance() {
-		return dateNaissance;
-	}
-	public void setDateNaissance(Date dateNaissance) {
-		this.dateNaissance = dateNaissance;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Adherent other = (Adherent) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
-	
+
 	
 
 }
