@@ -1,4 +1,4 @@
-package net.etrs.ram.bad_cessonais.entities;
+package net.etrs.ram.bad_cessonais.entities.gestion_adherents;
 
 /**
  * Enumeration des différents sexes disponibles.

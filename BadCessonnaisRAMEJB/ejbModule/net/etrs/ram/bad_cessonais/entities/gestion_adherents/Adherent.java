@@ -1,8 +1,9 @@
-package net.etrs.ram.bad_cessonais.entities;
+package net.etrs.ram.bad_cessonais.entities.gestion_adherents;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.Pattern;
+
+import net.etrs.ram.bad_cessonais.entities.Utilisateur;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

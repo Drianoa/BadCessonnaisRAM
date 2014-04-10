@@ -1,4 +1,4 @@
-package net.etrs.ram.bad_cessonais.sessions;
+package net.etrs.ram.bad_cessonais.sessions.gestion_adherents;
 
 import java.util.List;
 
@@ -6,7 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import net.etrs.ram.bad_cessonais.entities.Adherent;
+
+import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 
 @Stateless
 public class FacadeAdherent {
