@@ -16,8 +16,16 @@ public class FacadeAdherent {
 	private EntityManager em;
 	
 	
-	public void ajouterAdherent(Adherent m ){
-		em.persist(m);
+	public void ajouterAdherent(Adherent a ){
+		em.persist(a);
+	}
+	
+	public void supprimerAdherent(Adherent a ){
+		em.remove(a);
+	}
+
+	public void desactiverAdherent(Adherent a ){
+		//em.persist(m);
 	}
 	
 	public  List<Adherent> getListAdherent(){
