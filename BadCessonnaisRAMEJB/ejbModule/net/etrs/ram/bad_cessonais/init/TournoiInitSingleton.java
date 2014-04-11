@@ -35,10 +35,10 @@ public class TournoiInitSingleton {
 	public void init() throws ParseException{
 		
 		if(facadeTournoi.countTournoi() == 0){
-			facadeTournoi.ajouterTournoi(createTournoi("Tournoi de l'ascension",sdf.parse("29/05/2014")));
-			facadeTournoi.ajouterTournoi(createTournoi("Tournoi fou de bad",sdf.parse("29/05/2014")));
-			facadeTournoi.ajouterTournoi(createTournoi("Tournoi de noël",sdf.parse("20/12/2013")));
-			facadeTournoi.ajouterTournoi(createTournoi("Tournoi de Pâques",sdf.parse("19/04/2013")));
+			facadeTournoi.create(createTournoi("Tournoi de l'ascension",sdf.parse("29/05/2014")));
+			facadeTournoi.create(createTournoi("Tournoi fou de bad",sdf.parse("29/05/2014")));
+			facadeTournoi.create(createTournoi("Tournoi de noël",sdf.parse("20/12/2013")));
+			facadeTournoi.create(createTournoi("Tournoi de Pâques",sdf.parse("19/04/2013")));
 		}
 	}
 
@@ -49,7 +49,10 @@ public class TournoiInitSingleton {
 	 * @return
 	 */
 	private Tournoi createTournoi(String nom, Date date){
-		return new Tournoi(nom , date);
+		Tournoi tournoi = facadeTournoi.newInstance();
+		tournoi.setNom(nom);
+		tournoi.setDateTournoi(date);
+		return tournoi;
 	}
 	
 	

@@ -1,4 +1,4 @@
-package net.entetrs.common.jsf;
+package net.etrs.ram.bad_cessonnais.utils;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

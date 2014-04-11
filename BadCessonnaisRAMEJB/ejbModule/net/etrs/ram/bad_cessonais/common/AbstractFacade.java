@@ -1,4 +1,4 @@
-package net.entetrs.common.facade;
+package net.etrs.ram.bad_cessonais.common;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;

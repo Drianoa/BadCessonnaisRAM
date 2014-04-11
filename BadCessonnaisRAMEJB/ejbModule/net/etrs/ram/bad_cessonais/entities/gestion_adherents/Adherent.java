@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 @FieldDefaults(level=AccessLevel.PRIVATE)
@@ -34,10 +35,7 @@ import lombok.experimental.FieldDefaults;
 		}
 )
 
-public class Adherent extends Utilisateur implements Serializable{
-
-
-	private static final long serialVersionUID = 1L;
+public class Adherent implements Serializable{
 
 	
 	//champs techniques

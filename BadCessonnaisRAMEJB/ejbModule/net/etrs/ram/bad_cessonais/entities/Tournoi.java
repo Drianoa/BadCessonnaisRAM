@@ -13,18 +13,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 
 
@@ -34,11 +30,10 @@ import lombok.experimental.FieldDefaults;
  *
  */
 @SuppressWarnings("serial")
-@Entity
 @Data
-@FieldDefaults(level=AccessLevel.PRIVATE)
-@RequiredArgsConstructor
+@Entity
 @NoArgsConstructor
+@FieldDefaults(level=AccessLevel.PRIVATE)
 @EqualsAndHashCode(of={"id"})
 @NamedQueries(
 		{
@@ -55,12 +50,10 @@ public class Tournoi implements Serializable{
 	@Version
 	Long version;
 
-	@NonNull
 	@NotBlank
 	@Column(length=40)
 	String nom;
 	
-	@NonNull
 	@Temporal(TemporalType.DATE)
 	Date dateTournoi;
 
