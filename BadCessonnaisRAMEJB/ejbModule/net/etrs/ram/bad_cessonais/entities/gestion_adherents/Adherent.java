@@ -26,12 +26,11 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @NoArgsConstructor
-@EqualsAndHashCode(of={"id"})
+@EqualsAndHashCode(of={"id"},callSuper=false)
 @ToString
 @NamedQueries(
 		{
 	@NamedQuery(name="findAllAdherent", query="SELECT a FROM Adherent a"),
-	//@NamedQuery(name="findGroupeLikeName", query="SELECT gm FROM GroupeMusique gm WHERE gm.nom LIKE :nomGroupe")
 		}
 )
 
