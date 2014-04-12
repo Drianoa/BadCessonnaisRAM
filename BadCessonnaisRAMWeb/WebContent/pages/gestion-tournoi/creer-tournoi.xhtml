@@ -4,7 +4,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/disposition-standard.xhtml"
-	xmlns:tags="http://java.sun.com/jsf/composite/tags">
+	xmlns:tags="http://java.sun.com/jsf/composite/tags"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags">
 
 
 	<ui:define name="pageTitle">Tournoi</ui:define>
@@ -17,31 +18,37 @@
 				<p:menuitem value="Créer un tournoi" url="#" />
 			</p:breadCrumb>
 		</h:form>
-		<p:fieldset legend="Tournoi">
 		<h:form>
-			<p:outputLabel value="Nom" />
-			<p:inputText id="idNom" value="" />
-		
-		
+			<p:panel header="Nouveau tournoi">
+			<h:panelGrid columns="3">
+				<fx:etrs-field for="idNom" label="Nom">
+					<p:inputText id="idNom" value="#{creerTournoiBean.nouveauTournoi.nom}" required="true" />
+				</fx:etrs-field>
+				<fx:etrs-field for="idDate" label="Date du Tournoi">
+					<p:calendar id="idDate" value="#{creerTournoiBean.nouveauTournoi.dateTournoi}" required="true"/>
+				</fx:etrs-field>
+
+			</h:panelGrid>
+				<p:panelGrid>
+					<p:row>
+						<p:column>Nom</p:column>
+						<p:column>
+							<p:inputText placeholder="Nom du tournoi" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">CCC</p:column>
+						<p:column colspan="2">DDD</p:column>
+					</p:row>
+					<p:row>
+						<p:column>EEE</p:column>
+						<p:column>FFF</p:column>
+						<p:column>GGG</p:column>
+						<p:column>HHH</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
 		</h:form>
-		
-		<p:panelGrid >
-			<p:row>
-				<p:column>Nom</p:column>
-				<p:column><p:inputText placeholder="Nom du tournoi"  /></p:column>
-			</p:row>
-			<p:row>
-				<p:column colspan="2">CCC</p:column>
-				<p:column colspan="2">DDD</p:column>
-			</p:row>
-			<p:row>
-				<p:column>EEE</p:column>
-				<p:column>FFF</p:column>
-				<p:column>GGG</p:column>
-				<p:column>HHH</p:column>
-			</p:row>
-		</p:panelGrid>
-		</p:fieldset>
 	</ui:define>
 
 

@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:tags="http://java.sun.com/jsf/composite/tags"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags">
+
+
+	<ui:define name="pageTitle">Gérer les tournois</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="/test-layout.xhtml" />
+				<p:menuitem value="Tournoi" url="#" />
+				<p:menuitem value="Gérer les tournois" url="#" />
+			</p:breadCrumb>
+		</h:form>
+		<h:form>
+			<p:panel header="Gérer les tournois">
+				<h:panelGrid columns="2">
+					<p:commandButton value="Créer un tournoi" action="#{routage.creerTournoi()}" />
+					<p:dataTable value="#{gererTournoiBean.listerTournois()}" var="t">
+						<p:column headerText="Nom">
+							<h:outputText value="#{t.nom}" />
+						</p:column>
+						<p:column headerText="Date">
+							<h:outputText value="#{t.dateTournoi}" />
+						</p:column>
+						<p:column headerText="Action">
+						</p:column>
+
+					</p:dataTable>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

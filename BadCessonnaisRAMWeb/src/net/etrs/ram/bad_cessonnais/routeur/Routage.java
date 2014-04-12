@@ -4,13 +4,18 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import lombok.Getter;
+import lombok.Setter;
 
 
 
 @ManagedBean
 @ApplicationScoped
-@Getter
 public class Routage {
-	public final String accueil = "/test-layout.xhtml";
+//	private final static String REDIRECT = "?faces-redirect=true";
+	private final static String REDIRECT = "";
+	
+	public  String accueil ()		{return "/test-layout.xhtml";}
+	public  String creerTournoi()	{return "/pages/gestion-tournoi/creer-tournoi.xhtml" + REDIRECT;}
+	public  String listerTournoi()	{return "/pages/gestion-tournoi/lister-tournoi.xhtml"  + REDIRECT;}
 	
 }

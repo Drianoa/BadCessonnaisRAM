@@ -14,7 +14,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.Pattern;
 
-import net.etrs.ram.bad_cessonais.entities.Utilisateur;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
