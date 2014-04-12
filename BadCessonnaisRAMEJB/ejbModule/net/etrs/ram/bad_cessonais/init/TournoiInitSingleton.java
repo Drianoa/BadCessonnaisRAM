@@ -9,8 +9,8 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
-import net.etrs.ram.bad_cessonais.entities.Tournoi;
-import net.etrs.ram.bad_cessonais.sessions.FacadeTournoi;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
+import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
 
 
 

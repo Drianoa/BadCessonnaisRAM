@@ -1,4 +1,4 @@
-package net.etrs.ram.bad_cessonais.sessions.gestion_adherents;
+package net.etrs.ram.bad_cessonais.services.gestion_adherents.dao;
 
 import java.util.List;
 
