@@ -1,4 +1,4 @@
-package net.etrs.ram.bad_cessonais.init;
+package net.etrs.ram.bad_cessonais.init.gestion_tournoi;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
