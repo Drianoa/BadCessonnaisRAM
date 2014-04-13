@@ -82,17 +82,19 @@ public class CreerTournoiBean {
 	
 	/**
 	 * Lance la création du tournoi avec ses tableaux.
+	 * @throws Exception 
 	 */
-	public void validerCreation(){
+	public void validerCreation() throws Exception{
 		
 		try {
 			if(tableauxList.isEmpty()){
-				JsfUtils.sendMessage("idListeTableaux", "Vous devez saisir au moins un tableau");
+				throw new Exception( "Vous devez saisir au moins un tableau");
 			}else{
 				serviceGestionTournoi.creerTournoi(nouveauTournoi, tableauxList);
 			}
 		} catch (Exception e) {
 			JsfUtils.sendMessage("growl", e);
+			throw e;
 		}		
 	}
 	
