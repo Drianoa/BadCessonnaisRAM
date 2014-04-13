@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:tags="http://java.sun.com/jsf/composite/tags"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags">
+
+
+	<ui:define name="pageTitle">Tournoi - Inscriptions</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="/test-layout.xhtml" />
+				<p:menuitem value="Tournoi" url="#" />
+				<p:menuitem value="Inscription tournoi" url="#" />
+			</p:breadCrumb>
+		</h:form>
+		<h:form id="frmName">
+			<h4>
+				#{inscriptionTournoiBean.tournoi.nom} du
+				<h:outputText value="#{inscriptionTournoiBean.tournoi.dateTournoi}">
+					<fx:date-format />
+				</h:outputText>
+			</h4>
+
+			<p:accordionPanel
+				value="#{inscriptionTournoiBean.tournoi.lstTableaux}" var="tableau">
+				<p:tab>
+					<f:facet name="title">
+    					#{tableau.nom}
+    					
+    				</f:facet>
+					<h:panelGrid columns="3">
+						<p:selectOneMenu value="#{tableau.joueursPoule}" var="jp"
+							converter="#{genericConverter}">
+							<f:selectItems
+								value="#{inscriptionTournoiBean.listeJoueursPoule()}" var="j"
+								itemValue="#{j.name()}" itemLabel="#{j.libelle}" />
+						</p:selectOneMenu>
+						<p:inputText value="#{tableau.tempsMatch}" size="2" ></p:inputText>
+						<p:commandButton icon="ui-icon-person" value="+"></p:commandButton>
+					</h:panelGrid>
+					<p:dataTable value="#{tableau.joueurs}" var="joueur" rendered="#{tableau.joueurs.size() != 0}">
+						<p:column>#{joueur.licenceFcd}</p:column>
+						<p:column>#{joueur.nom}</p:column>
+						<p:column>#{joueur.prenom}</p:column>
+						<p:column>#{joueur.anneeNaissance}</p:column>
+						<p:column>#{joueur.club}</p:column>
+					</p:dataTable>
+				</p:tab>
+			</p:accordionPanel>
+
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

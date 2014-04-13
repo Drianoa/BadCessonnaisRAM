@@ -61,7 +61,7 @@ public class Tournoi implements Serializable{
 	@Temporal(TemporalType.DATE)
 	Date dateTournoi;
 	
-	@OneToMany
+	@OneToMany(orphanRemoval=true)
 	@JoinColumn(name="TOURNOI_ID")
 	List<Tableau> lstTableaux = new ArrayList<>();
 

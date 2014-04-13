@@ -17,5 +17,6 @@ public class Routage {
 	public  String accueil ()		{return "/test-layout.xhtml";}
 	public  String creerTournoi()	{return "/pages/gestion-tournoi/creer-tournoi.xhtml" + REDIRECT;}
 	public  String listerTournoi()	{return "/pages/gestion-tournoi/lister-tournoi.xhtml"  + REDIRECT;}
+	public  String inscritpionTournoi()	{return "/pages/gestion-tournoi/inscription-tournoi.xhtml"  + REDIRECT;}
 	
 }

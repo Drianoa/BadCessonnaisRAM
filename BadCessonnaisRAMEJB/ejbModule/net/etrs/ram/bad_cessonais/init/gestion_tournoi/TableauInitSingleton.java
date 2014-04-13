@@ -24,15 +24,14 @@ public class TableauInitSingleton {
 	
 	@PostConstruct
 	public void init(){
-		if(facadeTableau.countAll() < 0){
-			Tournoi tournoi = facadeTournoi.getListTournoi().get(0);
+		if(facadeTableau.countAll() == 0){
+			Tournoi tournoi  = facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
+			
 			tournoi.getLstTableaux().add(facadeTableau.create("Veteran Homme Simple NC", TypeTableau.SIMPLE));
 			tournoi.getLstTableaux().add(facadeTableau.create("Senior Femme Simple NC", TypeTableau.SIMPLE));
 			tournoi.getLstTableaux().add(facadeTableau.create("Senior Double Mixte NC", TypeTableau.SIMPLE));
 			facadeTournoi.update(tournoi);
-			
 		}
-		
 	}
 	
 	
