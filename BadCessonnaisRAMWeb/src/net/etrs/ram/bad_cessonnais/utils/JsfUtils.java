@@ -22,6 +22,13 @@ public class JsfUtils
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(message));
     }
 
+    
+    public static void sendMessage(String composantId, Exception ex)
+    {
+        FacesContext.getCurrentInstance().addMessage(composantId, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), null));
+    }
+    
+    
     /**
      * Envoie le message d'une exception à l'IHM. Classe : ERROR
      *

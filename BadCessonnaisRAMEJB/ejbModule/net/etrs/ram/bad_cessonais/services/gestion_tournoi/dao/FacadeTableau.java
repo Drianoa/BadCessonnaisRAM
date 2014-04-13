@@ -18,12 +18,12 @@ public class FacadeTableau extends AbstractFacade<Tableau> {
 	 * @param typeTableau
 	 * @param tournoi
 	 */
-	public void create(String nomTableau, TypeTableau typeTableau, Tournoi tournoi){
+	public Tableau create(String nomTableau, TypeTableau typeTableau){
 		Tableau newInstance = newInstance();
-		newInstance.setTournoi(tournoi);
 		newInstance.setNom(nomTableau);
 		newInstance.setTypeTableau(typeTableau);
 		create(newInstance);
+		return newInstance;
 	}
 	
 	public Long countAll(){

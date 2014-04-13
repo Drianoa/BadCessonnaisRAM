@@ -8,11 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
@@ -42,14 +40,10 @@ public class Tableau implements Serializable {
 	@Version
 	Long version;
 	
-	@NotBlank
+	//@NotBlank(message="Saisisez le nom")
 	String nom;
-	
-	@NotNull
-	@ManyToOne
-	Tournoi tournoi;
-	
+		
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	TypeTableau typeTableau;
+	TypeTableau typeTableau = TypeTableau.SIMPLE;
 }

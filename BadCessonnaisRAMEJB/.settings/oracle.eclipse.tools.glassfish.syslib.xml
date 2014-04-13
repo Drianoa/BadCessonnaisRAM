@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<system-libraries>
+    <library path="D:/outils/eclipse-jee-kepler-SR1-win32/GlassFish/glassfish3/glassfish/modules/javax.faces.jar" source="D:/Documents/adrien.merly/.m2/repository/org/glassfish/javax.faces/2.1.6/javax.faces-2.1.6-sources.jar"/>
+</system-libraries>

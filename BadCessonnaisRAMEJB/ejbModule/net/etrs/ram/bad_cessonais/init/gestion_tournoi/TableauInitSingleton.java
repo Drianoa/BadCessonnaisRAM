@@ -26,9 +26,10 @@ public class TableauInitSingleton {
 	public void init(){
 		if(facadeTableau.countAll() < 0){
 			Tournoi tournoi = facadeTournoi.getListTournoi().get(0);
-			facadeTableau.create("Veteran Homme Simple NC", TypeTableau.SIMPLE, tournoi);
-			facadeTableau.create("Senior Femme Simple NC", TypeTableau.SIMPLE, tournoi);
-			facadeTableau.create("Senior Double Mixte NC", TypeTableau.SIMPLE, tournoi);
+			tournoi.getLstTableaux().add(facadeTableau.create("Veteran Homme Simple NC", TypeTableau.SIMPLE));
+			tournoi.getLstTableaux().add(facadeTableau.create("Senior Femme Simple NC", TypeTableau.SIMPLE));
+			tournoi.getLstTableaux().add(facadeTableau.create("Senior Double Mixte NC", TypeTableau.SIMPLE));
+			facadeTournoi.update(tournoi);
 			
 		}
 		

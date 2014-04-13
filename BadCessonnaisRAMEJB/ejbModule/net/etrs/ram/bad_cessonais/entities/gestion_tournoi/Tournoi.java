@@ -54,7 +54,7 @@ public class Tournoi implements Serializable{
 	@Version
 	Long version;
 
-	@NotBlank
+	@NotBlank(message="Saisisez le nom")
 	@Column(length=40)
 	String nom;
 	
