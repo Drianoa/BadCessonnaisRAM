@@ -47,7 +47,8 @@
 							 />
 						<p:selectOneButton value="#{creerTournoiBean.tableau.typeTableau}"
 							converter="#{genericConverter}">
-							<f:selectItems value="#{creerTournoiBean.listeTypes()}" var="t" />
+							<f:selectItems value="#{creerTournoiBean.listeTypes()}" var="t"
+							 itemLabel="#{t.libelle}" />
 						</p:selectOneButton>
 					</h:panelGrid>
 					<p:commandButton id="idAjout" icon="ui-icon-plus" actionListener="#{creerTournoiBean.ajouterTableau()}" update="@form"></p:commandButton>

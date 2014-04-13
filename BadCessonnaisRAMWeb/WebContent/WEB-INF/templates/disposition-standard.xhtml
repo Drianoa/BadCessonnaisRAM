@@ -10,7 +10,8 @@
 
 	<!-- <h:outputStylesheet library="css" name="bootstrap.min.css" /> -->
 	<!-- <h:outputStylesheet library="css" name="bootstrap-theme.min.css" /> -->
-	<h:outputStylesheet library="css" name="local.css" />
+		
+	
 	<h:outputScript library="primefaces" name="jquery/jquery.js" />
 	<!-- <h:outputScript library="js" name="bootstrap.min.js"></h:outputScript> -->
 
@@ -18,6 +19,7 @@
 	<ui:insert name="pageHead"></ui:insert>
 </h:head>
 <h:body>
+	<h:outputStylesheet library="css" name="local.css" />
 	<ui:include src="/WEB-INF/templates/menu2.xhtml" />
 	<p:panel id="idContainer" styleClass="container">
 		<h:panelGroup layout="block" id="idConteneur" styleClass="conteneur">
@@ -32,8 +34,7 @@
 					réalisé par l'équipe RAM</small>
 			</center>
 		</footer>
-	<p:growl id="growl" for="growl"></p:growl>
+		<p:growl id="growl" for="growl" autoUpdate="true"></p:growl>
 	</p:panel>
 </h:body>
-
 </html>
