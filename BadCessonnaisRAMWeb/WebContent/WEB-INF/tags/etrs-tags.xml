@@ -15,4 +15,8 @@
 			<name>label</name>
 		</attribute>
     </tag>
+    <tag>
+    	<tag-name>date-format</tag-name>
+    	<source>date-format.xhtml</source>
+    </tag>
 </facelet-taglib>

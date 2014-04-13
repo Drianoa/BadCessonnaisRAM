@@ -22,16 +22,18 @@
 			<p:panel header="Gérer les tournois">
 				<h:panelGrid columns="2">
 					<p:commandButton value="Créer un tournoi" action="#{routage.creerTournoi()}" />
+					
 					<p:dataTable value="#{gererTournoiBean.listerTournois()}" var="t">
 						<p:column headerText="Nom">
 							<h:outputText value="#{t.nom}" />
 						</p:column>
 						<p:column headerText="Date">
-							<h:outputText value="#{t.dateTournoi}" />
+							<h:outputText value="#{t.dateTournoi}" >
+							  <fx:date-format />
+							</h:outputText>
 						</p:column>
 						<p:column headerText="Action">
 						</p:column>
-
 					</p:dataTable>
 				</h:panelGrid>
 			</p:panel>
