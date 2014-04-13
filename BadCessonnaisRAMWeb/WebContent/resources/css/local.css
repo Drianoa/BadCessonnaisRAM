@@ -59,6 +59,10 @@ body {
     border-color: #3E8F3E;
 }
 
+a{
+	text-decoration: none;
+}
+
 /*
 form .leftmargin{
 	margin-left: 15px;
