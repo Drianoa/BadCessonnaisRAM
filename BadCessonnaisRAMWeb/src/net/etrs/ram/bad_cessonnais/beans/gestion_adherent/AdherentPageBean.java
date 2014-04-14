@@ -1,4 +1,4 @@
-package net.etrs.ram.bad_cessonnais.beans;
+package net.etrs.ram.bad_cessonnais.beans.gestion_adherent;
 
 import java.util.List;
 

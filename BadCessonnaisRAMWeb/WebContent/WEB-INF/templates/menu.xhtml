@@ -1,84 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:composite="http://java.sun.com/jsf/composite"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:fragment xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
+<h:form  styleClass="ariane">
+	<p:menubar autoDisplay="false">
+		<p:menuitem value="" styleClass="" />
+		<p:submenu label="Adhérent">
+			<p:menuitem value="Inscription" icon="ui-icon-pencil" />
+			<p:menuitem value="Rechercher" url="#" />
+			<p:separator />
+			<p:menuitem value="Suivi des dossiers" url="#" />
+		</p:submenu>
 
+		<p:submenu label="Tournoi">
+			<p:menuitem value="Créer un tournoi" />
+			<p:menuitem value="Lister les tournois"
+				action="#{routage.listerTournoi()}" />
+		</p:submenu>
 
- <nav class="navbar navbar-default" role="navigation">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button> <a class="navbar-brand" href="index.php">Club Badminton Cessonnais</a>
+		<p:submenu label="Administration">
+			<p:menuitem value="Lister les droits" url="#" />
+			<p:separator />
+			<p:menuitem value="Configurer le site" url="#" />
 
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Adhérent<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li> <a href="inscription_etape1.php">Inscription</a></li>
-                <li> <a href="recherche.php">Rechercher</a></li>
-				<li class="divider"></li>
-                <li><a href="inscription_incomplete.php">Suivi des dossiers</a></li>
-			</ul>
-          </li>
-          <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tournoi<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li> <a href="creerTournoi.php">Créer un tournoi</a></li>
-              <li class="divider"></li>
-              <li> <a href="gererTournoi.php">Lister les tournois</a></li>
-              </ul>
-          </li>
-		  <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li> <a href="rechercheDroit.php">Lister les droits</a></li>
-               <li class="divider"></li>
-               <li> <a href="configurationSite.php">Configurer le site</a></li>
-              <!--<li> <a href="#">Modifier</a></li>
-              
-			  <li class="divider"></li>
-              <li> <a href="#"></a></li>-->
-              </ul>
-          </li>
-		      <!--         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Boutique <b class="caret"></b></a>
+		</p:submenu>
 
-             <ul class="dropdown-menu">
-				<li> <a href="#">Accéder à la boutique</a></li>
-                <li> <a href="#">Lister les articles</a></li>
-				 <li class="divider"></li>
-				<li> <a href="#">Importer un catalogue</a></li>
-			</ul>
-          </li>-->
-          </ul>
-          <form class="navbar-form navbar-right" role="search"> 
-      <label for="" class="small">Connecté: Admin</label> &nbsp;&nbsp;
-      <a class="btn btn-info btn-xs">Déconnexion</a>
+		<f:facet name="options">
+			<p:inputText style="margin-right:10px" />
+			<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+		</f:facet>
+	</p:menubar>
 
-          </form>
-        </div>
-        <!-- /.navbar-collapse -->
-
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-    
-    
-    
-    
-    
-    
-
-
-
-
-</html>
+</h:form>
+</ui:fragment>

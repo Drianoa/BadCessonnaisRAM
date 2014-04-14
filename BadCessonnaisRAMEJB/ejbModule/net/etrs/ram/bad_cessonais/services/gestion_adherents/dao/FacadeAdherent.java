@@ -14,9 +14,6 @@ import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 @Stateless
 public class FacadeAdherent extends AbstractFacade<Adherent>{
 
-	//@PersistenceContext
-	//private EntityManager em;
-	
 	
 
 	public void desactiverAdherent(Adherent a ){
