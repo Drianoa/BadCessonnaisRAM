@@ -25,12 +25,12 @@ public class AdherentPageBean {
 	
 	@PostConstruct		
 	public void init(){
-		adherent = facadeAdherent.newAdherent();
+		adherent = facadeAdherent.newInstance();
 	}
 	
 
 	public void enregistrerAdherent(){
-		facadeAdherent.ajouterAdherent(adherent);
+		//facadeAdherent.ajouterAdherent(adherent);
 	}
 	
 	

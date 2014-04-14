@@ -19,10 +19,10 @@ public class AdherentInitSingleton {
 	public void init(){
 		
 		if(facadeAdherent.getListAdherent().isEmpty()){
-			facadeAdherent.ajouterAdherent(createAdherent("AUCHART"));
+			/*facadeAdherent.ajouterAdherent(createAdherent("AUCHART"));
 			facadeAdherent.ajouterAdherent(createAdherent("ROBERT"));
 			facadeAdherent.ajouterAdherent(createAdherent("MERLY"));
-			facadeAdherent.ajouterAdherent(createAdherent("BELLEMAR"));
+			facadeAdherent.ajouterAdherent(createAdherent("BELLEMAR"));*/
 		}
 		
 	}

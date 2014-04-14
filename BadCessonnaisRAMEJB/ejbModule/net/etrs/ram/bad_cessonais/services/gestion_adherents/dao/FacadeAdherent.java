@@ -7,26 +7,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import net.etrs.ram.bad_cessonais.common.AbstractFacade;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 
+@SuppressWarnings("unchecked")
 @Stateless
-public class FacadeAdherent {
+public class FacadeAdherent extends AbstractFacade<Adherent>{
 
-	@PersistenceContext
-	private EntityManager em;
+	//@PersistenceContext
+	//private EntityManager em;
 	
 	
-	public Adherent newAdherent(){
-		return new Adherent();
-	}
-	
-	public void ajouterAdherent(Adherent a ){
-		em.persist(a);
-	}
-	
-	public void supprimerAdherent(Adherent a ){
-		em.remove(a);
-	}
 
 	public void desactiverAdherent(Adherent a ){
 		//em.persist(m);
