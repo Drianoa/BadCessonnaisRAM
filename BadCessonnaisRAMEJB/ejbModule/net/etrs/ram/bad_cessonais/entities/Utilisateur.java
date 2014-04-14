@@ -1,7 +1,6 @@
 package net.etrs.ram.bad_cessonais.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -10,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 import lombok.AccessLevel;
 import lombok.Data;

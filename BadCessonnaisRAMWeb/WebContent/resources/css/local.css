@@ -1,22 +1,73 @@
+/*Uniformisation de la font */
 body {
 	background-image: url("#{resource['img:badminton1-1980-web-flou.jpg']}");
 	/*background-image: url("../img/one-shuttle_97181-1920x1200.jpg");*/
 	background-repeat: no-repeat;
-	background-position:center center;
-	background-attachment:fixed;
+	background-position: center center;
+	background-attachment: fixed;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	/*line-height: 1.42857143;*/
+	color: #333;
+	margin: 0px;
 }
 
-.container{
-	background-color: rgba(255,255,255, 0.95);
-	border-radius : 5px;
-	padding-top: 15px;
+.conteneur {
+	min-height: 550px;
 }
 
+.container {
+	background-color: rgba(255, 255, 255, 0.95);
+	border-radius: 5px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 15px;
+}
+
+
+/*On rend la largeur de la page responsive*/
+@media ( min-width : 768px) {
+	.container {
+		width: 750px;
+	}
+}
+
+@media ( min-width : 992px) {
+	.container {
+		width: 970px;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.container {
+		width: 1170px;
+	}
+}
+
+.ui-outputlabel{
+	font-weight: bold;
+	vertical-align: top;
+	padding-right: 20px;
+}
+
+.btn-success {
+    background-image: linear-gradient(to bottom, #5CB85C 0px, #419641 100%);
+    background-repeat: repeat-x;
+    border-color: #3E8F3E;
+}
+
+a{
+	text-decoration: none;
+}
+
+
+.ui-breadcrumb{
+	margin-bottom: 15px;
+}
+
+/*
 form .leftmargin{
 	margin-left: 15px;
-}
-.conteneur{
-	min-height: 550px;
 }
 
 form .navbarlogin{
@@ -131,3 +182,5 @@ form .navbarlogin{
   width: 750px;
   margin-bottom: 20px;
 }
+
+*/

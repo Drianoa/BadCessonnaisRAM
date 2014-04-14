@@ -1,4 +1,4 @@
-package net.etrs.ram.bad_cessonais.sessions;
+package net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao;
 
 import java.util.List;
 
@@ -7,17 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import net.etrs.ram.bad_cessonais.entities.Tournoi;
+import net.etrs.ram.bad_cessonais.common.AbstractFacade;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
 
+@SuppressWarnings("unchecked")
 @Stateless
-public class FacadeTournoi {
+public class FacadeTournoi extends AbstractFacade<Tournoi>{
 
-	@PersistenceContext
-	private EntityManager em;
-	
-	public void ajouterTournoi(Tournoi t){
-		em.persist(t);
-	}
 	
 	public  List<Tournoi> getListTournoi(){
 		TypedQuery<Tournoi> query = em.createNamedQuery("findAllTournoi", Tournoi.class);

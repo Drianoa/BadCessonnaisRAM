@@ -6,7 +6,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
-import net.etrs.ram.bad_cessonais.sessions.gestion_adherents.FacadeAdherent;
+import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 @Singleton
 @Startup       //se lance au demarrage
@@ -17,7 +17,6 @@ public class AdherentInitSingleton {
 	
 	@PostConstruct
 	public void init(){
-		
 		
 		if(facadeAdherent.getListAdherent().isEmpty()){
 			facadeAdherent.ajouterAdherent(createAdherent("AUCHART"));

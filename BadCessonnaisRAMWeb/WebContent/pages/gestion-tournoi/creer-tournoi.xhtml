@@ -1,0 +1,99 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:tags="http://java.sun.com/jsf/composite/tags"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags">
+
+
+	<ui:define name="pageTitle">Tournoi</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="/test-layout.xhtml" />
+				<p:menuitem value="Tournoi" url="#" />
+				<p:menuitem value="Créer un tournoi" url="#" />
+			</p:breadCrumb>
+		</h:form>
+		<h:form id="frmName">
+			<p:panel header="Nouveau tournoi">
+				<h:panelGrid columns="3">
+					<fx:etrs-field for="idNom" label="Nom">
+
+						<p:inputText id="idNom"
+							value="#{creerTournoiBean.nouveauTournoi.nom}" required="true" requiredMessage="Saisisez le nom"/>
+
+					</fx:etrs-field>
+
+
+					<fx:etrs-field for="idDate" label="Date du Tournoi">
+						<p:calendar id="idDate"
+							value="#{creerTournoiBean.nouveauTournoi.dateTournoi}"
+							required="true" requiredMessage="Saisisez la date"/>
+					</fx:etrs-field>
+
+
+
+					<p:outputLabel for="idTableau" value="Tableau" />
+					<h:panelGrid columns="2" >
+						<p:inputText id="idTableau"
+							value="#{creerTournoiBean.tableau.nom}"
+							placeholder="Nom du tableau"
+							required="#{!empty param['frmName:idAjout']}"
+							requiredMessage="Veuillez saisir un nom de tableau"
+							 />
+						<p:selectOneButton value="#{creerTournoiBean.tableau.typeTableau}"
+							converter="#{genericConverter}">
+							<f:selectItems value="#{creerTournoiBean.listeTypes()}" var="t"
+							 itemLabel="#{t.libelle}" />
+						</p:selectOneButton>
+					</h:panelGrid>
+					<p:commandButton id="idAjout" icon="ui-icon-plus" actionListener="#{creerTournoiBean.ajouterTableau()}" update="@form"></p:commandButton>
+					
+					<p:outputLabel value="Liste des tableaux" />
+					<p:dataTable id="idListeTableaux" 
+					value="#{creerTournoiBean.tableauxList}" 
+					var="t"  
+					rendered="#{creerTournoiBean.afficherTableaux()}"
+					>
+						<p:column headerText="Nom">
+							#{t.nom}
+						</p:column>
+						<p:column headerText="Type">
+							#{t.typeTableau.libelle}
+						</p:column>
+						<p:column headerText="Action">
+							<p:commandButton actionListener="#{creerTournoiBean.supprimerTableau(t)}"  
+							icon="ui-icon-trash"
+							update="@form"
+							immediate="true"
+							/>
+						</p:column>
+					</p:dataTable>
+					
+					<h:outputText value="" rendered="#{creerTournoiBean.afficherTableaux() eq false}" />
+															
+					<p:message for="idTableau"></p:message>
+					
+					<p:commandButton value="Annuler" action="#{routage.listerTournoi()}"
+					immediate="true"
+					></p:commandButton>				
+					<p:commandButton value="Creer le Tournoi" 
+					styleClass="btn-success"  
+					actionListener="#{creerTournoiBean.validerCreation()}"
+					action="#{routage.inscritpionTournoi()}"
+					ajax="false"
+					></p:commandButton>
+					
+				</h:panelGrid>
+
+			
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

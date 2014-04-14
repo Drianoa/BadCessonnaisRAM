@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import lombok.Getter;
 import lombok.Setter;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
-import net.etrs.ram.bad_cessonais.sessions.gestion_adherents.FacadeAdherent;
+import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 
 

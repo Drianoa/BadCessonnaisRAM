@@ -1,4 +1,4 @@
-package net.etrs.ram.bad_cessonais.sessions.gestion_adherents;
+package net.etrs.ram.bad_cessonais.services.gestion_adherents.dao;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import net.entetrs.common.facade.AbstractFacade;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 
 @Stateless

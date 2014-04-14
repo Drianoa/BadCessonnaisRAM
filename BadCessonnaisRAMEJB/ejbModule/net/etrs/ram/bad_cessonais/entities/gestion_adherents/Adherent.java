@@ -14,7 +14,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.Pattern;
 
-import net.etrs.ram.bad_cessonais.entities.Utilisateur;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,6 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+@SuppressWarnings("serial")
 @Entity
 @Data
 @FieldDefaults(level=AccessLevel.PRIVATE)
@@ -31,14 +31,10 @@ import lombok.experimental.FieldDefaults;
 @NamedQueries(
 		{
 	@NamedQuery(name="findAllAdherent", query="SELECT a FROM Adherent a"),
-	//@NamedQuery(name="findGroupeLikeName", query="SELECT gm FROM GroupeMusique gm WHERE gm.nom LIKE :nomGroupe")
 		}
 )
 
-public class Adherent extends Utilisateur implements Serializable{
-
-
-	private static final long serialVersionUID = 1L;
+public class Adherent implements Serializable{
 
 	
 	//champs techniques
