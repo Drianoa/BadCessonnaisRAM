@@ -26,7 +26,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @NoArgsConstructor
-@EqualsAndHashCode(of={"id"})
+@EqualsAndHashCode(of={"id"},callSuper=false)
 @ToString
 @NamedQueries(
 		{
