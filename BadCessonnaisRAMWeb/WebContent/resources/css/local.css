@@ -51,9 +51,10 @@ body {
 }
 
 .btn-success {
-    background-image: linear-gradient(to bottom, #5CB85C 0px, #419641 100%);
-    background-repeat: repeat-x;
-    border-color: #3E8F3E;
+    background-image: linear-gradient(to bottom, #5CB85C 0px, #419641 100%) !important;
+    background-repeat: repeat-x !important;
+    border-color: #3E8F3E !important;
+    color: white !important; 
 }
 
 a{
@@ -64,6 +65,7 @@ a{
 .ui-breadcrumb{
 	margin-bottom: 15px;
 }
+
 
 /*
 form .leftmargin{
