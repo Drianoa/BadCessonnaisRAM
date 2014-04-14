@@ -8,16 +8,15 @@
 	<p:menubar autoDisplay="false">
 		<p:menuitem value="" styleClass="" />
 		<p:submenu label="Adhérent">
-			<p:menuitem value="Inscription" icon="ui-icon-pencil" />
-			<p:menuitem value="Rechercher" url="#" />
+			<p:menuitem value="Inscription" icon="ui-icon-pencil" action="#{routage.creerAdherent()}"/>
+			<p:menuitem value="Rechercher"  icon="ui-icon-search" action="#{routage.listerAdherent()}" />
 			<p:separator />
 			<p:menuitem value="Suivi des dossiers" url="#" />
 		</p:submenu>
 
 		<p:submenu label="Tournoi">
 			<p:menuitem value="Créer un tournoi" />
-			<p:menuitem value="Lister les tournois"
-				action="#{routage.listerTournoi()}" />
+			<p:menuitem value="Lister les tournois"	action="#{routage.listerTournoi()}" />
 		</p:submenu>
 
 		<p:submenu label="Administration">

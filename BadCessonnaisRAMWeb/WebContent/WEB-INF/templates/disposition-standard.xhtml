@@ -23,16 +23,16 @@
 	<ui:include src="/WEB-INF/templates/menu.xhtml" />
 	<p:panel id="idContainer" styleClass="container">
 		<h:panelGroup layout="block" id="idConteneur" styleClass="conteneur">
-
+			<ui:insert name="headerContent">Header content par défaut</ui:insert>
 			<ui:insert name="content">
 				contenu par defaut
 			</ui:insert>
 		</h:panelGroup>
 		<footer class="text-muted">
-			<center>
+			<div align="center">
 				<small>© Copyright 2014, Le Club Badminton Cessonnais
 					réalisé par l'équipe RAM</small>
-			</center>
+			</div>
 		</footer>
 		<p:growl id="growl" for="growl" autoUpdate="true"></p:growl>
 	</p:panel>
