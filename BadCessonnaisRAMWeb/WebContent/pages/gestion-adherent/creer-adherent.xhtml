@@ -17,7 +17,22 @@ Inscription d'un adhérent
 	<p:tab title="Identification">
 		<h:panelGrid columns="2" cellpadding="10">
 
-	<h:panelGrid>Champs identification adherent NOM PRENOM DATE NAISSANCE</h:panelGrid>
+	<h:panelGrid columns="3"> 
+			<h:outputText value="Nom" />
+			<p:inputText required="true" label="Nom"  id="inputNomAdherent"/>
+			<p:message  for="inputNomAdherent" />
+
+			<h:outputText value="Prenom" />
+			<p:inputText required="true" label="Prenom"  id="inputPrenomAdherent"/>
+			<p:message   for="inputPrenomAdherent"/>
+			
+			<h:outputText value="Date de naissance" />
+			<p:inputText required="true" label="Date de naissance" id="inputDateNaissanceAdherent" />
+			<p:message   for="inputDateNaissanceAdherent"/>
+	
+	
+	
+	</h:panelGrid>
 			
 		</h:panelGrid>
 	</p:tab>
