@@ -27,33 +27,33 @@ Rechercher un adhérent<br/>
 
 <h:form id="formTableauAdherent">
   <p:dataTable id="dataTable" var="adh" value="#{adherentPageBean.adherents}" widgetVar="adherentsTable" 
-            emptyMessage="Pas d'adhérent avec ce critere" filteredValue=""
+            emptyMessage="Pas d'adhérent avec ce critère" filteredValue="#{adherentPageBean.adherentFiltres}"
             paginator="true" rows="10"  
             paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"  
             rowsPerPageTemplate="5,10,15">  
 
          <f:facet name="header">
             <p:outputPanel>
-                <h:outputText value="Recherche:" />
-                <p:inputText id="globalFilter" onkeyup="" style="width:150px" />
+                <h:outputText value="Recherche :  " />
+                <p:inputText id="globalFilter" onkeyup="adherentsTable.filter()" style="width:150px" />
             </p:outputPanel>
         </f:facet>
 
 
-        <p:column id="FCDColumn"  headerText="Licence FCD" style="width:10%">
+        <p:column id="FCDColumn"  headerText="Licence FCD" style="width:10%" filterBy="licenceFcd" sortBy="licenceFcd">
             <h:outputText value="#{adh.licenceFcd}" />
         </p:column>
         
-        <p:column id="nomColumn" headerText="Nom" footerText="Nom" style="width:30%">
+        <p:column id="nomColumn" headerText="Nom" footerText="Nom" style="width:30%" filterBy="nom" sortBy="nom">
             <h:outputText value="#{adh.nom}" />
         </p:column>
 
-        <p:column id="prenomColumn" headerText="Prénom" footerText="Prénom" style="width:20%">
+        <p:column id="prenomColumn" headerText="Prénom" footerText="Prénom" style="width:20%" filterBy="prenom">
             <h:outputText value="#{adh.prenom}" />
         </p:column>
 
-        <p:column id="dateNaissColumn"  headerText="Date naissance" style="width:10%">
-            <h:outputText value="#{adh.dateNaissance}" > <f:convertDateTime pattern="dd/MM/yyyy"/>  </h:outputText>
+        <p:column id="dateNaissColumn"  headerText="Date naissance" style="width:10%" >
+            <h:outputText value="#{adh.dateNaissance}" >  <f:convertDateTime pattern="dd/MM/yyyy" />  </h:outputText>
         </p:column>
 
 
@@ -61,8 +61,27 @@ Rechercher un adhérent<br/>
         <p:column id="actionColumn" headerText="Action" footerText="Action"  style="width:20%">
            <p:commandButton actionListener="#{adherentPageBean.consulterAdherent(adh)}"  id="adhConsulter" icon="ui-icon-disk" title="Icon Only"/>  
            <p:commandButton actionListener="#{adherentPageBean.modifierAdherent(adh)}"   id="adhModifier"  icon="ui-icon-pencil" title="Modifier #{adh.nom} #{adh.prenom}"/>
-           <p:commandButton actionListener="#{adherentPageBean.desactiverAdherent(adh)}" id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}" update=":formTableauAdherent"/>
+          
+           <p:commandButton type="button" onclick="PF('dlg').show();"  id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}"  update=":form "/>
+    
+      <p:dialog id="dialog" header="Confirmer la désactivation" widgetVar="dlg" dynamic="true">  
+			<h:outputText value="Vous allez désactiver #{adh.licenceFcd} #{adh.nom} #{adh.prenom}" /> 
+			    <br/>  <br/>   		  
+    		<p:commandButton id="cancelButton" value="Non" oncomplete="PF('dlg').hide();"/>  
+    		<p:commandButton id="submitButton" value="Oui"  actionListener="#{adherentPageBean.desactiverAdherent(adh)}" update=":formTableauAdherent " oncomplete="PF('dlg').hide();"/>
+		</p:dialog>  
+
+			
+			
+
+    		
         </p:column>
+    
+
+
+	
+
+
 
     </p:dataTable>
 </h:form>
