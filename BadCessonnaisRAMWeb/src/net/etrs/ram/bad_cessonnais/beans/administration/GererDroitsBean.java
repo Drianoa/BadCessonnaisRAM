@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
+import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
 
 @ManagedBean
@@ -28,8 +29,16 @@ public class GererDroitsBean {
 		return facadeAdherent.readAll();
 	}
 
+	
+	public String compterAdherent()
+	{
+		return facadeAdherent.countAll().toString();
+	}
 		
-		
+	public void modifierDroitsAdherent(Adherent a){
+		JsfUtils.putInFlashScope("ADHERENT", a);
+
+	}	
 	
 	
 }

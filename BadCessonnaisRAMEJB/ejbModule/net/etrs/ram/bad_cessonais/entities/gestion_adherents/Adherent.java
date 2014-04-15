@@ -34,6 +34,7 @@ import lombok.experimental.FieldDefaults;
 @NamedQueries(
 		{
 	@NamedQuery(name="findAllAdherent", query="SELECT a FROM Adherent a"),
+	@NamedQuery(name="countAllAdherent", query="SELECT count(a) FROM Adherent a"),
 		}
 )
 

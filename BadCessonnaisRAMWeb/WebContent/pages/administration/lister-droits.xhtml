@@ -1,56 +1,91 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      template="/WEB-INF/templates/disposition-standard.xhtml"
-                xmlns:p="http://primefaces.org/ui">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:p="http://primefaces.org/ui">
 
-<ui:define name="pageTitle">Gérer les droits</ui:define>
-
-<ui:define name="headerContent">
-	Rechercher un adhérent
-</ui:define>
-
-<ui:define name="content">
-
-  <p:dataTable id="dataTable" var="adh" value="#{gererDroitsBean.adherent}" widgetVar="adherentsTable" 
-            emptyMessage="Pas d'adhérent avec ce critere" filteredValue="">
-
-         <f:facet name="header">
-            <p:outputPanel>
-                <h:outputText value="Search all fields:" />
-                <p:inputText id="globalFilter" onkeyup="" style="width:150px" />
-            </p:outputPanel>
-        </f:facet>
+	<ui:define name="pageTitle">Gérer les Adhérents</ui:define>
 
 
-        <p:column id="FCDColumn" filterBy="fcd" headerText="Licence FCD" footerText="Commence par">
-            <h:outputText value="#{adh.licenceFcd}" />
-        </p:column>
-        
-        <p:column id="nomColumn" filterBy="nom" headerText="Nom" footerText="Contient" filterMatchMode="contains">
-            <h:outputText value="#{adh.nom}" />
-        </p:column>
 
-        <p:column id="prenomColumn" filterBy="nom" headerText="Prénom" footerText="Contient" filterMatchMode="contains">
-            <h:outputText value="#{adh.prenom}" />
-        </p:column>
+	<ui:define name="headerContent">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="/test-layout.xhtml" />
+				<p:menuitem value="Administration" url="#" />
+				<p:menuitem value="Gérer les droits" url="#" />
+			</p:breadCrumb>
+		</h:form>	
 
-        <p:column id="dateNaissColumn" filterBy="dateNaiss" headerText="Date naissance" footerText="Commence par">
-            <h:outputText value="#{adh.dateNaissance}" />
-        </p:column>
+Rechercher un adhérent<br />
+	</ui:define>
 
- 		<p:column id="droitColumn" filterBy="droit" headerText="Droit actuel" footerText="Commence par">
-            <h:outputText value="#{adh.droit}" />
-        </p:column>
+	<ui:define name="content">
 
-        <p:column id="manufacturerColumn" filterBy="manufacturer"  headerText="Manufacturer" footerText="exact"  filterMatchMode="exact">
-            <h:outputText value="" />
-        </p:column>
+		<!--Mise en place d'un datatable pour la recherche d'un adherent-->
 
-    </p:dataTable>
+		<h:form id="formTableauAdherent">
+			<span class="badge">#{gererDroitsBean.compterAdherent()} résultat(s)</span>
+			<p:dataTable id="dataTable" var="adh"
+				value="#{adherentPageBean.adherents}" widgetVar="adherentsTable"
+				emptyMessage="Pas d'adhérent avec ce critère"
+				filteredValue="#{adherentPageBean.adherentFiltres}" paginator="true"
+				rows="10"
+				paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				rowsPerPageTemplate="5,10,15">
 
-</ui:define>
+				<f:facet name="header">
+					<p:outputPanel>
+						<h:outputText value="Recherche :  " />
+						<p:inputText id="globalFilter" onkeyup="adherentsTable.filter()"
+							style="width:150px" />
+					</p:outputPanel>
+				</f:facet>
+
+
+				<p:column id="FCDColumn" headerText="Licence FCD" style="width:10%"
+					filterBy="licenceFcd" sortBy="licenceFcd">
+					<h:outputText value="#{adh.licenceFcd}" />
+				</p:column>
+
+				<p:column id="nomColumn" headerText="Nom" footerText="Nom"
+					style="width:30%" filterBy="nom" sortBy="nom">
+					<h:outputText value="#{adh.nom}" />
+				</p:column>
+
+				<p:column id="prenomColumn" headerText="Prénom" footerText="Prénom"
+					style="width:20%" filterBy="prenom">
+					<h:outputText value="#{adh.prenom}" />
+				</p:column>
+
+				<p:column id="dateNaissColumn" headerText="Date naissance"
+					style="width:10%">
+					<h:outputText value="#{adh.dateNaissance}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column id="droitColumn" headerText="Droit actuel"
+					style="width:20%">
+					<h:outputText value="#{adh.droit.libelle}" />
+				</p:column>
+
+
+				<p:column id="actionColumn" headerText="Action" footerText="Action"
+					style="width:10%">
+
+					<p:commandButton action="#{routage.modifierDroits()}"
+						actionListener="#{gererDroitsBean.modifierDroitsAdherent(adh)}"
+						id="adhModifier" icon="ui-icon-gear"
+						title="Modifier droits  #{adh.nom} #{adh.prenom}" />
+
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
 
 
 

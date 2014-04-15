@@ -92,6 +92,21 @@ a{
 	margin-bottom: 15px;
 }
 
+.badge {
+    background-color: #999999;
+    border-radius: 10px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    min-width: 10px;
+    padding: 3px 7px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
 
 /*
 form .leftmargin{

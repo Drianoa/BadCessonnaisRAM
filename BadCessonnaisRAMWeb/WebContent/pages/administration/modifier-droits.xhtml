@@ -1,66 +1,86 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      template="/WEB-INF/templates/disposition-standard.xhtml"
-      xmlns:p="http://primefaces.org/ui">>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags">
 
-<ui:define name="pageTitle">Modifier les droits d'un Adhérent</ui:define>
+	<ui:define name="pageTitle">Modifier les droits d'un Adhérent</ui:define>
 
 
-<ui:define name="headerContent">
-Modifier les droits d'un adhérent
-</ui:define>
-<ui:define name="content">
+	<ui:define name="headerContent">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="/test-layout.xhtml" />
+				<p:menuitem value="Administration" url="#" />
+				<p:menuitem value="Modifier les droits" url="#" />
+			</p:breadCrumb>
 
-<br />
-	
-		<h:panelGrid columns="2" cellpadding="10">
-
-	<h:panelGrid columns="3">
-	
-	
-			<h:outputText value="licenceFcd" />
-			<p:inputText label="Licence FCD"  id="inputlicenceFcdAdherent" disabled="True" value="#{modifierDroitsBean.adherent.licenceFcd}"/>
-			<p:message  for="inputlicenceFcdAdherent" />
-	
-	 
-			<h:outputText value="Nom" />
-			<p:inputText label="Nom"  id="inputNomAdherent" disabled="True" value="#{modifierDroitsBean.adherent.nom}"/>
-			<p:message  for="inputNomAdherent" />
-
-			<h:outputText value="Prenom" />
-			<p:inputText label="Prenom"  id="inputPrenomAdherent" disabled="True" value="#{modifierDroitsBean.adherent.prenom}"/>
-			<p:message   for="inputPrenomAdherent" />
-			
-			<h:outputText value="Date de naissance" />
-			<p:calendar label="Date de naissance" id="calendarDateNaissanceAdherent" disabled="True" value="#{modifierDroitsBean.adherent.dateNaissance}" />
-			<p:message   for="calendarDateNaissanceAdherent"/>
-			
-			
-			<h:outputText value="Droit " />  
-        	<p:selectOneMenu value="#{modifierDroitsBean.adherent.droit.libelle}">  
-            <f:selectItems value="#{modifierDroitsBean.listeDroits}"  />  
-           
-        	</p:selectOneMenu>  			
-			<br />
-	
-			<p:commandButton value="Annuler" styleClass="btn-default" />
-			
-			
-			<p:commandButton value="Valider" styleClass="btn-success"/>
-			
-	</h:panelGrid>
-			
-		</h:panelGrid>
-	
-
-	
+		</h:form>
+	</ui:define>
 
 
 
 
+	<ui:define name="content">
 
-</ui:define>
+		<br />
+
+		<p:panel header="Modifier les droits d'un adhérent">
+			<h:form>
+				<h:panelGrid columns="3">
+
+
+					<fx:etrs-field label="LicenceFcd" for="inputLicenceFcdAdherent">
+					<p:inputText label="Licence FCD" id="inputLicenceFcdAdherent"
+						disabled="True" value="#{modifierDroitsBean.adherent.licenceFcd}" />
+					</fx:etrs-field>
+
+
+					<fx:etrs-field label="Nom" for="inputNomAdherent">
+					<p:inputText label="Nom" id="inputNomAdherent" disabled="True"
+						value="#{modifierDroitsBean.adherent.nom}" />
+					</fx:etrs-field>
+
+					<fx:etrs-field label="Prenom" for="inputPrenomAdherent">
+					<p:inputText label="Prenom" id="inputPrenomAdherent"
+						disabled="True" value="#{modifierDroitsBean.adherent.prenom}" />
+					</fx:etrs-field>
+
+					<fx:etrs-field label="Date de naissance" for="calendarDateNaissanceAdherent">
+					<p:calendar label="Date de naissance"
+						id="calendarDateNaissanceAdherent" disabled="True"
+						value="#{modifierDroitsBean.adherent.dateNaissance}" />
+					</fx:etrs-field>
+
+
+					<fx:etrs-field label="Droit" for="calendarDateNaissanceAdherent">
+					<p:selectOneMenu value="#{modifierDroitsBean.adherent.droit}">
+						<f:selectItems value="#{modifierDroitsBean.listeDroits}"/>
+
+					</p:selectOneMenu>
+					
+					</fx:etrs-field>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<p:commandButton value="Annuler" styleClass="btn-default" action="#{routage.listerDroits()}" ajax="false" immediate="true"/>
+
+
+					<p:commandButton value="Valider" styleClass="btn-success" action="#{routage.listerDroits()}" actionListener="#{modifierDroitsBean.validerModification()}"  ajax="false" update="@form" />
+				</h:panelGrid>
+			</h:form>
+
+		</p:panel>
+
+
+
+
+
+
+
+
+
+	</ui:define>
 
 </ui:composition>
