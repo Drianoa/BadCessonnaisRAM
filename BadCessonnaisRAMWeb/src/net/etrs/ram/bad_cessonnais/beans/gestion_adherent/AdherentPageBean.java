@@ -63,10 +63,15 @@ public class AdherentPageBean {
 	public void desactiverAdherent(Adherent a){
 		//JsfUtils.putInFlashScope("ADHERENT", a);
 		
+		
+		facadeAdherent.delete(a);
+		
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Desactivation ok"));
 		
 		log.info("Tentative de desactivation de l'adherent : "+ a.toString());
+		
+		JsfUtils.sendMessage("Colloque ajouté");
 
 		//return facadeAdherent.read(id);
 	}	
