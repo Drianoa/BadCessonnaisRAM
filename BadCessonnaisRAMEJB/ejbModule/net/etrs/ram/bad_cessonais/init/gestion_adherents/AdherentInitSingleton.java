@@ -21,7 +21,7 @@ public class AdherentInitSingleton {
 	@PostConstruct
 	public void init(){
 		
-		if(facadeAdherent.getListAdherent().isEmpty()){
+		if(facadeAdherent.readAll().isEmpty()){
 			facadeAdherent.create(createAdherent("AUCHART","Alexandre","29/09/1982"));
 			facadeAdherent.create(createAdherent("MERLY","Adrien","01/01/1980"));
 			facadeAdherent.create(createAdherent("ROBERT","Manu","01/04/1970"));
