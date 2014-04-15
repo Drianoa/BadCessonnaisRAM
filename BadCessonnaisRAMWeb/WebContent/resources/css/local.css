@@ -81,6 +81,7 @@ body {
 .btn-success:focus {
   background-color: #419641 !important;
   background-position: 0 -15px !important;
+}
 
 a{
 	text-decoration: none;
