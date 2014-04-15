@@ -7,7 +7,7 @@ import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
-import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.TypeTableau;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.TypeMatch;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTableau;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
 
@@ -27,9 +27,8 @@ public class TableauInitSingleton {
 		if(facadeTableau.countAll() == 0){
 			Tournoi tournoi  = facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
 			
-			tournoi.getLstTableaux().add(facadeTableau.create("Veteran Homme Simple NC", TypeTableau.SIMPLE));
-			tournoi.getLstTableaux().add(facadeTableau.create("Senior Femme Simple NC", TypeTableau.SIMPLE));
-			tournoi.getLstTableaux().add(facadeTableau.create("Senior Double Mixte NC", TypeTableau.SIMPLE));
+			tournoi.getLstTableaux().add(facadeTableau.create("Veteran Homme Simple NC", TypeMatch.SIMPLE));
+			tournoi.getLstTableaux().add(facadeTableau.create("Senior Double Mixte NC", TypeMatch.DOUBLE));
 			facadeTournoi.update(tournoi);
 		}
 	}

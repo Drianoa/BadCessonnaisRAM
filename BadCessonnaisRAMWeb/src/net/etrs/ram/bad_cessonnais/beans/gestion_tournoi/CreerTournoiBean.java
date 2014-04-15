@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
 import lombok.experimental.FieldDefaults;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tableau;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
-import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.TypeTableau;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.TypeMatch;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.ServiceGestionTournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTableau;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
@@ -59,8 +59,8 @@ public class CreerTournoiBean {
 	 * Retourne la liste des types de tableaux.
 	 * @return
 	 */
-	public TypeTableau[] listeTypes(){
-		return TypeTableau.values();
+	public TypeMatch[] listeTypes(){
+		return TypeMatch.values();
 	}
 	
 	/**

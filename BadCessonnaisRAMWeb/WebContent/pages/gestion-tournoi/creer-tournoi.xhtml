@@ -45,7 +45,7 @@
 							required="#{!empty param['frmName:idAjout']}"
 							requiredMessage="Veuillez saisir un nom de tableau"
 							 />
-						<p:selectOneButton value="#{creerTournoiBean.tableau.typeTableau}"
+						<p:selectOneButton value="#{creerTournoiBean.tableau.typeMatch}"
 							converter="#{genericConverter}">
 							<f:selectItems value="#{creerTournoiBean.listeTypes()}" var="t"
 							 itemLabel="#{t.libelle}" />
@@ -63,7 +63,7 @@
 							#{t.nom}
 						</p:column>
 						<p:column headerText="Type">
-							#{t.typeTableau.libelle}
+							#{t.typeMatch.libelle}
 						</p:column>
 						<p:column headerText="Action">
 							<p:commandButton actionListener="#{creerTournoiBean.supprimerTableau(t)}"  

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>Default Connection</comment>
+<entry key="uuid">b0902375-3989-488c-bcba-4930ab76fd4e</entry>
+<entry key="useCustomConnectionString">false</entry>
+<entry key="encoding">utf8</entry>
+<entry key="port">3306</entry>
+<entry key="color">123 123 123</entry>
+<entry key="autoCommit">true</entry>
+<entry key="sshEnabled">false</entry>
+<entry key="adapterId">MYSQL</entry>
+<entry key="customJdbcConnectString">jdbc:mysql://localhost:3306?characterEncoding=utf8</entry>
+<entry key="displayName">root@localhost</entry>
+<entry key="userName">root</entry>
+<entry key="sslEnabled">false</entry>
+<entry key="last_connected">1397454890829</entry>
+<entry key="restore_state">false</entry>
+<entry key="host">localhost</entry>
+</properties>

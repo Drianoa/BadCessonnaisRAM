@@ -89,4 +89,11 @@ public interface Facade <T>
     public List<T> search(String parameterName,
             Object parameterValue,
             String... orderBy);
+
+    
+    /**
+     * Compte le nombre d'instances T.
+     * @return
+     */
+	public Long countAll();
 }

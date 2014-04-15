@@ -1,12 +1,12 @@
 package net.etrs.ram.bad_cessonais.entities.gestion_tournoi;
 
-public enum TypeTableau {
+public enum TypeMatch {
 	SIMPLE("Simple"),
 	DOUBLE("Double");
 	
 	private String libelle;
 	
-	private TypeTableau(String libelle) {
+	private TypeMatch(String libelle) {
 		this.libelle =  libelle;
 	}
 	
