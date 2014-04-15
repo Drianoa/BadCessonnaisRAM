@@ -25,6 +25,7 @@ Rechercher un adhérent<br/>
 
 <!--Mise en place d'un datatable pour la recherche d'un adherent-->
 
+<h:form id="formTableauAdherent">
   <p:dataTable id="dataTable" var="adh" value="#{adherentPageBean.adherents}" widgetVar="adherentsTable" 
             emptyMessage="Pas d'adhérent avec ce critere" filteredValue=""
             paginator="true" rows="10"  
@@ -58,12 +59,13 @@ Rechercher un adhérent<br/>
 
 
         <p:column id="actionColumn" headerText="Action" footerText="Action"  style="width:20%">
-           <p:commandButton actionListener="#{adherentPageBean.modifierAdherent(adh)}" id="adhConsulter" icon="ui-icon-disk" title="Icon Only"/>  
-           <p:commandButton actionListener="#{adherentPageBean.modifierAdherent(adh)}" id="adhModifier"  icon="ui-icon-pencil" title="Modifier #{adh.nom} #{adh.prenom}"/>
-           <p:commandButton actionListener="#{adherentPageBean.desactiverAdherent}" id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}"/>
+           <p:commandButton actionListener="#{adherentPageBean.consulterAdherent(adh)}"  id="adhConsulter" icon="ui-icon-disk" title="Icon Only"/>  
+           <p:commandButton actionListener="#{adherentPageBean.modifierAdherent(adh)}"   id="adhModifier"  icon="ui-icon-pencil" title="Modifier #{adh.nom} #{adh.prenom}"/>
+           <p:commandButton actionListener="#{adherentPageBean.desactiverAdherent(adh)}" id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}" update=":formTableauAdherent"/>
         </p:column>
 
     </p:dataTable>
+</h:form>
 
 </ui:define>
 
