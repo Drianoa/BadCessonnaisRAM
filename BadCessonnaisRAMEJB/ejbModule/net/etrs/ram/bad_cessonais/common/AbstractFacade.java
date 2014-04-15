@@ -3,12 +3,14 @@ package net.etrs.ram.bad_cessonais.common;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnitUtil;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -166,6 +168,19 @@ public abstract class AbstractFacade <T> implements Facade<T>
 
         TypedQuery<T> query = em.createQuery(c);
         return query.getResultList();
+    }
+    
+
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public Long countAll()
+    {
+    	CriteriaBuilder qb = em.getCriteriaBuilder();
+    	CriteriaQuery<Long> cq = qb.createQuery(Long.class);
+    	cq.select(qb.count(cq.from(parameterizedType)));
+    	//cq.where(/*your stuff*/);
+    	return em.createQuery(cq).getSingleResult();
     }
 
     /**

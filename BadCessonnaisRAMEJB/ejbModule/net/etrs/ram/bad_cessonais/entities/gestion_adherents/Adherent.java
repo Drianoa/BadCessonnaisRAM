@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -14,6 +16,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import javax.validation.constraints.Pattern;
 
+import net.etrs.ram.bad_cessonais.entities.administration.Droit;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -65,6 +68,12 @@ public class Adherent implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
+	
+	@Enumerated(EnumType.STRING)
+	Sexe sexe;
+	
+	@Enumerated(EnumType.STRING)
+	Droit droit = Droit.ADHERENT;
 	
 	
 

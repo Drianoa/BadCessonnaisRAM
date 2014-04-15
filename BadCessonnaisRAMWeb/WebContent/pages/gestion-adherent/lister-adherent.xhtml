@@ -7,46 +7,65 @@
 
 <ui:define name="pageTitle">Gérer les Adhérents</ui:define>
 
+
+
 <ui:define name="headerContent">
-	Rechercher un adhérent
+<h:form>
+	<p:breadCrumb>
+		<p:menuitem value="Accueil" action="/test-layout.xhtml" />
+		<p:menuitem value="Adhérent" url="#" />
+		<p:menuitem value="Gérer les adhérents" url="#" />
+	</p:breadCrumb>
+</h:form>	
+
+Rechercher un adhérent<br/>
 </ui:define>
 
 <ui:define name="content">
 
+<!--Mise en place d'un datatable pour la recherche d'un adherent-->
+
+<h:form id="formTableauAdherent">
   <p:dataTable id="dataTable" var="adh" value="#{adherentPageBean.adherents}" widgetVar="adherentsTable" 
-            emptyMessage="Pas d'adhérent avec ce critere" filteredValue="">
+            emptyMessage="Pas d'adhérent avec ce critere" filteredValue=""
+            paginator="true" rows="10"  
+            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"  
+            rowsPerPageTemplate="5,10,15">  
 
          <f:facet name="header">
             <p:outputPanel>
-                <h:outputText value="Search all fields:" />
+                <h:outputText value="Recherche:" />
                 <p:inputText id="globalFilter" onkeyup="" style="width:150px" />
             </p:outputPanel>
         </f:facet>
 
 
-        <p:column id="FCDColumn" filterBy="fcd" headerText="Licence FCD" footerText="Commence par">
+        <p:column id="FCDColumn"  headerText="Licence FCD" style="width:10%">
             <h:outputText value="#{adh.licenceFcd}" />
         </p:column>
         
-        <p:column id="nomColumn" filterBy="nom" headerText="Nom" footerText="Contient" filterMatchMode="contains">
+        <p:column id="nomColumn" headerText="Nom" footerText="Nom" style="width:30%">
             <h:outputText value="#{adh.nom}" />
         </p:column>
 
-        <p:column id="prenomColumn" filterBy="nom" headerText="Prénom" footerText="Contient" filterMatchMode="contains">
+        <p:column id="prenomColumn" headerText="Prénom" footerText="Prénom" style="width:20%">
             <h:outputText value="#{adh.prenom}" />
         </p:column>
 
-        <p:column id="dateNaissColumn" filterBy="dateNaiss" headerText="Date naissance" footerText="Commence par">
-            <h:outputText value="#{adh.dateNaissance}" />
+        <p:column id="dateNaissColumn"  headerText="Date naissance" style="width:10%">
+            <h:outputText value="#{adh.dateNaissance}" > <f:convertDateTime pattern="dd/MM/yyyy"/>  </h:outputText>
         </p:column>
 
 
 
-        <p:column id="manufacturerColumn" filterBy="manufacturer"  headerText="Manufacturer" footerText="exact"  filterMatchMode="exact">
-            <h:outputText value="" />
+        <p:column id="actionColumn" headerText="Action" footerText="Action"  style="width:20%">
+           <p:commandButton actionListener="#{adherentPageBean.consulterAdherent(adh)}"  id="adhConsulter" icon="ui-icon-disk" title="Icon Only"/>  
+           <p:commandButton actionListener="#{adherentPageBean.modifierAdherent(adh)}"   id="adhModifier"  icon="ui-icon-pencil" title="Modifier #{adh.nom} #{adh.prenom}"/>
+           <p:commandButton actionListener="#{adherentPageBean.desactiverAdherent(adh)}" id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}" update=":formTableauAdherent"/>
         </p:column>
 
     </p:dataTable>
+</h:form>
 
 </ui:define>
 

@@ -24,10 +24,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @EqualsAndHashCode(of={"id"})
-@NamedQueries({
-	@NamedQuery(name="Tableau.countAll", query="SELECT count(t) FROM Tableau t")
-	
-})
+//@NamedQueries({
+//	@NamedQuery(name="Tableau.countAll", query="SELECT count(t) FROM Tableau t")
+//	
+//})
 
 public class Joueur {
 	@Id
@@ -45,7 +45,6 @@ public class Joueur {
 	@NotBlank
 	String prenom;
 	
-	@NotBlank
 	Integer anneeNaissance;
 	
 	String club;

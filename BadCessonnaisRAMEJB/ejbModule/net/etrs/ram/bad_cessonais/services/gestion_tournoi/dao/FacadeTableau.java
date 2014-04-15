@@ -5,7 +5,7 @@ import javax.ejb.Stateless;
 import net.etrs.ram.bad_cessonais.common.AbstractFacade;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tableau;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
-import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.TypeTableau;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.TypeMatch;
 
 @SuppressWarnings("unchecked")
 @Stateless
@@ -18,10 +18,10 @@ public class FacadeTableau extends AbstractFacade<Tableau> {
 	 * @param typeTableau
 	 * @param tournoi
 	 */
-	public Tableau create(String nomTableau, TypeTableau typeTableau){
+	public Tableau create(String nomTableau, TypeMatch typeTableau){
 		Tableau newInstance = newInstance();
 		newInstance.setNom(nomTableau);
-		newInstance.setTypeTableau(typeTableau);
+		newInstance.setTypeMatch(typeTableau);
 		create(newInstance);
 		return newInstance;
 	}

@@ -6,7 +6,7 @@ body {
 	background-position: center center;
 	background-attachment: fixed;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 12px !important;
 	/*line-height: 1.42857143;*/
 	color: #333;
 	margin: 0px;
@@ -81,6 +81,7 @@ body {
 .btn-success:focus {
   background-color: #419641 !important;
   background-position: 0 -15px !important;
+}
 
 a{
 	text-decoration: none;

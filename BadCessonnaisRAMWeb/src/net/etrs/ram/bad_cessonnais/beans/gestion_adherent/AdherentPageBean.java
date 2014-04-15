@@ -4,10 +4,16 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import lombok.Getter;
 import lombok.Setter;
+import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
@@ -22,6 +28,8 @@ public class AdherentPageBean {
 	@Getter	@Setter
 	Adherent adherent;
 	
+	//Partie pour le log sur la gestion des adherents
+	private Log log = LogFactory.getLog(this.getClass());
 	
 	@PostConstruct		
 	public void init(){
@@ -35,9 +43,28 @@ public class AdherentPageBean {
 	
 	
 	public List<Adherent> getAdherents(){
-		return facadeAdherent.getListAdherent();
+		return facadeAdherent.readAll();
 	
 	}
-	
+	public void modifierAdherent(Adherent a){
+		JsfUtils.putInFlashScope("ADHERENT", a);
+		
+		//return facadeAdherent.read(id);
+	}
+	public void desactiverAdherent(Adherent a){
+		//JsfUtils.putInFlashScope("ADHERENT", a);
+		
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Desactivation ok"));
+		
+		log.info("Tentative de desactivation de l'adherent : "+ a.toString());
+		
+		
+		//return facadeAdherent.read(id);
+	}	
+	public void consulterAdherent(Adherent a){
+		JsfUtils.putInFlashScope("ADHERENT", a);
+		//return facadeAdherent.read(id);
+	}
 	
 }
