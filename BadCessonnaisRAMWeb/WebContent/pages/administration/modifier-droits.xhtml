@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      template="/WEB-INF/templates/disposition-standard.xhtml"
+      xmlns:p="http://primefaces.org/ui">>
+
+<ui:define name="pageTitle">Modifier les droits d'un Adhérent</ui:define>
+
+
+<ui:define name="headerContent">
+Modifier les droits d'un adhérent
+</ui:define>
+<ui:define name="content">
+
+<br />
+	
+		<h:panelGrid columns="2" cellpadding="10">
+
+	<h:panelGrid columns="3">
+	
+	
+			<h:outputText value="licenceFcd" />
+			<p:inputText label="Licence FCD"  id="inputlicenceFcdAdherent" disabled="True" value="#{modifierDroitsBean.adherent.licenceFcd}"/>
+			<p:message  for="inputlicenceFcdAdherent" />
+	
+	 
+			<h:outputText value="Nom" />
+			<p:inputText label="Nom"  id="inputNomAdherent" disabled="True" value="#{modifierDroitsBean.adherent.nom}"/>
+			<p:message  for="inputNomAdherent" />
+
+			<h:outputText value="Prenom" />
+			<p:inputText label="Prenom"  id="inputPrenomAdherent" disabled="True" value="#{modifierDroitsBean.adherent.prenom}"/>
+			<p:message   for="inputPrenomAdherent" />
+			
+			<h:outputText value="Date de naissance" />
+			<p:calendar label="Date de naissance" id="calendarDateNaissanceAdherent" disabled="True" value="#{modifierDroitsBean.adherent.dateNaissance}" />
+			<p:message   for="calendarDateNaissanceAdherent"/>
+			
+			
+			<h:outputText value="Droit " />  
+        	<p:selectOneMenu value="#{modifierDroitsBean.adherent.droit.libelle}">  
+            <f:selectItems value="#{modifierDroitsBean.listeDroits}"  />  
+           
+        	</p:selectOneMenu>  			
+			<br />
+	
+			<p:commandButton value="Annuler" styleClass="btn-default" />
+			
+			
+			<p:commandButton value="Valider" styleClass="btn-success"/>
+			
+	</h:panelGrid>
+			
+		</h:panelGrid>
+	
+
+	
+
+
+
+
+
+</ui:define>
+
+</ui:composition>

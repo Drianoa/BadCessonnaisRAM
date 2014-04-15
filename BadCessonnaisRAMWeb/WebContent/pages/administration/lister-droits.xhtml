@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      template="/WEB-INF/templates/disposition-standard.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="pageTitle">Gérer les droits</ui:define>
+
+<ui:define name="headerContent">
+	Rechercher un adhérent
+</ui:define>
+
+<ui:define name="content">
+
+  <p:dataTable id="dataTable" var="adh" value="#{gererDroitsBean.adherent}" widgetVar="adherentsTable" 
+            emptyMessage="Pas d'adhérent avec ce critere" filteredValue="">
+
+         <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="" style="width:150px" />
+            </p:outputPanel>
+        </f:facet>
+
+
+        <p:column id="FCDColumn" filterBy="fcd" headerText="Licence FCD" footerText="Commence par">
+            <h:outputText value="#{adh.licenceFcd}" />
+        </p:column>
+        
+        <p:column id="nomColumn" filterBy="nom" headerText="Nom" footerText="Contient" filterMatchMode="contains">
+            <h:outputText value="#{adh.nom}" />
+        </p:column>
+
+        <p:column id="prenomColumn" filterBy="nom" headerText="Prénom" footerText="Contient" filterMatchMode="contains">
+            <h:outputText value="#{adh.prenom}" />
+        </p:column>
+
+        <p:column id="dateNaissColumn" filterBy="dateNaiss" headerText="Date naissance" footerText="Commence par">
+            <h:outputText value="#{adh.dateNaissance}" />
+        </p:column>
+
+ 		<p:column id="droitColumn" filterBy="droit" headerText="Droit actuel" footerText="Commence par">
+            <h:outputText value="#{adh.droit}" />
+        </p:column>
+
+        <p:column id="manufacturerColumn" filterBy="manufacturer"  headerText="Manufacturer" footerText="exact"  filterMatchMode="exact">
+            <h:outputText value="" />
+        </p:column>
+
+    </p:dataTable>
+
+</ui:define>
+
+
+
+</ui:composition>
