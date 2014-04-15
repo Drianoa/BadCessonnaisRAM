@@ -27,6 +27,7 @@ public class AdherentInitSingleton {
 			facadeAdherent.create(createAdherent("AUCHART","Alexandre","29/09/1982",Sexe.HOMME,Droit.ANIMATEUR));
 			facadeAdherent.create(createAdherent("MERLY","Adrien","01/01/1980",Sexe.HOMME,Droit.PRINCIPAL));
 			facadeAdherent.create(createAdherent("ROBERT","Manu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
+	
 			
 
 		}
