@@ -70,8 +70,6 @@ public class AdherentPageBean {
 		context.addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Desactivation ok"));
 		
 		log.info("Tentative de desactivation de l'adherent : "+ a.toString());
-		
-		JsfUtils.sendMessage("Colloque ajouté");
 
 		//return facadeAdherent.read(id);
 	}	

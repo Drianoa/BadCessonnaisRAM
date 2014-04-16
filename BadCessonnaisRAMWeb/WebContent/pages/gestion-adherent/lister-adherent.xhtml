@@ -12,7 +12,7 @@
 <ui:define name="headerContent">
 <h:form>
 	<p:breadCrumb>
-		<p:menuitem value="Accueil" action="/test-layout.xhtml" />
+		<p:menuitem value="Accueil" action="/index.xhtml" />
 		<p:menuitem value="Adhérent" url="#" />
 		<p:menuitem value="Gérer les adhérents" url="#" />
 	</p:breadCrumb>
@@ -26,6 +26,21 @@ Rechercher un adhérent<br/>
 <!--Mise en place d'un datatable pour la recherche d'un adherent-->
 
 <h:form id="formTableauAdherent">
+
+
+<p:outputPanel deferred="true">  
+    <h3 align="center"> Recheche : 
+    <p:inputText id="adherentRecherche" placeholder="Mots clés" value="#{rechercheBean.motcle}"     update="true">				
+				<f:ajax immediate="true"  execute="@this"   listener="#{rechercheBean.tiptapClavier}"  event="keyup" />
+    </p:inputText>  <p:commandButton  id="rechercheButton" icon="ui-icon-search" title="recherche"/>
+    </h3>  
+
+
+
+
+
+
+
   <p:dataTable id="dataTable" var="adh" value="#{adherentPageBean.adherents}" widgetVar="adherentsTable" 
             emptyMessage="Pas d'adhérent avec ce critère" filteredValue="#{adherentPageBean.adherentFiltres}"
             paginator="true" rows="10"  
@@ -86,6 +101,8 @@ Rechercher un adhérent<br/>
 
 
     </p:dataTable>
+    
+  </p:outputPanel>   
 </h:form>
 
 </ui:define>
