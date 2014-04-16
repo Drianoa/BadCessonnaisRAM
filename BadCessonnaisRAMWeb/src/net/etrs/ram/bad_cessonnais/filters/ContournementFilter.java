@@ -30,7 +30,7 @@ public class ContournementFilter implements Filter {
     /**
      * Default constructor. 
      */
-    public ContournementFilter() {
+    public ContournementFilter() { 
     }
 
 	/**
