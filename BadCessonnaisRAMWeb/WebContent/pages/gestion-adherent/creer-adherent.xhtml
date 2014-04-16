@@ -33,10 +33,22 @@ Inscription d'un adhérent
 		<p:outputLabel value="Date de naissance :" for="calendarDateNaissanceAdherent" />
 		<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{creerAdherent.nouveauAdherent.dateNaissance}" requiredMessage="Date requise"/>
 		<p:message   for="calendarDateNaissanceAdherent"/>
+		
+		<p:outputLabel />
+		<p:outputLabel />
 	</h:panelGrid>
  </p:panel>
 
-
+ <p:panel header="Documents"> 
+        <p:selectManyCheckbox  id="grid"  layout="grid" columns="2">  
+             <f:selectItem itemLabel="Photo d'identité" itemValue="Option 1" />  
+             <f:selectItem itemLabel="Certificat médical" itemValue="Option 1" />  
+             <f:selectItem itemLabel="Absence de contre indication à la compétition" itemValue="Option 1" /> 
+              <f:selectItem itemLabel="Chèque de licence FCD" itemValue="Option 1" /> 
+              <f:selectItem itemLabel="Chèque d'adhésion au club" itemValue="Option 1" />
+        </p:selectManyCheckbox > 
+ </p:panel>
+ 
 <p:panel header="Coordonnées">
 	<h:panelGrid columns="3"> 
 		<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
@@ -63,14 +75,26 @@ Inscription d'un adhérent
  </p:panel>
  
  
- <p:panel header="Documents"> 
-        <p:selectOneRadio id="grid"  layout="grid" columns="2">  
-             <f:selectItem itemLabel="Photo d'identité" itemValue="Option 1" />  
-             <f:selectItem itemLabel="Certificat médical" itemValue="Option 1" />  
-             <f:selectItem itemLabel="Absence de contre indication à la compétition" itemValue="Option 1" /> 
-              <f:selectItem itemLabel="Chèque de licence FCD" itemValue="Option 1" /> 
-              <f:selectItem itemLabel="Chèque d'adhésion au club" itemValue="Option 1" />
-        </p:selectOneRadio> 
+<p:panel header="Licence" >
+	<h:panelGrid columns="3"> 
+		<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
+		 <p:selectOneMenu id="inputTypeLicenceAdherent">  
+            <f:selectItem itemLabel="Défense" itemValue="0" />  
+            <f:selectItem itemLabel="Civil" itemValue="1" />  
+        </p:selectOneMenu>  
+		<p:message  for="inputLieuNaissanceAdherent" />
+	
+		<p:outputLabel value="Licence FCD :" for="inputFCDAdherent" />
+		<p:inputText required="false" label="FCD"  id="inputFCDAdherent" />
+		<p:message  for="inputFCDAdherent" />
+		
+		<p:outputLabel value="Licence FFBa :" for="inputFFBaAdherent" />
+		<p:inputText required="false" label="FFBa"  id="inputFFBaAdherent" />
+		<p:message  for="inputFFBaAdherent" />
+		
+
+		
+	</h:panelGrid>
  </p:panel>
  
  

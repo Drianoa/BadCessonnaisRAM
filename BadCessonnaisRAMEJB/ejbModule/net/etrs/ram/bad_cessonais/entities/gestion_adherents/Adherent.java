@@ -68,6 +68,7 @@ public class Adherent implements Serializable{
 	@Column(length=10)
 	private String licenceFcd;
 	
+	
 	@Pattern(regexp="[0-9]*")
 	@Column(length=10)
 	private String licenceFFBa;
@@ -75,15 +76,20 @@ public class Adherent implements Serializable{
 	@Temporal(TemporalType.DATE)
 	@Past
 	private Date dateNaissance;
-	
 
 	private String lieuNaissance;
 	
+	
 	private String adresse;
 	
+	@Pattern(regexp="[0-9]*")
+	@Column(length=5)
 	private String codePostal;
 	
 	private String ville;
+	
+	
+	private String telephone;
 	
 
 	@Enumerated(EnumType.STRING)
