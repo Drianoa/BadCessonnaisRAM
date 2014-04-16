@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.DependsOn;
 import javax.ejb.EJB;
+import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
 
@@ -14,8 +15,8 @@ import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeJoueur;
 
 
 @Startup
-@Stateless
-@DependsOn(value={"JoueurInitSingleton"})
+@Singleton
+//@DependsOn(value={"JoueurInitSingleton"})
 public class EquipeInitSingleton {
 	
 	@EJB

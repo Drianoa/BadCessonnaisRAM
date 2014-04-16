@@ -9,6 +9,7 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
+import lombok.Getter;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
 
@@ -25,7 +26,14 @@ public class TournoiInitSingleton {
 	
 	@EJB
 	private FacadeTournoi facadeTournoi;
-	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
+
+	
+//	@Getter
+//	private static Tournoi tournoiPrincipal;
+	
 	
 	/**
 	 * Méthode d'intitialisation des tournois.
@@ -35,7 +43,8 @@ public class TournoiInitSingleton {
 	public void init() throws ParseException{
 		
 		if(facadeTournoi.countTournoi() == 0){
-			facadeTournoi.create(createTournoi("Tournoi de l'ascension",sdf.parse("29/05/2014")));
+			Tournoi tournoiPrincipal =  createTournoi("Tournoi de l'ascension",sdf.parse("29/05/2014"));
+			facadeTournoi.create(tournoiPrincipal);
 			facadeTournoi.create(createTournoi("Tournoi fou de bad",sdf.parse("29/05/2014")));
 			facadeTournoi.create(createTournoi("Tournoi de noël",sdf.parse("20/12/2013")));
 			facadeTournoi.create(createTournoi("Tournoi de Pâques",sdf.parse("19/04/2013")));

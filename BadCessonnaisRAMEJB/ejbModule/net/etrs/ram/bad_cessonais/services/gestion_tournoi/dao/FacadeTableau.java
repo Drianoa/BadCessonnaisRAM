@@ -3,6 +3,7 @@ package net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao;
 import javax.ejb.Stateless;
 
 import net.etrs.ram.bad_cessonais.common.AbstractFacade;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Equipe;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tableau;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.TypeMatch;
@@ -28,5 +29,10 @@ public class FacadeTableau extends AbstractFacade<Tableau> {
 	
 	public Long countAll(){
 		return em.createNamedQuery("Tableau.countAll", Long.class).getSingleResult();
+	}
+	
+	public void ajouterEquipe(Tableau tableau, Equipe equipe){
+		tableau.getInscrits().add(equipe);
+		em.persist(tableau);
 	}
 }
