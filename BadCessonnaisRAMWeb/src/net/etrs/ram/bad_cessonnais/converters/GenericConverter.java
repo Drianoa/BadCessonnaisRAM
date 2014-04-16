@@ -21,7 +21,7 @@ public class GenericConverter implements Converter, Serializable
 	private BidiMap temporaryStore;
 
 	@PostConstruct
-	public void init() 
+	public final void init()
 	{
 		temporaryStore = new DualHashBidiMap();
 	}
