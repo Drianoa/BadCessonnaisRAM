@@ -13,7 +13,6 @@ import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 public class FacadeAdherent extends AbstractFacade<Adherent>{
 
 	
-
 	public void desactiverAdherent(Adherent a ){
 		//em.persist(m);
 	}

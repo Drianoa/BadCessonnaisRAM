@@ -8,15 +8,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import org.primefaces.component.inputtext.InputText;
-
-import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
-import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.java.Log;
+import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
+import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
-@Log4j
+import org.primefaces.component.inputtext.InputText;
+
+@Log
 @ManagedBean
 public class RechercheBean {
 

@@ -37,7 +37,7 @@ public class AdherentPageBean {
 	private List<Adherent> adherentFiltres;  
 	
 	
-	
+
 	
 	
 	@PostConstruct		
