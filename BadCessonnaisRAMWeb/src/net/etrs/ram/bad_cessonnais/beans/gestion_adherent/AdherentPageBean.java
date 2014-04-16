@@ -66,8 +66,7 @@ public class AdherentPageBean {
 		
 		facadeAdherent.delete(a);
 		
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Info","Desactivation ok"));
+		JsfUtils.sendMessage("growl", FacesMessage.SEVERITY_INFO, "Information","Suppresion ok");
 		
 		log.info("Tentative de desactivation de l'adherent : "+ a.toString());
 

@@ -1,6 +1,7 @@
 package net.etrs.ram.bad_cessonnais.utils;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
@@ -28,6 +29,19 @@ public class JsfUtils
         FacesContext.getCurrentInstance().addMessage(composantId, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), null));
     }
     
+    /**
+     * 
+     * Envoi d'un message sur un composant
+     * @param composantId nom du composant
+     * @param s Severity 
+     * @param title titre du message
+     * @param message contenu du message
+     */
+    public static void sendMessage(String composantId, Severity s,String title,String message)
+    {
+        FacesContext.getCurrentInstance().addMessage(composantId, new FacesMessage(s,title,message));
+    }
+
     
     /**
      * Envoie le message d'une exception à l'IHM. Classe : ERROR

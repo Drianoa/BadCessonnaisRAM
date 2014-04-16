@@ -2,6 +2,7 @@ package net.etrs.ram.bad_cessonais.entities.gestion_adherents;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -11,9 +12,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 
 import net.etrs.ram.bad_cessonais.entities.administration.Droit;
@@ -69,7 +72,21 @@ public class Adherent implements Serializable{
 	private String licenceFFBa;
 	
 	@Temporal(TemporalType.DATE)
+	@Past
 	private Date dateNaissance;
+	
+
+	private String lieuNaissance;
+	
+	private String adresse;
+	
+	private String codePostal;
+	
+	private String ville;
+	
+
+	@Enumerated(EnumType.STRING)
+	private List<Justificatif> justificatif;
 	
 	@Enumerated(EnumType.STRING)
 	Sexe sexe;

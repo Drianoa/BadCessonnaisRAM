@@ -13,54 +13,84 @@ Inscription d'un adhérent
 </ui:define>
 <ui:define name="content">
 
-<p:tabView id="tabView">
-	<p:tab title="Identification">
-		<h:panelGrid columns="2" cellpadding="10">
 
+<h:form >  
+ 
+
+<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
+ 
+<p:panel header="Identification">
 	<h:panelGrid columns="3"> 
-			<h:outputText value="Nom" />
-			<p:inputText required="true" label="Nom"  id="inputNomAdherent"/>
-			<p:message  for="inputNomAdherent" />
-
-			<h:outputText value="Prenom" />
-			<p:inputText required="true" label="Prenom"  id="inputPrenomAdherent"/>
-			<p:message   for="inputPrenomAdherent"/>
-			
-			<h:outputText value="Date de naissance" />
-			<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" />
-			<p:message   for="calendarDateNaissanceAdherent"/>
 	
-			<p:commandButton value="Annuler" styleClass="btn-success" />
-			
-			
-			<p:commandButton value="Enregistrer" styleClass="btn-success"/>
-			
+		<p:outputLabel value="Nom :" for="inputNomAdherent" />
+		<p:inputText required="true" label="Nom"  id="inputNomAdherent" value="#{creerAdherent.nouveauAdherent.nom}" requiredMessage="Nom requis"/>
+		<p:message  for="inputNomAdherent" />
+	
+		<p:outputLabel value="Prénom :" for="inputPrenomAdherent" />
+		<p:inputText required="true" label="Prenom"  id="inputPrenomAdherent" value="#{creerAdherent.nouveauAdherent.prenom}" requiredMessage="Prénom requis"/>
+		<p:message  for="inputPrenomAdherent" />
+	
+		<p:outputLabel value="Date de naissance :" for="calendarDateNaissanceAdherent" />
+		<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{creerAdherent.nouveauAdherent.dateNaissance}" requiredMessage="Date requise"/>
+		<p:message   for="calendarDateNaissanceAdherent"/>
 	</h:panelGrid>
-			
-		</h:panelGrid>
-	</p:tab>
+ </p:panel>
 
-	<p:tab title="coordonnées" disabled="true">
-		<h:panelGrid columns="2" cellpadding="10">
-		
-		</h:panelGrid>
-	</p:tab>
 
-	<p:tab title="Licence" disabled="true">
-		<h:panelGrid columns="2" cellpadding="10">
-				</h:panelGrid>
-	</p:tab>
-	<p:tab title="Documents" disabled="true">
-		<h:panelGrid columns="2" cellpadding="10">
-		</h:panelGrid>
-	</p:tab>
+<p:panel header="Coordonnées">
+	<h:panelGrid columns="3"> 
+		<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
+		<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{creerAdherent.nouveauAdherent.lieuNaissance}" requiredMessage="Lieu requis"/>
+		<p:message  for="inputLieuNaissanceAdherent" />
 	
-	<p:tab title="Récapitulatif" disabled="true">
-		<h:panelGrid columns="2" cellpadding="10">
-		</h:panelGrid>
-	</p:tab>
+		<p:outputLabel value="Adresse :" for="inputAdresseAdherent" />
+		<p:inputText required="false" label="Adresse"  id="inputAdresseAdherent" value="#{creerAdherent.nouveauAdherent.adresse}"/>
+		<p:message  for="inputAdresseAdherent" />
+		
+		<p:outputLabel value="Code postal :" for="inputCpAdherent" />
+		<p:inputText required="false" label="Adresse"  id="inputCpAdherent" value="#{creerAdherent.nouveauAdherent.codePostal}"/>
+		<p:message  for="inputCpAdherent" />
+		
+		<p:outputLabel value="Ville :" for="inputVilleAdherent" />
+		<p:inputText required="false" label="Adresse"  id="inputVilleAdherent" value="#{creerAdherent.nouveauAdherent.ville}"/>
+		<p:message  for="inputVilleAdherent" />
+		<p:outputLabel />
+		<p:outputLabel />
+		<p:outputLabel />
+		
+		
+	</h:panelGrid>
+ </p:panel>
+ 
+ 
+ <p:panel header="Documents"> 
+        <p:selectOneRadio id="grid"  layout="grid" columns="2">  
+             <f:selectItem itemLabel="Photo d'identité" itemValue="Option 1" />  
+             <f:selectItem itemLabel="Certificat médical" itemValue="Option 1" />  
+             <f:selectItem itemLabel="Absence de contre indication à la compétition" itemValue="Option 1" /> 
+              <f:selectItem itemLabel="Chèque de licence FCD" itemValue="Option 1" /> 
+              <f:selectItem itemLabel="Chèque d'adhésion au club" itemValue="Option 1" />
+        </p:selectOneRadio> 
+ </p:panel>
+ 
+ 
+ 
+ 
+</h:panelGrid>
+  <p:commandButton value="Annuler" action="#{routage.accueil()}"/>
+    
+  <p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherent.enregistrer()}" update="@form"/>
+      
+</h:form>  
+  
 
-</p:tabView>
+      
+
+
+
+
+
+
 
 
 
