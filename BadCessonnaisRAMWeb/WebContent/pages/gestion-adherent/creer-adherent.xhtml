@@ -10,7 +10,14 @@
 
 
 <ui:define name="headerContent">
-Inscription d'un adhérent
+<h:form>
+	<p:breadCrumb>
+		<p:menuitem value="Accueil" action="/index.xhtml" />
+		<p:menuitem value="Adhérent" url="#" />
+		<p:menuitem value="Création" url="#" />
+	</p:breadCrumb>
+</h:form>	
+<h2 align="center">Inscription d'un adhérent</h2>
 </ui:define>
 <ui:define name="content">
 
@@ -52,11 +59,10 @@ Inscription d'un adhérent
 		<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.lieuNaissance}" requiredMessage="Lieu requis"/>
 		<p:message  for="inputLieuNaissanceAdherent" />
 		
-		<p:outputLabel value="Sexe :" for="inputSexeAdherent" />
-		<p:selectOneMenu id="inputSexeAdherent">  
-            <f:selectItem itemLabel="M" itemValue="0" />  
-            <f:selectItem itemLabel="F" itemValue="1" />  
-        </p:selectOneMenu> 
+		<p:outputLabel value="Sexe :" for="inputSexeAdherent"/>
+		<p:selectOneRadio id="inputSexeAdherent"  value="#{creerAdherentBean.nouveauAdherent.sexe}" converter="#{genericConverter}">  
+             <f:selectItems  value="#{adherentPageBean.listeSexe}" var="s" itemLabel="#{s.libelle}"/> 
+        </p:selectOneRadio> 
 		<p:message  for="inputSexeAdherent" />
 	
 		<p:outputLabel value="Adresse :" for="inputAdresseAdherent" />
@@ -74,11 +80,7 @@ Inscription d'un adhérent
 		<p:outputLabel value="Tél. :" for="inputTelAdherent" />
 		<p:inputText required="false" label="Téléphone"  id="inputTelAdherent" value="#{creerAdherentBean.nouveauAdherent.telephone}"/>
 		<p:message  for="inputTelAdherent" />
-		<p:outputLabel />
-		<p:outputLabel />
-		<p:outputLabel />
-		
-		
+	
 	</h:panelGrid>
  </p:panel>
  
@@ -88,9 +90,8 @@ Inscription d'un adhérent
 		
 	
 		<p:outputLabel value="Origine :" for="inputOrigineAdherent" />
-		<p:selectOneMenu id="inputOrigineAdherent">  
-            <f:selectItem itemLabel="Défense" itemValue="0" />  
-            <f:selectItem itemLabel="Civil" itemValue="1" />  
+		<p:selectOneMenu id="inputOrigineAdherent" value="#{creerAdherentBean.nouveauAdherent.origine}" converter="#{genericConverter}">  
+           <f:selectItems  value="#{adherentPageBean.listeOrigine}" var="o" itemLabel="#{o.libelle}"/>
         </p:selectOneMenu> 
 		<p:message  for="inputOrigineAdherent" />
 	

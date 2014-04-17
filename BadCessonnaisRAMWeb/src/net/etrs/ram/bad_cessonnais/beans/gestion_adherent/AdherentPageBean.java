@@ -6,12 +6,15 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Justificatif;
+import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Origine;
+import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Sexe;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 
@@ -70,7 +73,12 @@ public class AdherentPageBean {
 	public Justificatif[] getListeJustificatif(){
 		return facadeAdherent.getListeJustificatif();
 	}
-	
+	public Origine[] getListeOrigine(){
+		return facadeAdherent.getListeOrigine();
+	}
+	public Sexe[] getListeSexe(){
+		return facadeAdherent.getListeSexe();
+	}
 	
 
 }

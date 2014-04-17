@@ -94,6 +94,9 @@ public class Adherent implements Serializable{
 	private List<Justificatif> justificatif;
 	
 	@Enumerated(EnumType.STRING)
+	Origine origine;
+	
+	@Enumerated(EnumType.STRING)
 	Sexe sexe;
 	
 	@Enumerated(EnumType.STRING)

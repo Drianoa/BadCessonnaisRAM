@@ -14,11 +14,11 @@
 	<p:breadCrumb>
 		<p:menuitem value="Accueil" action="/index.xhtml" />
 		<p:menuitem value="Adhérent" url="#" />
-		<p:menuitem value="Gérer les adhérents" url="#" />
+		<p:menuitem value="Recherche" url="#" />
 	</p:breadCrumb>
 </h:form>	
-
-Rechercher un adhérent<br/>
+	<h2 align="center">Rechercher un adhérent</h2>
+<br/>
 </ui:define>
 
 <ui:define name="content">
@@ -29,12 +29,13 @@ Rechercher un adhérent<br/>
 
 
 <p:outputPanel deferred="true">  
+   <!--  
     <h3 align="center"> Recheche : 
     <p:inputText id="adherentRecherche" placeholder="Mots clés" value="#{rechercheBean.motcle}"     update="true">				
 				<f:ajax immediate="true"  execute="@this"   listener="#{rechercheBean.tiptapClavier}"  event="keyup" />
     </p:inputText>  <p:commandButton  id="rechercheButton" icon="ui-icon-search" title="recherche"/>
     </h3>  
-
+	-->
 
 
 

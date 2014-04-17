@@ -3,11 +3,6 @@ package net.etrs.ram.bad_cessonnais.routeur;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import lombok.Getter;
-import lombok.Setter;
-
-
-
 @ManagedBean
 @ApplicationScoped
 public class Routage {
@@ -27,5 +22,13 @@ public class Routage {
 	 */
 	public  String listerAdherent()	{return "/pages/gestion-adherent/lister-adherent.xhtml" + REDIRECT;}
 	public  String creerAdherent()	{return "/pages/gestion-adherent/creer-adherent.xhtml" + REDIRECT;}
+	
+	
+	/**
+	 * Routage pour l'administration
+	 */
+	
+	public  String listerDroitAdherent()	{return "/pages/administration/lister-droits.xhtml" + REDIRECT;}
+	//public  String configurerSite()			{return "/pages/administration/configurer-site.xhtml" + REDIRECT;}
 	
 }
