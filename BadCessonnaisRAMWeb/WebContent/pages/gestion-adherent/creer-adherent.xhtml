@@ -2,8 +2,9 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ram="http://java.sun.com/jsf/composite/ram"
       template="/WEB-INF/templates/disposition-standard.xhtml"
-      xmlns:p="http://primefaces.org/ui">>
+      xmlns:p="http://primefaces.org/ui">
 
 <ui:define name="pageTitle">Gérer les Adhérents</ui:define>
 
@@ -18,34 +19,30 @@ Inscription d'un adhérent
  
 
 <h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
- 
+
 <p:panel header="Identification">
-	<h:panelGrid columns="3"> 
-	
+ <h:panelGrid columns="3"> 
 		<p:outputLabel value="Nom :" for="inputNomAdherent" />
-		<p:inputText required="true" label="Nom"  id="inputNomAdherent" value="#{creerAdherent.nouveauAdherent.nom}" requiredMessage="Nom requis"/>
+		<p:inputText required="true" label="Nom :"  id="inputNomAdherent" value="#{creerAdherent.nouveauAdherent.nom}" requiredMessage="Nom requis"/>
 		<p:message  for="inputNomAdherent" />
-	
+
 		<p:outputLabel value="Prénom :" for="inputPrenomAdherent" />
-		<p:inputText required="true" label="Prenom"  id="inputPrenomAdherent" value="#{creerAdherent.nouveauAdherent.prenom}" requiredMessage="Prénom requis"/>
+		<p:inputText required="true" label="Nom :"  id="inputPrenomAdherent" value="#{creerAdherent.nouveauAdherent.prenom}" requiredMessage="Prénom requis"/>
 		<p:message  for="inputPrenomAdherent" />
-	
+
 		<p:outputLabel value="Date de naissance :" for="calendarDateNaissanceAdherent" />
 		<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{creerAdherent.nouveauAdherent.dateNaissance}" requiredMessage="Date requise"/>
-		<p:message   for="calendarDateNaissanceAdherent"/>
-		
-		<p:outputLabel />
-		<p:outputLabel />
-	</h:panelGrid>
+		<p:message  for="calendarDateNaissanceAdherent" />
+</h:panelGrid>
  </p:panel>
 
- <p:panel header="Documents"> 
-        <p:selectManyCheckbox  id="grid"  layout="grid" columns="2">  
+ <p:panel header="Justificatifs"> 
+        <p:selectManyCheckbox  id="justificatif"  layout="grid" columns="2">  
              <f:selectItem itemLabel="Photo d'identité" itemValue="Option 1" />  
              <f:selectItem itemLabel="Certificat médical" itemValue="Option 1" />  
              <f:selectItem itemLabel="Absence de contre indication à la compétition" itemValue="Option 1" /> 
-              <f:selectItem itemLabel="Chèque de licence FCD" itemValue="Option 1" /> 
-              <f:selectItem itemLabel="Chèque d'adhésion au club" itemValue="Option 1" />
+             <f:selectItem itemLabel="Chèque de licence FCD" itemValue="Option 1" /> 
+             <f:selectItem itemLabel="Chèque d'adhésion au club" itemValue="Option 1" />
         </p:selectManyCheckbox > 
  </p:panel>
  
@@ -66,6 +63,10 @@ Inscription d'un adhérent
 		<p:outputLabel value="Ville :" for="inputVilleAdherent" />
 		<p:inputText required="false" label="Adresse"  id="inputVilleAdherent" value="#{creerAdherent.nouveauAdherent.ville}"/>
 		<p:message  for="inputVilleAdherent" />
+		
+		<p:outputLabel value="Tél. :" for="inputTelAdherent" />
+		<p:inputText required="false" label="Téléphone"  id="inputTelAdherent" value="#{creerAdherent.nouveauAdherent.telephone}"/>
+		<p:message  for="inputTelAdherent" />
 		<p:outputLabel />
 		<p:outputLabel />
 		<p:outputLabel />

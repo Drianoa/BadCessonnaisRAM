@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<title>Not present in rendered output</title>
+</head>
+<body>
+<composite:interface>
+	<composite:attribute name="label" required="true" />
+	<composite:attribute name="for" required="true" />
+	<composite:attribute name="required" required="false" default="false"/>
+
+</composite:interface>
+
+
+<composite:implementation>
+<h:panelGrid columns="3" id="pg_#{cc.attrs.for}">
+	<p:outputLabel value="#{cc.attrs.label}" for="#{cc.attrs.for}" required="#{cc.attrs.required}"/>
+	<composite:insertChildren />
+	<p:message for="#{cc.attrs.for}"/>
+</h:panelGrid>
+</composite:implementation>
+</body>
+</html>

@@ -24,9 +24,15 @@ public class AdherentInitSingleton {
 	public void init(){
 		
 		if(facadeAdherent.readAll().isEmpty()){
+			facadeAdherent.create(createAdherent("CHART","Aledre","29/09/1982",Sexe.HOMME,Droit.ANIMATEUR));
+			facadeAdherent.create(createAdherent("UCHART","Andre","29/09/1982",Sexe.HOMME,Droit.ANIMATEUR));
 			facadeAdherent.create(createAdherent("AUCHART","Alexandre","29/09/1982",Sexe.HOMME,Droit.ANIMATEUR));
 			facadeAdherent.create(createAdherent("MERLY","Adrien","01/01/1980",Sexe.HOMME,Droit.PRINCIPAL));
 			facadeAdherent.create(createAdherent("ROBERT","Manu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));			
+			facadeAdherent.create(createAdherent("ROBuytuytERT","Manuyttu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
+			facadeAdherent.create(createAdherent("ROuytuytuytBERT","Maytyutnu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
+			facadeAdherent.create(createAdherent("ROBuytuytERT","tttManu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
+			facadeAdherent.create(createAdherent("RuytuytOBERT","Mauytuytnu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
 		}
 		
 	}
