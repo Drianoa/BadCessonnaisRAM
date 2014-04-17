@@ -24,15 +24,15 @@ public class AdherentInitSingleton {
 	public void init(){
 		
 		if(facadeAdherent.readAll().isEmpty()){
-			facadeAdherent.create(createAdherent("CHART","Aledre","29/09/1982",Sexe.HOMME,Droit.ANIMATEUR));
-			facadeAdherent.create(createAdherent("UCHART","Andre","29/09/1982",Sexe.HOMME,Droit.ANIMATEUR));
-			facadeAdherent.create(createAdherent("AUCHART","Alexandre","29/09/1982",Sexe.HOMME,Droit.ANIMATEUR));
+			facadeAdherent.create(createAdherent("QUIROUL","Pierre","21/05/1982",Sexe.HOMME,Droit.ADHERENT));
+			facadeAdherent.create(createAdherent("BAMBELL","Larry","22/09/1981",Sexe.HOMME,Droit.ADHERENT));
+			facadeAdherent.create(createAdherent("AUCHART","Alexandre","29/10/1982",Sexe.HOMME,Droit.ANIMATEUR));
 			facadeAdherent.create(createAdherent("MERLY","Adrien","01/01/1980",Sexe.HOMME,Droit.PRINCIPAL));
-			facadeAdherent.create(createAdherent("ROBERT","Manu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));			
-			facadeAdherent.create(createAdherent("ROBuytuytERT","Manuyttu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
-			facadeAdherent.create(createAdherent("ROuytuytuytBERT","Maytyutnu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
-			facadeAdherent.create(createAdherent("ROBuytuytERT","tttManu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
-			facadeAdherent.create(createAdherent("RuytuytOBERT","Mauytuytnu","05/11/1979",Sexe.HOMME,Droit.PRESIDENT));
+			facadeAdherent.create(createAdherent("ROBERT","Manu","15/07/1975",Sexe.HOMME,Droit.PRESIDENT));			
+			facadeAdherent.create(createAdherent("STRAP","Jacques","12/12/1979",Sexe.HOMME,Droit.ADHERENT));
+			facadeAdherent.create(createAdherent("DUVAL","Paul","10/03/1978",Sexe.HOMME,Droit.ADHERENT));
+			facadeAdherent.create(createAdherent("SAROUL","Raul","25/04/1979",Sexe.HOMME,Droit.ADHERENT));
+			facadeAdherent.create(createAdherent("MOLIDA","Peter","05/11/1980",Sexe.HOMME,Droit.ADHERENT));
 		}
 		
 	}

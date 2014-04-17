@@ -1,13 +1,16 @@
 package net.etrs.ram.bad_cessonnais.beans.gestion_adherent;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-
+import javax.faces.context.FacesContext;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -16,6 +19,8 @@ import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Justificatif;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Origine;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Sexe;
+import net.etrs.ram.bad_cessonais.interop.Licencie;
+import net.etrs.ram.bad_cessonais.interop.ServiceClassement;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 
@@ -27,6 +32,8 @@ public class AdherentPageBean {
 	@EJB
 	FacadeAdherent facadeAdherent;
 	
+	@Getter	@Setter
+	Licencie licencie;
 	@Getter	@Setter
 	Adherent adherent;
 	
@@ -60,12 +67,34 @@ public class AdherentPageBean {
 	}	
 	
 	
-	public void consulterAdherent(Adherent a){
-		JsfUtils.putInFlashScope("ADHERENT", a);
+	public void consulterAdherent(){
+
 
 	}
 	
 	
+	/**
+	 * On recupere les infoormations de classement du licencié via le WS 
+	 */
+	public void getClassementLicencieFFBa(){
+		String licenceFFBa = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("formAdherent:inputFFBaAdherent");
+
+		try {
+			URL url = new URL("http://201214-22:9090/ServeurFFbadWeb/ServiceClassement?wsdl");
+			QName qname = new QName("http://interop.mockup/","ServiceClassementService");
+			
+			
+			Service service = Service.create(url, qname);
+			ServiceClassement sc = service.getPort(ServiceClassement.class);
+			licencie = sc.classementLicencie(licenceFFBa);
+			
+			
+		} catch (MalformedURLException e) {
+			
+			e.printStackTrace();
+
+		}
+	}
 	
 	/**
 	 * On récupère la listes des justificatifs

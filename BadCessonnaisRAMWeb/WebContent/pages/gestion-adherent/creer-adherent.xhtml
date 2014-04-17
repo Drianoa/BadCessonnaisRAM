@@ -22,7 +22,7 @@
 <ui:define name="content">
 
 
-<h:form >  
+<h:form id="formAdherent">  
 	<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
 		
 		<p:panel header="Identification" style="height: 140px;">
@@ -79,33 +79,49 @@
 		 </p:panel>
 	
 		<p:panel header="Licence" >
-			<h:panelGrid columns="3"> 
+			<h:panelGrid columns="4"> 
 				<p:outputLabel value="Origine :" for="inputOrigineAdherent" />
 				<p:selectOneMenu id="inputOrigineAdherent" value="#{creerAdherentBean.nouveauAdherent.origine}" converter="#{genericConverter}">  
 		           <f:selectItems  value="#{adherentPageBean.listeOrigine}" var="o" itemLabel="#{o.libelle}"/>
 		        </p:selectOneMenu> 
 				<p:message  for="inputOrigineAdherent" />
+				<p:outputLabel />
 			
 				<p:outputLabel value="Licence FCD :" for="inputFCDAdherent" />
-				<p:inputText required="false" label="FCD"  id="inputFCDAdherent" />
+				<p:inputText required="false" label="FCD"  id="inputFCDAdherent" value="#{creerAdherentBean.nouveauAdherent.licenceFcd}"/>
 				<p:message  for="inputFCDAdherent" />
+				<p:outputLabel />
 				
 				<p:outputLabel value="Licence FFBa :" for="inputFFBaAdherent" />
-				<p:inputText required="false" label="FFBa"  id="inputFFBaAdherent" />
+				<p:inputText required="false" label="FFBa"  id="inputFFBaAdherent" value="#{creerAdherentBean.nouveauAdherent.licenceFFBa}" >
+					<f:ajax immediate="true"  execute="@this"   listener="#{creerAdherentBean.buttonSearchFFBaIsEnabled}"  event="keyup" />
+				</p:inputText>
 				<p:message  for="inputFFBaAdherent" />
+				<p:commandButton id="buttonSearchFFBa"  icon="ui-icon-search"   disabled="true"   actionListener="#{adherentPageBean.getClassementLicencieFFBa}" ajax="true" update=":formAdherent" immediate="true"/>
+
+				<p:outputLabel value="Simple :"/><p:outputLabel value="#{adherentPageBean.licencie.classementSimple.value().replace('_','')}"/><p:outputLabel /><p:outputLabel />
+				<p:outputLabel value="Double :"/><p:outputLabel value="#{adherentPageBean.licencie.classementDouble.value().replace('_','')}"/><p:outputLabel /><p:outputLabel />
+				<p:outputLabel value="Double Mixte :"/><p:outputLabel value="#{adherentPageBean.licencie.classementDoubleMixte.value().replace('_','')}"/>
+
+
+
 			</h:panelGrid>
 		</p:panel>
 
 	</h:panelGrid>
 
 	<!-- action -->
-	<h:panelGrid columns="2">
-  <p:commandButton value="Annuler" styleClass="btn-default" action="#{routage.accueil()}" ajax="false" immediate="true"/>
-      
-  <p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherentBean.enregistrer()}" update="@form"/>
-</h:panelGrid>
+	<h:panelGrid columns="4">
 
+  		<p:commandButton value="Annuler" styleClass="btn-default" action="#{routage.accueil()}" ajax="false" immediate="true"/>
+      	<p:spacer/><p:spacer/>
+  		<p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherentBean.enregistrer()}" update="@form"/>
 
+	</h:panelGrid>
+
+				
+				
+				 
 </h:form>  
 
 </ui:define>
