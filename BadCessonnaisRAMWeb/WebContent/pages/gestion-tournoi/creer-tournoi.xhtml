@@ -45,11 +45,11 @@
 							required="#{!empty param['frmName:idAjout']}"
 							requiredMessage="Veuillez saisir un nom de tableau"
 							 />
-						<p:selectOneButton value="#{creerTournoiBean.tableau.typeMatch}"
+						<!-- <p:selectOneButton value="#{creerTournoiBean.tableau.typeMatch}"
 							converter="#{genericConverter}">
 							<f:selectItems value="#{creerTournoiBean.listeTypes()}" var="t"
 							 itemLabel="#{t.libelle}" />
-						</p:selectOneButton>
+						</p:selectOneButton> -->
 					</h:panelGrid>
 					<p:commandButton id="idAjout" icon="ui-icon-plus" actionListener="#{creerTournoiBean.ajouterTableau()}" update="@form"></p:commandButton>
 					
@@ -62,9 +62,9 @@
 						<p:column headerText="Nom">
 							#{t.nom}
 						</p:column>
-						<p:column headerText="Type">
+						<!-- <p:column headerText="Type">
 							#{t.typeMatch.libelle}
-						</p:column>
+						</p:column> -->
 						<p:column headerText="Action">
 							<p:commandButton actionListener="#{creerTournoiBean.supprimerTableau(t)}"  
 							icon="ui-icon-trash"

@@ -27,7 +27,6 @@ public class JoueurInitSingleton {
 				joueur.setLicenceFcd("12345" + i);
 				facadeJoueur.create(joueur);
 			}
-
 		}
 	}
 

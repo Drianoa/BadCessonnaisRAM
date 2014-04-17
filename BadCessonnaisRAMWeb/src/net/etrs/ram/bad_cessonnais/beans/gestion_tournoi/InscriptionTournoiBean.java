@@ -1,5 +1,6 @@
 package net.etrs.ram.bad_cessonnais.beans.gestion_tournoi;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,9 +12,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Joueur;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.JoueursPoule;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tableau;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
+import net.etrs.ram.bad_cessonais.services.gestion_tournoi.ServiceGestionTournoi;
+import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeJoueur;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
+import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @ManagedBean
@@ -23,18 +29,57 @@ public class InscriptionTournoiBean {
 	@EJB
 	FacadeTournoi facadeTournoi;
 	
+	@EJB
+	FacadeJoueur facadeJoueur;
+	
+	@EJB
+	ServiceGestionTournoi serviceGestionTournoi;
+	
 	@Getter
 	@Setter
 	Tournoi tournoi;
 	
+	@Getter @Setter
+	Joueur nouveauJoueur;
+	
+	@Getter @Setter
+	Tableau tableauActif;
+	
 	@PostConstruct
 	public void init(){
-		//tournoi = (Tournoi) JsfUtils.getFromFlashScope("tournoi");
 		tournoi =  facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
+		nouveauJoueur = facadeJoueur.newInstance();
 	}
 	
 	public JoueursPoule[] listeJoueursPoule(){
 		return JoueursPoule.values();
+	}
+	
+	public void supprimerJoueur(Tableau tableau, Joueur joueur){
+		try{
+			serviceGestionTournoi.supprimerJoueur(tableau,joueur);
+			tournoi =  facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
+			JsfUtils.sendMessage(String.format("Le joueur %s %s à été supprimé", joueur.getNom(), joueur.getPrenom()));
+		}catch(Exception exception){
+			JsfUtils.sendMessage(exception);
+		}
+	}
+	
+	public void definirtableauActif(Tableau tableau){
+		tableauActif = tableau;
+	}
+	
+	public List<String> autoComplete(String licence){
+		ArrayList<String > list = new ArrayList<>();
+		for(Joueur joueur : facadeJoueur.autocompletion(licence)){
+			list.add(joueur.getLicenceFcd());
+		}
+		
+		return list;
+	}
+	
+	public void gererSelection(){
+		
 	}
 	
 }

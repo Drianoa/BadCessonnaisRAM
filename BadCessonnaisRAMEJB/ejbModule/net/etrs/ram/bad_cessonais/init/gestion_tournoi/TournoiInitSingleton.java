@@ -42,7 +42,7 @@ public class TournoiInitSingleton {
 	@PostConstruct
 	public void init() throws ParseException{
 		
-		if(facadeTournoi.countTournoi() == 0){
+		if(facadeTournoi.countAll() == 0){
 			Tournoi tournoiPrincipal =  createTournoi("Tournoi de l'ascension",sdf.parse("29/05/2014"));
 			facadeTournoi.create(tournoiPrincipal);
 			facadeTournoi.create(createTournoi("Tournoi fou de bad",sdf.parse("29/05/2014")));

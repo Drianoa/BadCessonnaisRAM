@@ -39,12 +39,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @NoArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @EqualsAndHashCode(of={"id"})
-@NamedQueries(
-		{
-	@NamedQuery(name="findAllTournoi", query="SELECT t FROM Tournoi t"),
-	@NamedQuery(name="countAllTournoi", query="SELECT count(t) FROM Tournoi as t")
-		}
-)
+//@NamedQueries(
+//		{
+////	@NamedQuery(name="findAllTournoi", query="SELECT t FROM Tournoi t"),
+////	@NamedQuery(name="countAllTournoi", query="SELECT count(t) FROM Tournoi as t")
+//		}
+//)
 public class Tournoi implements Serializable{
 
 	//champs technique

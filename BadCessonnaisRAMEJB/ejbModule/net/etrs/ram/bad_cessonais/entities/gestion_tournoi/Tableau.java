@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -45,12 +46,12 @@ public class Tableau implements Serializable {
 	//@NotBlank(message="Saisisez le nom")
 	String nom;
 		
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	TypeMatch typeMatch = TypeMatch.SIMPLE;
+//	@NotNull
+//	@Enumerated(EnumType.STRING)
+//	TypeMatch typeMatch = TypeMatch.SIMPLE;
 	
-	@ManyToMany
-	List<Equipe> inscrits = new ArrayList<>();
+	@ManyToMany(cascade=CascadeType.ALL)
+	List<Joueur> inscrits = new ArrayList<>();
 	
 	@Enumerated(EnumType.STRING)
 	JoueursPoule joueursPoule = JoueursPoule.JOUEURS4;

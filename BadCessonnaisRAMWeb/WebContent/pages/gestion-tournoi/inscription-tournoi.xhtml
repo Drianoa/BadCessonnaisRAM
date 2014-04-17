@@ -6,7 +6,7 @@
 	template="/WEB-INF/templates/disposition-standard.xhtml"
 	xmlns:tags="http://java.sun.com/jsf/composite/tags"
 	xmlns:fx="http://www.ent-etrs.net/prsi/tags"
-                xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 	<ui:define name="pageTitle">Tournoi - Inscriptions</ui:define>
@@ -26,14 +26,9 @@
 					<fx:date-format />
 				</h:outputText>
 			</h4>
-
-			<p:accordionPanel
+			<p:accordionPanel id="tableauPanel"
 				value="#{inscriptionTournoiBean.tournoi.lstTableaux}" var="tableau">
-				<p:tab>
-					<f:facet name="title">
-    					#{tableau.nom}
-    					
-    				</f:facet>
+				<p:tab title="#{tableau.nom}">
 					<h:panelGrid columns="3">
 						<p:selectOneMenu value="#{tableau.joueursPoule}" var="jp"
 							converter="#{genericConverter}">
@@ -41,24 +36,56 @@
 								value="#{inscriptionTournoiBean.listeJoueursPoule()}" var="j"
 								itemValue="#{j.name()}" itemLabel="#{j.libelle}" />
 						</p:selectOneMenu>
-						<p:inputText value="#{tableau.tempsMatch}" size="2" ></p:inputText>
-						<p:commandButton icon="ui-icon-person" value="+"></p:commandButton>
+						<p:inputText value="#{tableau.tempsMatch}" size="2"></p:inputText>
+						<p:commandButton icon="ui-icon-person" value="+"
+							actionListener="#{inscriptionTournoiBean.definirtableauActif(tableau)}"
+							onclick="PF('dlg').show()" />
+
 					</h:panelGrid>
-					<p: value="#{tableau.inscrits}" var="equipe">
-						<h:dataTable var="joueur" value="#{equipe.joueurs}" >
-							<p:column>#{joueur.licenceFcd}</p:column>
-							<p:column>#{joueur.nom}</p:column>
-							<p:column>#{joueur.prenom}</p:column>
-							<p:column>#{joueur.anneeNaissance}</p:column>
-							<p:column>#{joueur.club}</p:column>
-							<p:column><p:commandButton icon="ui-icon-trash" /></p:column>
-						</h:dataTable>
-					</ui:repeat>
+					<p:dataTable id="tabJoueurs" var="joueur"
+						value="#{tableau.inscrits}">
+						<p:column>#{joueur.licenceFcd}</p:column>
+						<p:column>#{joueur.nom}</p:column>
+						<p:column>#{joueur.prenom}</p:column>
+						<p:column>#{joueur.anneeNaissance}</p:column>
+						<p:column>#{joueur.club}</p:column>
+						<p:column>
+							<p:commandButton icon="ui-icon-trash"
+								actionListener="#{inscriptionTournoiBean.supprimerJoueur(tableau,joueur)}"
+								update=":frmName:tableauPanel" />
+						</p:column>
+					</p:dataTable>
 				</p:tab>
 			</p:accordionPanel>
-
 		</h:form>
+		<p:dialog closable="true" header="Informations joueur" widgetVar="dlg">
+				<h:form>
+			<h:panelGrid columns="3">
+					<fx:etrs-field for="idLicenceFcd" label="Licence FCD">
+						<p:autoComplete id="idLicenceFcd"
+							value="#{inscriptionTournoiBean.nouveauJoueur.licenceFcd}"
+							completeMethod="#{inscriptionTournoiBean.autoComplete}"
+							var="joueur"
+						></p:autoComplete>
+					</fx:etrs-field>
+					<fx:etrs-field for="idNom" label="Nom">
+						<p:inputText id="idNom"
+							value="#{inscriptionTournoiBean.nouveauJoueur.nom}"></p:inputText>
+					</fx:etrs-field>
+					<fx:etrs-field for="idPrenom" label="Prénom">
+						<p:inputText id="idPrenom"
+							value="#{inscriptionTournoiBean.nouveauJoueur.prenom}"></p:inputText>
+					</fx:etrs-field>
+					<fx:etrs-field for="idDateNaissance" label="Date de naissance">
+						<p:inputText id="idDateNaissance"
+							value="#{inscriptionTournoiBean.nouveauJoueur.anneeNaissance}"></p:inputText>
+					</fx:etrs-field>
+					<fx:etrs-field for="idClub" label="Club">
+						<p:inputText id="idClub"
+							value="#{inscriptionTournoiBean.nouveauJoueur.club}"></p:inputText>
+					</fx:etrs-field>
+			</h:panelGrid>
+				</h:form>
+		</p:dialog>
 	</ui:define>
-
-
 </ui:composition>

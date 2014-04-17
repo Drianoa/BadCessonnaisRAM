@@ -24,10 +24,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @EqualsAndHashCode(of={"id"})
-//@NamedQueries({
-//	@NamedQuery(name="Tableau.countAll", query="SELECT count(t) FROM Tableau t")
-//	
-//})
+@NamedQueries({
+	@NamedQuery(name="Joueur.findByLicenceAuto", query="SELECT j FROM Joueur j WHERE j.licenceFcd like CONCAT(:licenceFcd, '%') ORDER by j.licenceFcd ASC")
+	
+})
 
 public class Joueur {
 	@Id
