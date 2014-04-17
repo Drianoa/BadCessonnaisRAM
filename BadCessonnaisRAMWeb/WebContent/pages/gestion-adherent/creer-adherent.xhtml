@@ -23,112 +23,94 @@
 
 
 <h:form >  
- 
-
-<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
-
-<p:panel header="Identification">
- <h:panelGrid columns="3"> 
-		<p:outputLabel value="Nom :" for="inputNomAdherent" />
-		<p:inputText required="true" label="Nom :"  id="inputNomAdherent" value="#{creerAdherentBean.nouveauAdherent.nom}" requiredMessage="Nom requis"/>
-		<p:message  for="inputNomAdherent" />
-
-		<p:outputLabel value="Prénom :" for="inputPrenomAdherent" />
-		<p:inputText required="true" label="Nom :"  id="inputPrenomAdherent" value="#{creerAdherentBean.nouveauAdherent.prenom}" requiredMessage="Prénom requis"/>
-		<p:message  for="inputPrenomAdherent" />
-
-		<p:outputLabel value="Date de naissance :" for="calendarDateNaissanceAdherent" />
-		<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.dateNaissance}" requiredMessage="Date requise"/>
-		<p:message  for="calendarDateNaissanceAdherent" />
-</h:panelGrid>
- </p:panel>
-
- <p:panel header="Justificatifs"> 
-        <p:selectManyCheckbox  id="justificatif"  value="#{creerAdherentBean.nouveauAdherent.justificatif}" layout="grid" columns="2"  converter="#{genericConverter}">  
-             <f:selectItems  value="#{adherentPageBean.listeJustificatif}" var="j" itemLabel="#{j.libelle}"/>
-        </p:selectManyCheckbox > 
-        
-
-        
-        
- </p:panel>
- 
-<p:panel header="Coordonnées">
-	<h:panelGrid columns="3"> 
-		<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
-		<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.lieuNaissance}" requiredMessage="Lieu requis"/>
-		<p:message  for="inputLieuNaissanceAdherent" />
+	<h:panelGrid columns="2" columnClasses="label, value" styleClass="grid">
 		
-		<p:outputLabel value="Sexe :" for="inputSexeAdherent"/>
-		<p:selectOneRadio id="inputSexeAdherent"  value="#{creerAdherentBean.nouveauAdherent.sexe}" converter="#{genericConverter}">  
-             <f:selectItems  value="#{adherentPageBean.listeSexe}" var="s" itemLabel="#{s.libelle}"/> 
-        </p:selectOneRadio> 
-		<p:message  for="inputSexeAdherent" />
+		<p:panel header="Identification" style="height: 140px;">
+		 <h:panelGrid columns="3"> 
+				<p:outputLabel value="Nom :" for="inputNomAdherent" />
+				<p:inputText required="true" label="Nom :"  id="inputNomAdherent" value="#{creerAdherentBean.nouveauAdherent.nom}" requiredMessage="Nom requis"/>
+				<p:message  for="inputNomAdherent" />
+		
+				<p:outputLabel value="Prénom :" for="inputPrenomAdherent" />
+				<p:inputText required="true" label="Nom :"  id="inputPrenomAdherent" value="#{creerAdherentBean.nouveauAdherent.prenom}" requiredMessage="Prénom requis"/>
+				<p:message  for="inputPrenomAdherent" />
+		
+				<p:outputLabel value="Date de naissance :" for="calendarDateNaissanceAdherent" />
+				<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.dateNaissance}" requiredMessage="Date requise"/>
+				<p:message  for="calendarDateNaissanceAdherent" />
+		  </h:panelGrid>
+		 </p:panel>
+		
+		<p:panel header="Justificatifs" style="height: 140px;"> 
+		        <p:selectManyCheckbox  id="justificatif"  value="#{creerAdherentBean.nouveauAdherent.justificatif}" layout="grid" columns="2"  converter="#{genericConverter}">  
+		             <f:selectItems  value="#{adherentPageBean.listeJustificatif}" var="j" itemLabel="#{j.libelle}"/>
+		        </p:selectManyCheckbox > 
+		        
+		
+		        
+		        
+		 </p:panel>
+		 
+		<p:panel header="Coordonnées">
+			<h:panelGrid columns="3"> 
+				<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
+				<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.lieuNaissance}" requiredMessage="Lieu requis"/>
+				<p:message  for="inputLieuNaissanceAdherent" />
+				
+				<p:outputLabel value="Sexe :" for="inputSexeAdherent"/>
+				<p:selectOneRadio id="inputSexeAdherent"  value="#{creerAdherentBean.nouveauAdherent.sexe}" converter="#{genericConverter}">  
+		             <f:selectItems  value="#{adherentPageBean.listeSexe}" var="s" itemLabel="#{s.libelle}"/> 
+		        </p:selectOneRadio> 
+				<p:message  for="inputSexeAdherent" />
+			
+				<p:outputLabel value="Adresse :" for="inputAdresseAdherent" />
+				<p:inputText required="false" label="Adresse"  id="inputAdresseAdherent" value="#{creerAdherentBean.nouveauAdherent.adresse}"/>
+				<p:message  for="inputAdresseAdherent" />
+				
+				<p:outputLabel value="Code postal :" for="inputCpAdherent" />
+				<p:inputText required="false" label="Adresse"  id="inputCpAdherent" value="#{creerAdherentBean.nouveauAdherent.codePostal}"/>
+				<p:message  for="inputCpAdherent" />
+				
+				<p:outputLabel value="Ville :" for="inputVilleAdherent" />
+				<p:inputText required="false" label="Adresse"  id="inputVilleAdherent" value="#{creerAdherentBean.nouveauAdherent.ville}"/>
+				<p:message  for="inputVilleAdherent" />
+				
+				<p:outputLabel value="Tél. :" for="inputTelAdherent" />
+				<p:inputText required="false" label="Téléphone"  id="inputTelAdherent" value="#{creerAdherentBean.nouveauAdherent.telephone}"/>
+				<p:message  for="inputTelAdherent" />
+			
+			</h:panelGrid>
+		 </p:panel>
 	
-		<p:outputLabel value="Adresse :" for="inputAdresseAdherent" />
-		<p:inputText required="false" label="Adresse"  id="inputAdresseAdherent" value="#{creerAdherentBean.nouveauAdherent.adresse}"/>
-		<p:message  for="inputAdresseAdherent" />
-		
-		<p:outputLabel value="Code postal :" for="inputCpAdherent" />
-		<p:inputText required="false" label="Adresse"  id="inputCpAdherent" value="#{creerAdherentBean.nouveauAdherent.codePostal}"/>
-		<p:message  for="inputCpAdherent" />
-		
-		<p:outputLabel value="Ville :" for="inputVilleAdherent" />
-		<p:inputText required="false" label="Adresse"  id="inputVilleAdherent" value="#{creerAdherentBean.nouveauAdherent.ville}"/>
-		<p:message  for="inputVilleAdherent" />
-		
-		<p:outputLabel value="Tél. :" for="inputTelAdherent" />
-		<p:inputText required="false" label="Téléphone"  id="inputTelAdherent" value="#{creerAdherentBean.nouveauAdherent.telephone}"/>
-		<p:message  for="inputTelAdherent" />
-	
+		<p:panel header="Licence" >
+			<h:panelGrid columns="3"> 
+				<p:outputLabel value="Origine :" for="inputOrigineAdherent" />
+				<p:selectOneMenu id="inputOrigineAdherent" value="#{creerAdherentBean.nouveauAdherent.origine}" converter="#{genericConverter}">  
+		           <f:selectItems  value="#{adherentPageBean.listeOrigine}" var="o" itemLabel="#{o.libelle}"/>
+		        </p:selectOneMenu> 
+				<p:message  for="inputOrigineAdherent" />
+			
+				<p:outputLabel value="Licence FCD :" for="inputFCDAdherent" />
+				<p:inputText required="false" label="FCD"  id="inputFCDAdherent" />
+				<p:message  for="inputFCDAdherent" />
+				
+				<p:outputLabel value="Licence FFBa :" for="inputFFBaAdherent" />
+				<p:inputText required="false" label="FFBa"  id="inputFFBaAdherent" />
+				<p:message  for="inputFFBaAdherent" />
+			</h:panelGrid>
+		</p:panel>
+
 	</h:panelGrid>
- </p:panel>
- 
- 
-<p:panel header="Licence" >
-	<h:panelGrid columns="3"> 
-		
-	
-		<p:outputLabel value="Origine :" for="inputOrigineAdherent" />
-		<p:selectOneMenu id="inputOrigineAdherent" value="#{creerAdherentBean.nouveauAdherent.origine}" converter="#{genericConverter}">  
-           <f:selectItems  value="#{adherentPageBean.listeOrigine}" var="o" itemLabel="#{o.libelle}"/>
-        </p:selectOneMenu> 
-		<p:message  for="inputOrigineAdherent" />
-	
-		<p:outputLabel value="Licence FCD :" for="inputFCDAdherent" />
-		<p:inputText required="false" label="FCD"  id="inputFCDAdherent" />
-		<p:message  for="inputFCDAdherent" />
-		
-		<p:outputLabel value="Licence FFBa :" for="inputFFBaAdherent" />
-		<p:inputText required="false" label="FFBa"  id="inputFFBaAdherent" />
-		<p:message  for="inputFFBaAdherent" />
-		
 
-		
-	</h:panelGrid>
- </p:panel>
- 
- 
- 
- 
-</h:panelGrid>
-  <p:commandButton value="Annuler" action="#{routage.accueil()}"/>
-    
+	<!-- action -->
+	<h:panelGrid columns="2">
+  <p:commandButton value="Annuler" styleClass="btn-default" action="#{routage.accueil()}" ajax="false" immediate="true"/>
+      
   <p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherentBean.enregistrer()}" update="@form"/>
-      
+</h:panelGrid>
+
+
 </h:form>  
-  
-
-      
-
-
-
-
-
-
-
-
-
 
 </ui:define>
 

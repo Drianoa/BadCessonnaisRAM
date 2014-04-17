@@ -53,6 +53,7 @@
                 <h:outputText value="Recherche :  " />
                 <p:inputText id="globalFilter" onkeyup="adherentsTable.filter()" style="width:150px" />
             </p:outputPanel>
+            
         </f:facet>
 
 
@@ -83,29 +84,20 @@
     
     	<!-- Mise en place de la dialogue de desactivation de l'adhérent -->
         <p:dialog id="dialog" header="Confirmer la désactivation" widgetVar="dlg" dynamic="true">  
+			<br/><br/>
 			<h:outputText value="Vous allez désactiver #{adh.licenceFcd} #{adh.nom} #{adh.prenom}" /> 
 			    <br/>  <br/>   		  
     		<p:commandButton id="cancelButton" value="Non" oncomplete="PF('dlg').hide();"/>  
     		<p:commandButton id="submitButton" value="Oui" actionListener="#{adherentPageBean.desactiverAdherent(adh)}" update=":formTableauAdherent " oncomplete="PF('dlg').hide();"/>
 		</p:dialog>  
 
-			
-			
-
-    		
         </p:column>
-    
-
-
-	
-
-
 
     </p:dataTable>
     
   </p:outputPanel>   
 </h:form>
-
+<br/><br/>
 </ui:define>
 
 

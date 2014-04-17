@@ -34,17 +34,12 @@ public class AdherentPageBean {
 	@Getter	@Setter
 	private List<Adherent> adherentFiltres;  
 	
-	
-
-	
-	
 	@PostConstruct		
 	public void init(){
 		adherent = facadeAdherent.newInstance();
 	}
 	
 
-	
 	public List<Adherent> getAdherents(){
 		return facadeAdherent.readAll();
 	
