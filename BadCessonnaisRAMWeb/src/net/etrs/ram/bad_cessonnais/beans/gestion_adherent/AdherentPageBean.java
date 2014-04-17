@@ -6,17 +6,12 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
+import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Justificatif;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 
@@ -46,10 +41,6 @@ public class AdherentPageBean {
 	}
 	
 
-	public void enregistrerAdherent(){
-		//facadeAdherent.ajouterAdherent(adherent);
-	}
-	
 	
 	public List<Adherent> getAdherents(){
 		return facadeAdherent.readAll();
@@ -62,22 +53,23 @@ public class AdherentPageBean {
 	}
 	public void desactiverAdherent(Adherent a){
 		//JsfUtils.putInFlashScope("ADHERENT", a);
-		
-		
 		facadeAdherent.delete(a);
-		
 		JsfUtils.sendMessage("growl", FacesMessage.SEVERITY_INFO, "Information","Suppresion ok");
-		
 		log.info("Tentative de desactivation de l'adherent : "+ a.toString());
-
-		//return facadeAdherent.read(id);
+	//return facadeAdherent.read(id);
 	}	
 	public void consulterAdherent(Adherent a){
 		JsfUtils.putInFlashScope("ADHERENT", a);
 
 	}
 	
-
+	/**
+	 * On récupère la listes des justificatifs
+	 * @return
+	 */
+	public Justificatif[] getListeJustificatif(){
+		return facadeAdherent.getListeJustificatif();
+	}
 	
 	
 

@@ -4,6 +4,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
 @ManagedBean
 @Log4j
-public class CreerAdherent {
+public class CreerAdherentBean {
 
 	
 	@EJB
@@ -36,11 +37,10 @@ public class CreerAdherent {
 	
 	
 	public void enregistrer(){
-		
-		  log.info(nouveauAdherent);  
+		log.info(nouveauAdherent);  
 		facadeAdherent.create(nouveauAdherent);
 		nouveauAdherent = facadeAdherent.newInstance();
-		JsfUtils.sendMessage("growl", FacesMessage.SEVERITY_INFO, "Information", "L'adhérent à bien été ajouté");
+		JsfUtils.sendMessage(null, FacesMessage.SEVERITY_INFO, "Information", "L'adhérent à bien été ajouté");
 	}
 	
 

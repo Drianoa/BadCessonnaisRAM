@@ -23,49 +23,56 @@ Inscription d'un adhérent
 <p:panel header="Identification">
  <h:panelGrid columns="3"> 
 		<p:outputLabel value="Nom :" for="inputNomAdherent" />
-		<p:inputText required="true" label="Nom :"  id="inputNomAdherent" value="#{creerAdherent.nouveauAdherent.nom}" requiredMessage="Nom requis"/>
+		<p:inputText required="true" label="Nom :"  id="inputNomAdherent" value="#{creerAdherentBean.nouveauAdherent.nom}" requiredMessage="Nom requis"/>
 		<p:message  for="inputNomAdherent" />
 
 		<p:outputLabel value="Prénom :" for="inputPrenomAdherent" />
-		<p:inputText required="true" label="Nom :"  id="inputPrenomAdherent" value="#{creerAdherent.nouveauAdherent.prenom}" requiredMessage="Prénom requis"/>
+		<p:inputText required="true" label="Nom :"  id="inputPrenomAdherent" value="#{creerAdherentBean.nouveauAdherent.prenom}" requiredMessage="Prénom requis"/>
 		<p:message  for="inputPrenomAdherent" />
 
 		<p:outputLabel value="Date de naissance :" for="calendarDateNaissanceAdherent" />
-		<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{creerAdherent.nouveauAdherent.dateNaissance}" requiredMessage="Date requise"/>
+		<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.dateNaissance}" requiredMessage="Date requise"/>
 		<p:message  for="calendarDateNaissanceAdherent" />
 </h:panelGrid>
  </p:panel>
 
  <p:panel header="Justificatifs"> 
-        <p:selectManyCheckbox  id="justificatif"  layout="grid" columns="2">  
-             <f:selectItem itemLabel="Photo d'identité" itemValue="Option 1" />  
-             <f:selectItem itemLabel="Certificat médical" itemValue="Option 1" />  
-             <f:selectItem itemLabel="Absence de contre indication à la compétition" itemValue="Option 1" /> 
-             <f:selectItem itemLabel="Chèque de licence FCD" itemValue="Option 1" /> 
-             <f:selectItem itemLabel="Chèque d'adhésion au club" itemValue="Option 1" />
+        <p:selectManyCheckbox  id="justificatif"  value="#{creerAdherentBean.nouveauAdherent.justificatif}" layout="grid" columns="2"  converter="#{genericConverter}">  
+             <f:selectItems  value="#{adherentPageBean.listeJustificatif}" var="j" itemLabel="#{j.libelle}"/>
         </p:selectManyCheckbox > 
+        
+
+        
+        
  </p:panel>
  
 <p:panel header="Coordonnées">
 	<h:panelGrid columns="3"> 
 		<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
-		<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{creerAdherent.nouveauAdherent.lieuNaissance}" requiredMessage="Lieu requis"/>
+		<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.lieuNaissance}" requiredMessage="Lieu requis"/>
 		<p:message  for="inputLieuNaissanceAdherent" />
+		
+		<p:outputLabel value="Sexe :" for="inputSexeAdherent" />
+		<p:selectOneMenu id="inputSexeAdherent">  
+            <f:selectItem itemLabel="M" itemValue="0" />  
+            <f:selectItem itemLabel="F" itemValue="1" />  
+        </p:selectOneMenu> 
+		<p:message  for="inputSexeAdherent" />
 	
 		<p:outputLabel value="Adresse :" for="inputAdresseAdherent" />
-		<p:inputText required="false" label="Adresse"  id="inputAdresseAdherent" value="#{creerAdherent.nouveauAdherent.adresse}"/>
+		<p:inputText required="false" label="Adresse"  id="inputAdresseAdherent" value="#{creerAdherentBean.nouveauAdherent.adresse}"/>
 		<p:message  for="inputAdresseAdherent" />
 		
 		<p:outputLabel value="Code postal :" for="inputCpAdherent" />
-		<p:inputText required="false" label="Adresse"  id="inputCpAdherent" value="#{creerAdherent.nouveauAdherent.codePostal}"/>
+		<p:inputText required="false" label="Adresse"  id="inputCpAdherent" value="#{creerAdherentBean.nouveauAdherent.codePostal}"/>
 		<p:message  for="inputCpAdherent" />
 		
 		<p:outputLabel value="Ville :" for="inputVilleAdherent" />
-		<p:inputText required="false" label="Adresse"  id="inputVilleAdherent" value="#{creerAdherent.nouveauAdherent.ville}"/>
+		<p:inputText required="false" label="Adresse"  id="inputVilleAdherent" value="#{creerAdherentBean.nouveauAdherent.ville}"/>
 		<p:message  for="inputVilleAdherent" />
 		
 		<p:outputLabel value="Tél. :" for="inputTelAdherent" />
-		<p:inputText required="false" label="Téléphone"  id="inputTelAdherent" value="#{creerAdherent.nouveauAdherent.telephone}"/>
+		<p:inputText required="false" label="Téléphone"  id="inputTelAdherent" value="#{creerAdherentBean.nouveauAdherent.telephone}"/>
 		<p:message  for="inputTelAdherent" />
 		<p:outputLabel />
 		<p:outputLabel />
@@ -78,12 +85,14 @@ Inscription d'un adhérent
  
 <p:panel header="Licence" >
 	<h:panelGrid columns="3"> 
-		<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
-		 <p:selectOneMenu id="inputTypeLicenceAdherent">  
+		
+	
+		<p:outputLabel value="Origine :" for="inputOrigineAdherent" />
+		<p:selectOneMenu id="inputOrigineAdherent">  
             <f:selectItem itemLabel="Défense" itemValue="0" />  
             <f:selectItem itemLabel="Civil" itemValue="1" />  
-        </p:selectOneMenu>  
-		<p:message  for="inputLieuNaissanceAdherent" />
+        </p:selectOneMenu> 
+		<p:message  for="inputOrigineAdherent" />
 	
 		<p:outputLabel value="Licence FCD :" for="inputFCDAdherent" />
 		<p:inputText required="false" label="FCD"  id="inputFCDAdherent" />
@@ -104,7 +113,7 @@ Inscription d'un adhérent
 </h:panelGrid>
   <p:commandButton value="Annuler" action="#{routage.accueil()}"/>
     
-  <p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherent.enregistrer()}" update="@form"/>
+  <p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherentBean.enregistrer()}" update="@form"/>
       
 </h:form>  
   

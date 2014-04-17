@@ -1,12 +1,14 @@
 package net.etrs.ram.bad_cessonais.services.gestion_adherents.dao;
 
-
-
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
+
 import net.etrs.ram.bad_cessonais.common.AbstractFacade;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
+import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Justificatif;
+
 
 @SuppressWarnings("unchecked")
 @Stateless
@@ -23,6 +25,10 @@ public class FacadeAdherent extends AbstractFacade<Adherent>{
 		return query.getResultList();
 		
 	}
+
 	
+	public Justificatif[] getListeJustificatif(){
+		return Justificatif.values();
+	}
 	
 }
