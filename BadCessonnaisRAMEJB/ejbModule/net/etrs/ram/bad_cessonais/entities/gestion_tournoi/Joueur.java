@@ -25,7 +25,8 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level=AccessLevel.PRIVATE)
 @EqualsAndHashCode(of={"id"})
 @NamedQueries({
-	@NamedQuery(name="Joueur.findByLicenceAuto", query="SELECT j FROM Joueur j WHERE j.licenceFcd like CONCAT(:licenceFcd, '%') ORDER by j.licenceFcd ASC")
+	@NamedQuery(name="Joueur.findByLicenceAuto", query="SELECT jou FROM Joueur jou where jou.id not in (SELECT j.id FROM Tableau t JOIN t.inscrits j Where t = :tableauActif) AND jou.licenceFcd like CONCAT(:licenceFcd, '%')  ORDER by jou.licenceFcd ASC"),
+	@NamedQuery(name="Joueur.findByLicence", query="SELECT j FROM Joueur j WHERE j.licenceFcd = :licenceFcd"),
 	
 })
 
@@ -37,6 +38,7 @@ public class Joueur {
 	Long version;
 	
 	@NotBlank
+	@Column(unique=true)
 	String licenceFcd;
 	
 	@NotBlank

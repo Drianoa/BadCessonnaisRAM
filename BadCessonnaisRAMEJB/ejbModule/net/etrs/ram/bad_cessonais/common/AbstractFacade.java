@@ -265,4 +265,6 @@ public abstract class AbstractFacade <T> implements Facade<T>
     {
         return this.log;
     }
+    
+   
 }

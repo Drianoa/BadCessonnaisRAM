@@ -49,4 +49,17 @@ public class ServiceGestionTournoi implements Serializable{
 	public void supprimerJoueur(Tableau tableau, Joueur joueur) {
 		facadeTableau.supprimerJoueur(tableau,joueur);
 	}
+
+
+
+	public void inscrireJoueur(Tableau tableauActif, Joueur nouveauJoueur) {
+		//MAJ Joueur
+		nouveauJoueur = facadeJoueur.update(nouveauJoueur);
+		
+		if( !tableauActif.getInscrits().contains(nouveauJoueur)){
+			tableauActif.getInscrits().add(nouveauJoueur);
+			facadeTableau.update(tableauActif);
+		}
+		//MAJ Tableau
+	}
 }

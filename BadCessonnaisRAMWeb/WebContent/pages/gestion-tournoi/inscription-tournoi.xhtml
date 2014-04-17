@@ -65,8 +65,12 @@
 						<p:autoComplete id="idLicenceFcd"
 							value="#{inscriptionTournoiBean.nouveauJoueur.licenceFcd}"
 							completeMethod="#{inscriptionTournoiBean.autoComplete}"
-							var="joueur"
-						></p:autoComplete>
+							var="licence"
+							itemValue="#{licence}"
+							itemLabel="#{licence}"
+						>
+						<p:ajax event="itemSelect" listener="#{inscriptionTournoiBean.gererSelection}" update="@form" />
+						</p:autoComplete>
 					</fx:etrs-field>
 					<fx:etrs-field for="idNom" label="Nom">
 						<p:inputText id="idNom"
@@ -84,6 +88,10 @@
 						<p:inputText id="idClub"
 							value="#{inscriptionTournoiBean.nouveauJoueur.club}"></p:inputText>
 					</fx:etrs-field>
+					<p:commandButton value="Inscrire" 
+					actionListener="#{inscriptionTournoiBean.inscrireJoueur()}" 
+					onclick="PF('dlg').hide()"
+					update=":frmName:tableauPanel @form"></p:commandButton>
 			</h:panelGrid>
 				</h:form>
 		</p:dialog>

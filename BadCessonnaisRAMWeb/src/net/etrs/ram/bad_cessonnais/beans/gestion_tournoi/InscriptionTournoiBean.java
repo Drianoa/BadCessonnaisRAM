@@ -8,6 +8,8 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.SelectEvent;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,7 +49,7 @@ public class InscriptionTournoiBean {
 	
 	@PostConstruct
 	public void init(){
-		tournoi =  facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
+		refreshTournoi();
 		nouveauJoueur = facadeJoueur.newInstance();
 	}
 	
@@ -58,11 +60,17 @@ public class InscriptionTournoiBean {
 	public void supprimerJoueur(Tableau tableau, Joueur joueur){
 		try{
 			serviceGestionTournoi.supprimerJoueur(tableau,joueur);
-			tournoi =  facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
+			//----------------------------
+			refreshTournoi();
+			//---------------------------------
 			JsfUtils.sendMessage(String.format("Le joueur %s %s à été supprimé", joueur.getNom(), joueur.getPrenom()));
 		}catch(Exception exception){
 			JsfUtils.sendMessage(exception);
 		}
+	}
+
+	private void refreshTournoi() {
+		tournoi =  facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
 	}
 	
 	public void definirtableauActif(Tableau tableau){
@@ -71,15 +79,22 @@ public class InscriptionTournoiBean {
 	
 	public List<String> autoComplete(String licence){
 		ArrayList<String > list = new ArrayList<>();
-		for(Joueur joueur : facadeJoueur.autocompletion(licence)){
+		for(Joueur joueur : facadeJoueur.autocompletionSansTableau(tableauActif, licence)){
 			list.add(joueur.getLicenceFcd());
 		}
 		
 		return list;
 	}
 	
-	public void gererSelection(){
-		
+	public void gererSelection(SelectEvent event){
+		String licence = (String)event.getObject();
+		nouveauJoueur = facadeJoueur.findJoueurByLicence(licence);
+	}
+	
+	public void inscrireJoueur(){
+		serviceGestionTournoi.inscrireJoueur(tableauActif,nouveauJoueur);
+		nouveauJoueur = facadeJoueur.newInstance();
+		refreshTournoi();
 	}
 	
 }
