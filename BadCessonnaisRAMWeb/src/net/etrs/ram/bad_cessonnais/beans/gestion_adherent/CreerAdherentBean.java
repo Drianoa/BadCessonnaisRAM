@@ -4,11 +4,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
@@ -16,7 +13,6 @@ import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
 
 @ManagedBean
-@Log4j
 public class CreerAdherentBean {
 
 	
@@ -36,8 +32,11 @@ public class CreerAdherentBean {
 	}
 	
 	
+	/**
+	 * On enregistre un nouvel adherent en base
+	 */
 	public void enregistrer(){
-		log.info(nouveauAdherent);  
+		//log.info(nouveauAdherent);  
 		facadeAdherent.create(nouveauAdherent);
 		nouveauAdherent = facadeAdherent.newInstance();
 		JsfUtils.sendMessage(null, FacesMessage.SEVERITY_INFO, "Information", "L'adhérent à bien été ajouté");

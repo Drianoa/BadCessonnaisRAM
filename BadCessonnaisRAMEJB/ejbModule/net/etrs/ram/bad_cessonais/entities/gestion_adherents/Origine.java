@@ -4,17 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Enumeration des différents sexes disponibles.
- * @author adrien.merly
+ * Enumeration des différentes Origine disponibles.
+ * @author auchart.alexandre
  *
  */
 @AllArgsConstructor
-public enum Sexe {
-	HOMME("Homme"),
-	FEMME("Femme");
+public enum Origine {
+	DEFENSE("Défense"),
+	CIVIL("Civil");
 	
 	@Getter
 	private String libelle;
+	
 
+	
 
 }

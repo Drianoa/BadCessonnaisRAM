@@ -1,5 +1,8 @@
 package net.etrs.ram.bad_cessonais.entities.gestion_adherents;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 
 
 
@@ -8,7 +11,7 @@ package net.etrs.ram.bad_cessonais.entities.gestion_adherents;
  * @author alexandre.auchart
  *
  */
-
+@AllArgsConstructor
 public enum Justificatif {
 	PHOTO_IDENTITE("Photo d'identité"),
 	CERTIFICAT_MEDICAL("Certificat Médical"),
@@ -16,13 +19,8 @@ public enum Justificatif {
 	CHEQUE_LICENCE("Chèque de licence FCD"),
 	CHEQUE_CLUB("Chèque d'adhésion au club");
 	
+	@Getter
 	private String libelle;
-	
-	private Justificatif(String libelle) {
-		this.libelle = libelle;
-	}
-	
-	public String getLibelle() {
-		return libelle;
-	}
+
+
 }
