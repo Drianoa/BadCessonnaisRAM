@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.constraints.Future;
 
 import lombok.AccessLevel;
 import lombok.Data;
@@ -59,6 +60,7 @@ public class Tournoi implements Serializable{
 	String nom;
 	
 	@Temporal(TemporalType.DATE)
+	@Future
 	Date dateTournoi;
 	
 	@OneToMany(orphanRemoval=true)

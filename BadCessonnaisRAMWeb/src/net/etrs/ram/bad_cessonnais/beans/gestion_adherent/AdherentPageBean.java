@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 @Log4j
 @ManagedBean
+@ViewScoped
 public class AdherentPageBean {
 
 	@EJB
@@ -56,10 +58,14 @@ public class AdherentPageBean {
 		log.info("Tentative de desactivation de l'adherent : "+ a.toString());
 	//return facadeAdherent.read(id);
 	}	
+	
+	
 	public void consulterAdherent(Adherent a){
 		JsfUtils.putInFlashScope("ADHERENT", a);
 
 	}
+	
+	
 	
 	/**
 	 * On récupère la listes des justificatifs
