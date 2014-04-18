@@ -1,7 +1,14 @@
 package net.etrs.ram.bad_cessonnais.utils;
 
+
+/**
+ * Class utilitaire
+ * 
+ *
+ */
 public class ToolBox {
 
+	
 	
 	public static boolean isIntegerException(String val) {
 	    try {

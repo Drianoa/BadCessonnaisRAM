@@ -3,14 +3,18 @@ package net.etrs.ram.bad_cessonnais.beans.gestion_adherent;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -26,6 +30,7 @@ import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 @Log4j
 @ManagedBean
+@ViewScoped
 public class AdherentPageBean {
 
 	@EJB
@@ -38,6 +43,7 @@ public class AdherentPageBean {
 	
 	//Partie pour le log sur la gestion des adherents
 	//private Log log = LogFactory.getLog(this.getClass());
+	
 	
 	@Getter	@Setter
 	private List<Adherent> adherentFiltres;  
@@ -64,13 +70,14 @@ public class AdherentPageBean {
 	}
 	
 	//TODO dans un premier temps on supprime l'adherent
-	public void desactiverAdherent(Adherent a){
+	public void desactiverAdherent(Adherent adh){
 		//JsfUtils.putInFlashScope("ADHERENT", a);
-		facadeAdherent.delete(a);
-		JsfUtils.sendMessage("growl", FacesMessage.SEVERITY_INFO, "Information","Suppresion effectuée");
-		log.info("Desactivation de l'adherent : "+ a.toString());
+		facadeAdherent.delete(adh);
+		JsfUtils.sendMessage(null, FacesMessage.SEVERITY_INFO, "Information","Suppresion effectuée");
+		log.info("Desactivation de l'adherent : "+ adh.toString());
 	}	
-	
+
+
 	
 	/**
 	 * On recupere les informations de classement du licencié via le WS 
@@ -82,12 +89,10 @@ public class AdherentPageBean {
 			URL url = new URL("http://201214-22:9090/ServeurFFbadWeb/ServiceClassement?wsdl");
 			QName qname = new QName("http://interop.mockup/","ServiceClassementService");
 			
-			
 			Service service = Service.create(url, qname);
 			ServiceClassement sc = service.getPort(ServiceClassement.class);
 			licencie = sc.classementLicencie(licenceFFBa);
-			
-			
+
 		} catch (MalformedURLException e) {
 			
 			e.printStackTrace();
@@ -108,6 +113,5 @@ public class AdherentPageBean {
 	public Sexe[] getListeSexe(){
 		return facadeAdherent.getListeSexe();
 	}
-	
 
 }
