@@ -30,11 +30,8 @@
 				value="#{inscriptionTournoiBean.tournoi.lstTableaux}" var="tableau">
 				<p:tab title="#{tableau.nom}">
 					<h:panelGrid columns="3">
-						<p:selectOneMenu value="#{tableau.joueursPoule}" var="jp"
-							converter="#{genericConverter}">
-							<f:selectItems
-								value="#{inscriptionTournoiBean.listeJoueursPoule()}" var="j"
-								itemValue="#{j.name()}" itemLabel="#{j.libelle}" />
+						<p:selectOneMenu value="#{tableau.joueursPoule}">
+							<f:selectItems value="#{inscriptionTournoiBean.listeJoueursPoule()}" var="j" itemLabel="#{j.libelle}"/>
 						</p:selectOneMenu>
 						<p:inputText value="#{tableau.tempsMatch}" size="2"></p:inputText>
 						<p:commandButton icon="ui-icon-person" value="+"
@@ -57,6 +54,11 @@
 					</p:dataTable>
 				</p:tab>
 			</p:accordionPanel>
+			<p:commandButton value="Propositions de poules"
+			actionListener="#{inscriptionTournoiBean.naviguerGererPoules()}" 
+			action="#{routage.gererPoules()}"
+			/>
+			
 		</h:form>
 		<p:dialog closable="true" header="Informations joueur" widgetVar="dlg">
 				<h:form>

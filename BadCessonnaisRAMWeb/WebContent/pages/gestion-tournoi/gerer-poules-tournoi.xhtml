@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:tags="http://java.sun.com/jsf/composite/tags"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+	<ui:define name="pageTitle">Tournoi - Propositions de poules</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="/index.xhtml" />
+				<p:menuitem value="Tournoi" url="#" />
+				<p:menuitem value="Gérer tournoi" url="#" />
+			</p:breadCrumb>
+		</h:form>
+		<p:dataGrid value="#{gererPoulesTournoiBean.tournoi.lstTableaux}"
+			var="tableau" columns="1">
+			<p:panel id="panelTableaux" header="#{tableau.nom}">
+				<p:dataGrid var="poule" value="#{tableau.poules}" columns="3">
+					<p:dataTable id="tabPoule" value="#{poule.joueurs}" var="joueur">
+						<p:column headerText="Poule">
+							<h:panelGroup id="dragIcon" layout="block">
+								#{joueur.nom} - #{joueur.prenom}
+							</h:panelGroup>
+							<p:draggable for="dragIcon" revert="true" />
+						</p:column>
+					</p:dataTable>
+					<p:droppable for="tabPoule" tolerance="touch"
+						activeStyleClass="ui-state-highlight" datasource="panelTableaux"
+						onDrop="handleDrop">
+						<p:ajax listener="#{gererPoulesTournoiBean.onCarDrop}" />
+					</p:droppable>
+				</p:dataGrid>
+			</p:panel>
+		</p:dataGrid>
+	</ui:define>
+</ui:composition>

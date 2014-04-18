@@ -18,4 +18,7 @@ public enum JoueursPoule {
 		return libelle;
 	}
 	
+	public Integer getJoueurs() {
+		return joueurs;
+	}
 }

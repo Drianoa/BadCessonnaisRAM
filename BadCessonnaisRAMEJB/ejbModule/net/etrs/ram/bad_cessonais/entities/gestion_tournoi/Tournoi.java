@@ -60,11 +60,13 @@ public class Tournoi implements Serializable{
 	String nom;
 	
 	@Temporal(TemporalType.DATE)
-	@Future
+	//@Future 
 	Date dateTournoi;
 	
 	@OneToMany(orphanRemoval=true)
 	@JoinColumn(name="TOURNOI_ID")
 	List<Tableau> lstTableaux = new ArrayList<>();
+
+	
 
 }

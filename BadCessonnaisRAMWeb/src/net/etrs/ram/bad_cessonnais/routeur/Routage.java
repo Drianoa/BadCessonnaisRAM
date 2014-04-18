@@ -15,8 +15,8 @@ public class Routage {
 	public  String inscritpionTournoi()	{return "/pages/gestion-tournoi/inscription-tournoi.xhtml"  + REDIRECT;}
 	public  String modifierDroits()	{return "/pages/administration/modifier-droits.xhtml"  + REDIRECT;}
 	public  String listerDroits()	{return "/pages/administration/lister-droits.xhtml"  + REDIRECT;}
-	
-	
+	public  String gererPoules()	{return "/pages/gestion-tournoi/gerer-poules-tournoi.xhtml"  + REDIRECT;}
+
 	/**
 	 * Routage pour l'adhérent
 	 */

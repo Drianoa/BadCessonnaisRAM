@@ -21,6 +21,7 @@ import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.ServiceGestionTournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeJoueur;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
+import net.etrs.ram.bad_cessonnais.routeur.Routage;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
 @FieldDefaults(level= AccessLevel.PRIVATE)
@@ -95,6 +96,14 @@ public class InscriptionTournoiBean {
 		serviceGestionTournoi.inscrireJoueur(tableauActif,nouveauJoueur);
 		nouveauJoueur = facadeJoueur.newInstance();
 		refreshTournoi();
+	}
+	
+	public void naviguerGererPoules(){
+		facadeTournoi.update(tournoi);
+		//serviceGestionTournoi.enregistrerTableaux(tournoi);
+		serviceGestionTournoi.genererLesPoules(tournoi);
+		
+		JsfUtils.putInFlashScope("tournoi", tournoi);
 	}
 	
 }

@@ -1,7 +1,6 @@
 package net.etrs.ram.bad_cessonais.services.gestion_tournoi;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -10,9 +9,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Joueur;
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Poule;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tableau;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeJoueur;
+import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadePoule;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTableau;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
 
@@ -28,6 +29,9 @@ public class ServiceGestionTournoi implements Serializable{
 	
 	@EJB
 	private FacadeJoueur facadeJoueur;
+	
+	@EJB
+	private FacadePoule facadePoule;
 	
 	@PersistenceContext
 	EntityManager em;
@@ -51,15 +55,56 @@ public class ServiceGestionTournoi implements Serializable{
 	}
 
 
-
+	
+	/**
+	 * Mets à jour et/ou ajoute le joueur au tableau.
+	 * @param tableauActif
+	 * @param nouveauJoueur
+	 */
 	public void inscrireJoueur(Tableau tableauActif, Joueur nouveauJoueur) {
-		//MAJ Joueur
 		nouveauJoueur = facadeJoueur.update(nouveauJoueur);
 		
 		if( !tableauActif.getInscrits().contains(nouveauJoueur)){
 			tableauActif.getInscrits().add(nouveauJoueur);
 			facadeTableau.update(tableauActif);
 		}
-		//MAJ Tableau
+	}
+
+
+	/**
+	 * 
+	 * @param tournoi
+	 */
+	public void genererLesPoules(Tournoi tournoi) {
+		
+		tournoi = facadeTournoi.read(tournoi.getId());
+		
+		
+		for(Tableau tableau : tournoi.getLstTableaux()){
+			//tableau = facadeTableau.read(tableau.getId());
+			tableau.getPoules().clear();
+			
+
+			Poule poule = null;
+			for(int i= 0 ; i< tableau.nbInscrits() ; i++){
+				if(i % tableau.getJoueursPoule().getJoueurs() == 0){
+					poule = facadePoule.newInstance();
+					tableau.ajouterPoule(poule);
+				}
+				
+				//on ajoute un joueur à la poule
+				Joueur joueur = tableau.getInscrits().get(i);
+				poule.ajouterJoueur(joueur);
+			}
+		}
+		facadeTournoi.update(tournoi);
+	}
+
+
+	public void enregistrerTableaux(Tournoi tournoi) {
+		for(Tableau tableau : tournoi.getLstTableaux()){
+			facadeTableau.update(tableau);
+		}
+		facadeTournoi.refresh(tournoi);
 	}
 }
