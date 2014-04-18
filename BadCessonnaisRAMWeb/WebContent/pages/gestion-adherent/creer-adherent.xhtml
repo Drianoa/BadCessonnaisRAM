@@ -115,7 +115,7 @@
 
   		<p:commandButton value="Annuler" styleClass="btn-default" action="#{routage.accueil()}" ajax="false" immediate="true"/>
       	<p:spacer/><p:spacer/>
-  		<p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherentBean.enregistrer()}" update="@form"/>
+  		<p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherentBean.enregistrer()}" update="@form" ajax="true"/>
 
 	</h:panelGrid>
 

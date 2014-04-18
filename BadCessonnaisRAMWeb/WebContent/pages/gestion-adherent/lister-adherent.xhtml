@@ -76,16 +76,19 @@
 
 
         <p:column id="actionColumn" headerText="Action" footerText="Action"  style="width:20%">
-           <p:commandButton actionListener="#{adherentPageBean.consulterAdherent(adh)}"  id="adhConsulter" icon="ui-icon-disk" title="Icon Only"/>  
+           
            <p:commandButton actionListener="#{adherentPageBean.modifierAdherent(adh)}"   id="adhModifier"  icon="ui-icon-pencil" title="Modifier #{adh.nom} #{adh.prenom}"/>
           
            <p:commandButton type="button" onclick="PF('dlg').show();"  id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}"  update=":form "/>
     
     
     	<!-- Mise en place de la dialogue de desactivation de l'adhérent -->
-        <p:dialog id="dialog" header="Confirmer la désactivation" widgetVar="dlg" dynamic="true">  
-			<br/><br/>
-			<h:outputText value="Vous allez désactiver #{adh.licenceFcd} #{adh.nom} #{adh.prenom}" /> 
+        <p:dialog id="dialog" header="Confirmer la désactivation" widgetVar="dlg"  modal="true" >  
+			<br/>
+			<p:panel>
+				<h:outputText value="Vous allez désactiver #{adh.licenceFcd} #{adh.nom} #{adh.prenom}" />
+			</p:panel>
+			 
 			    <br/>  <br/>   		  
     		<p:commandButton id="cancelButton" value="Non" oncomplete="PF('dlg').hide();"/>  
     		<p:commandButton id="submitButton" value="Oui" actionListener="#{adherentPageBean.desactiverAdherent(adh)}" update=":formTableauAdherent " oncomplete="PF('dlg').hide();"/>

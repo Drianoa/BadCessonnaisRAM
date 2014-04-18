@@ -26,7 +26,6 @@ import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 @Log4j
 @ManagedBean
-@ViewScoped
 public class AdherentPageBean {
 
 	@EJB
@@ -48,33 +47,33 @@ public class AdherentPageBean {
 		adherent = facadeAdherent.newInstance();
 	}
 	
-
+	/**
+	 * Récupération de tous les adhérents
+	 * @return
+	 */
 	public List<Adherent> getAdherents(){
 		return facadeAdherent.readAll();
 	
 	}
+	
+	//TODO
 	public void modifierAdherent(Adherent a){
 		JsfUtils.putInFlashScope("ADHERENT", a);
 		
 		//return facadeAdherent.read(id);
 	}
+	
+	//TODO dans un premier temps on supprime l'adherent
 	public void desactiverAdherent(Adherent a){
 		//JsfUtils.putInFlashScope("ADHERENT", a);
 		facadeAdherent.delete(a);
-		JsfUtils.sendMessage("growl", FacesMessage.SEVERITY_INFO, "Information","Suppresion ok");
-		log.info("Tentative de desactivation de l'adherent : "+ a.toString());
-	//return facadeAdherent.read(id);
+		JsfUtils.sendMessage("growl", FacesMessage.SEVERITY_INFO, "Information","Suppresion effectuée");
+		log.info("Desactivation de l'adherent : "+ a.toString());
 	}	
 	
 	
-	public void consulterAdherent(){
-
-
-	}
-	
-	
 	/**
-	 * On recupere les infoormations de classement du licencié via le WS 
+	 * On recupere les informations de classement du licencié via le WS 
 	 */
 	public void getClassementLicencieFFBa(){
 		String licenceFFBa = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("formAdherent:inputFFBaAdherent");
