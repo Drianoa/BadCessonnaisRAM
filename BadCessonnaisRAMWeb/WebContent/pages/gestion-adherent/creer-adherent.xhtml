@@ -94,10 +94,10 @@
 				
 				<p:outputLabel value="Licence FFBa :" for="inputFFBaAdherent" />
 				<p:inputText required="false" label="FFBa"  id="inputFFBaAdherent" value="#{creerAdherentBean.nouveauAdherent.licenceFFBa}" >
-					<f:ajax immediate="true"  execute="@this"   listener="#{creerAdherentBean.buttonSearchFFBaIsEnabled}"  event="keyup" />
+					<f:ajax immediate="true"  execute="@this"   listener="#{creerAdherentBean.buttonSearchFFBaIsEnabled}"  event="keyup" render="buttonSearchFFBa"/>
 				</p:inputText>
 				<p:message  for="inputFFBaAdherent" />
-				<p:commandButton id="buttonSearchFFBa"  icon="ui-icon-search"   disabled="true"   actionListener="#{adherentPageBean.getClassementLicencieFFBa}" ajax="true" update=":formAdherent" immediate="true"/>
+				<p:commandButton id="buttonSearchFFBa"  title="Recherche le classement du licencié"  icon="ui-icon-search"   disabled="true"   actionListener="#{adherentPageBean.getClassementLicencieFFBa}" ajax="true" update=":formAdherent" immediate="true"/>
 
 				<p:outputLabel value="Simple :"/><p:outputLabel value="#{adherentPageBean.licencie.classementSimple.value().replace('_','')}"/><p:outputLabel /><p:outputLabel />
 				<p:outputLabel value="Double :"/><p:outputLabel value="#{adherentPageBean.licencie.classementDouble.value().replace('_','')}"/><p:outputLabel /><p:outputLabel />

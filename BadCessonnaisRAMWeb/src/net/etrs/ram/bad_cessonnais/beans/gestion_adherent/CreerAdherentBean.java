@@ -1,7 +1,6 @@
 package net.etrs.ram.bad_cessonnais.beans.gestion_adherent;
 
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
+import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.component.html.HtmlForm;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -17,8 +17,6 @@ import javax.faces.event.AjaxBehaviorEvent;
 import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.inputtext.InputText;
 import org.primefaces.component.password.Password;
-
-import com.sun.faces.taglib.html_basic.CommandButtonTag;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +34,9 @@ public class CreerAdherentBean {
 	
 	@Getter @Setter
 	Adherent nouveauAdherent;
+	
+	@Getter @Setter
+	Boolean activerFfba = false;
 	
 	@PostConstruct
 	public void init()
@@ -64,29 +65,31 @@ public class CreerAdherentBean {
 		
 		
 		 UIViewRoot viewRoot =  FacesContext.getCurrentInstance().getViewRoot();
-		    UIComponent ui = viewRoot.findComponent("formAdherent:buttonSearchFFBa");  //form id
-		  //  CommandButtonTag  buttonSearchFFBa = (CommandButtonTag) ui;
+		  UIComponent component1 = viewRoot.findComponent("formAdherent:buttonSearchFFBa");  //form id
+		  HtmlCommandButton bu = (HtmlCommandButton)component1;
 
+		    //List<UIComponent> componentList = form.getChildren();
 
+		  System.out.println(bu.getTitle());
 		
-		    
 		
 		
-		if("".equals(inputLicenceFFBa.getValue())){
+		if("".equals(inputLicenceFFBa.getSubmittedValue())){
 			System.out.println("c'est vide");
+			bu.setDisabled(true);
+			activerFfba = false;
 		}else{
 			System.out.println("c'est pas vide");
-			//buttonSearchFFBa.setDisabled(false);
-			//buttonSearchFFBa.setValue("lolllll");
+			bu.setDisabled(false);
+			activerFfba = true;
 
-			
-			// FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("formAdherent:buttonSearchFFBa");
-
-			
 		}
-		
-		
+
 		
 	}
+	
+	
+	
+	
 
 }
