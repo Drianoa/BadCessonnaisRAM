@@ -14,9 +14,9 @@
 	<ui:define name="content">
 		<h:form>
 			<p:breadCrumb>
-				<p:menuitem value="Accueil" action="/index.xhtml" />
-				<p:menuitem value="Tournoi" url="#" />
-				<p:menuitem value="Inscription tournoi" url="#" />
+				<p:menuitem value="Accueil" action="#{routage.accueil()}" />
+				<p:menuitem value="Tournoi" action="#{routage.listerTournoi()}" />
+				<p:menuitem value="Inscription tournoi" action="#{routage.inscritpionTournoi()}" />
 			</p:breadCrumb>
 		</h:form>
 		<h:form id="frmName">

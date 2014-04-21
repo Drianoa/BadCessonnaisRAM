@@ -46,8 +46,8 @@ public class TournoiInitSingleton {
 			Tournoi tournoiPrincipal =  createTournoi("Tournoi de l'ascension",sdf.parse("29/05/2014"));
 			facadeTournoi.create(tournoiPrincipal);
 			facadeTournoi.create(createTournoi("Tournoi fou de bad",sdf.parse("29/05/2014")));
-			facadeTournoi.create(createTournoi("Tournoi de noël",sdf.parse("20/12/2013")));
-			facadeTournoi.create(createTournoi("Tournoi de Pâques",sdf.parse("19/04/2013")));
+			facadeTournoi.create(createTournoi("Tournoi de noël",sdf.parse("20/12/2014")));
+			facadeTournoi.create(createTournoi("Tournoi de Pâques",sdf.parse("19/04/2014")));
 		}
 	}
 

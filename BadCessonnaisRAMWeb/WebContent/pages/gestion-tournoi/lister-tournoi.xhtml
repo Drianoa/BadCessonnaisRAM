@@ -13,13 +13,13 @@
 	<ui:define name="content">
 		<h:form>
 			<p:breadCrumb>
-				<p:menuitem value="Accueil" action="/index.xhtml" />
-				<p:menuitem value="Administration" url="#" />
-				<p:menuitem value="Gérer les droits" url="#" />
+				<p:menuitem value="Accueil" action="#{routage.accueil()}" />
+				<p:menuitem value="Tournois" action="#{routage.listerTournoi()}" />
+				<p:menuitem value="Liste des tournois" url="#{routage.listerTournoi()}" />
 			</p:breadCrumb>
 		</h:form>
 		<h:form>
-			<p:panel header="Gérer les droits">
+			<p:panel header="Liste des tournois">
 				<h:panelGrid columns="2">
 					<p:commandButton value="Créer un tournoi" action="#{routage.creerTournoi()}" />
 					

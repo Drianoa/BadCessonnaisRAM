@@ -4,11 +4,6 @@
     xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.2
    http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.2.xsd">
 
-<url-mapping id="factoriel">
-        <pattern value="/fact" />
-        <view-id value="/math/factoriel.jsf" />
-</url-mapping>
-
 
 
 
