@@ -1,9 +1,11 @@
 package net.etrs.ram.bad_cessonais.services.gestion_adherents.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
+
 import net.etrs.ram.bad_cessonais.common.AbstractFacade;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Justificatif;
@@ -44,8 +46,12 @@ public class FacadeAdherent extends AbstractFacade<Adherent>{
 	 * @param a
 	 * @return un boolean
 	 */
-	public boolean isExistAdherent(Adherent a){
-		return false;
+	public boolean isExistAdherent(String nom,String prenom,Date d){
+		TypedQuery<Adherent> query = em.createNamedQuery("isExist", Adherent.class);
+		query.setParameter("nom", nom); 
+		query.setParameter("prenom", prenom);
+		query.setParameter("dateN", d);
+		return query.getResultList().size()!=0 ;
 	}
 	
 	

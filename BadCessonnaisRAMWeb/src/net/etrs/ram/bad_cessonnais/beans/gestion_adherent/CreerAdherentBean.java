@@ -11,9 +11,7 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
-
 import org.primefaces.component.inputtext.InputText;
-
 import lombok.Getter;
 import lombok.Setter;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
@@ -43,12 +41,19 @@ public class CreerAdherentBean {
 	 * On enregistre un nouvel adherent en base
 	 */
 	public void enregistrer(){
-		facadeAdherent.create(nouveauAdherent);
-		nouveauAdherent = facadeAdherent.newInstance();
-		JsfUtils.sendMessage(null, FacesMessage.SEVERITY_INFO, "Information", "L'adhérent a bien été ajouté");
+		if(!facadeAdherent.isExistAdherent(nouveauAdherent.getNom(), nouveauAdherent.getPrenom(),nouveauAdherent.getDateNaissance())){
+			facadeAdherent.create(nouveauAdherent);
+			nouveauAdherent = facadeAdherent.newInstance();
+			JsfUtils.sendMessage(null, FacesMessage.SEVERITY_INFO, "Information", "L'adhérent a bien été ajouté");
+			
+		}else{
+			JsfUtils.sendMessage(null, FacesMessage.SEVERITY_WARN, "Attention", "Un adhérent existe déjà");
+		}
+		
+		
 	}
 
-	
+
 	
 	/**
 	 * Activation/Désactivation du bouton si on met à jour le champ N° licence FFBa 

@@ -1,5 +1,8 @@
 package net.etrs.ram.bad_cessonnais.beans.gestion_adherent;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -10,10 +13,18 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -100,6 +111,93 @@ public class AdherentPageBean {
 
 		}
 	}
+	
+	
+	
+
+	
+
+	private void ecritureFluxPdf(ByteArrayOutputStream baos,HttpServletResponse response) throws IOException {
+		ServletOutputStream os = response.getOutputStream();
+		// Ecriture du flux
+		for (Byte byte1 : baos.toByteArray()) {
+			os.write(byte1);
+		}
+		os.flush();
+		os.close();
+	}
+	private void mimePdf(String nomPdf, HttpServletResponse response) {
+		// Construction de la réponse
+		response.setContentType("application/pdf");
+		response.setHeader("Content-disposition","inline; filename=\"" + nomPdf + "\"");
+		response.setHeader("Cache-Control", "public");
+	}
+	
+	public void renvoyerPDF(ByteArrayOutputStream out){
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext extCtx = facesContext.getExternalContext();
+		HttpServletResponse response = (HttpServletResponse) extCtx.getResponse();
+		try {
+			
+			mimePdf("FeuilleDePresence", response);
+			response.setContentLength(out.size());
+			
+			ecritureFluxPdf(out, response);
+			out.close();
+		} catch (Exception e) {
+			JsfUtils.sendMessage(e);
+		}
+		facesContext.responseComplete();
+	}
+	
+	
+	public void genererPDFPresenceAdherent(){
+		// etape 1
+		Document document = new Document(PageSize.A4);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+	        
+		try {
+	            // etape 2:
+	            // creation du writer -> PDF ou HTML 
+	            //PdfWriter.getInstance(document, new FileOutputStream(out));
+			PdfWriter.getInstance(document, out);
+	                      	
+	            // etape 3: Ouverture du document
+	            document.open();
+	           
+	            // etape 4: Ajout du contenu au document
+	            document.add(new Phrase("Fiche de présence à l'entrainement du ..../..../...."));
+	            
+	            PdfPTable aTable = new PdfPTable(2);
+	            int[] columnWidths = {10, 50};
+	            	
+	            aTable.setWidths(columnWidths);
+	            PdfPCell c = new PdfPCell(new Phrase("Présent"));
+	            aTable.addCell(c);
+	            c = new PdfPCell(new Phrase("Nom - Prénom"));
+	            aTable.addCell(c);
+
+	    		for (Adherent a : getAdherents()) {
+		            aTable.addCell(new PdfPCell());
+	    			c = new PdfPCell(new Phrase(a.getNom()+" "+a.getPrenom()));
+		            aTable.addCell(c);
+	    		}
+	            document.add(aTable);
+
+	        }
+	        catch(DocumentException de) {
+	            System.err.println(de.getMessage());
+	        }
+
+	        // etape 5: Fermeture du document
+	        document.close();
+
+	        renvoyerPDF(out);
+
+}
+	
+	
+	
 	
 	/**
 	 * On récupère la listes des justificatifs

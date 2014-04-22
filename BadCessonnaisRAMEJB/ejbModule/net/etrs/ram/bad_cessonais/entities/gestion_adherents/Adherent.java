@@ -35,7 +35,7 @@ import lombok.experimental.FieldDefaults;
 @NamedQueries(
 		{
 	@NamedQuery(name="findAllAdherent", query="SELECT a FROM Adherent a"),
-	@NamedQuery(name="findAdherentLike", query="SELECT a FROM Adherent a WHERE a.nom LIKE :motCle or a.prenom LIKE :motCle or a.licenceFcd LIKE :motCle"),
+	@NamedQuery(name="isExist", query="SELECT a FROM Adherent a WHERE a.nom LIKE :nom AND a.prenom LIKE :prenom AND a.dateNaissance = :dateN"),
 	@NamedQuery(name="countAllAdherent", query="SELECT count(a) FROM Adherent a")
 		}
 )
