@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:tags="http://java.sun.com/jsf/composite/tags"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags">
+
+
+	<ui:define name="pageTitle">Tournoi</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="#{routage.accueil()}" />
+				<p:menuitem value="Tournoi" action="#{routage.listerTournoi()}" />
+				<p:menuitem value="Paramètres de l'échéancier" action="#{routage.infosEcheancier()}" />
+			</p:breadCrumb>
+		</h:form>
+		<h:form id="frmName">
+			<p:panel header="Paramètres">
+				<h:panelGrid columns="3">
+					<fx:etrs-field for="idTerrains" label="Nombre de terrains">
+						<p:inputText id="idTerrains"
+							value="#{infosEcheancierTournoiBean.terrains}" required="true" requiredMessage="Saisisez le nombre de tarrains"/>
+					</fx:etrs-field>
+
+
+					<fx:etrs-field for="idDate" label="Heure de début">
+						<p:calendar id="idDate"
+							value="#{infosEcheancierTournoiBean.time}"
+							required="true" requiredMessage="Saisisez l'heure de début"
+							pattern="HH:mm"/>
+					</fx:etrs-field>
+					
+					<fx:etrs-field for="idTim" label="Temps entre deux matchs">
+						<p:inputText id="idTim" type="number" 
+						value="#{infosEcheancierTournoiBean.tempsInterMatchs}"
+						required="true" 
+						></p:inputText>
+					</fx:etrs-field>
+					
+					<p:commandButton value="Génerer l'échéancier"  actionListener="#{infosEcheancierTournoiBean.genererEcheancier()}" ></p:commandButton>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>
