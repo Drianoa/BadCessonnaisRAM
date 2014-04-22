@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      template="/WEB-INF/templates/disposition-standard.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+<ui:define name="pageTitle">Ajouter un catalogue</ui:define>
+
+
+
+<ui:define name="headerContent">
+<h:form>
+	<p:breadCrumb>
+		<p:menuitem value="Accueil" action="/index.xhtml" />
+		<p:menuitem value="Adhérent" url="#" />
+		<p:menuitem value="Suivi" url="#" />
+	</p:breadCrumb>
+</h:form>	
+	<h2 align="center">Dossiers incomplets</h2>
+<br/>
+
+<h:form>
+<h:commandButton action="#{adherentPageBean.genererPDFPresenceAdherent()}" value="mescouiles" immediate="true"/>
+</h:form>
+
+</ui:define>
+
+<ui:define name="content">
+	<h:form id="formTableauSuiviAdherent">
+		<p:outputPanel deferred="true">  
+		</p:outputPanel>  
+	</h:form>
+</ui:define>
+
+
+
+</ui:composition>
