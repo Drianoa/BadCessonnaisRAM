@@ -44,6 +44,10 @@ public class Poule {
 	public void ajouterJoueur(Joueur joueur) {
 		joueurs.add(joueur);
 	}
+
+	public void supprimerJoueur(Joueur joueur) {
+		joueurs.remove(joueur);		
+	}
 	
 	
 }

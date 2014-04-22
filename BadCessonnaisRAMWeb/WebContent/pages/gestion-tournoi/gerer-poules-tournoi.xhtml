@@ -24,20 +24,66 @@
 			<p:panel id="panelTableaux" header="#{tableau.nom}">
 				<p:dataGrid var="poule" value="#{tableau.poules}" columns="3">
 					<p:dataTable id="tabPoule" value="#{poule.joueurs}" var="joueur">
-						<p:column headerText="Poule">
+						<p:column id="colTabPoule" headerText="Poule">
+							<f:facet name="header">
+								<h:outputText value="Poule" />
+								<h:inputHidden id="idPoule" value="#{poule.id}" />
+							</f:facet>
 							<h:panelGroup id="dragIcon" layout="block">
-								#{joueur.nom} - #{joueur.prenom}
+								#{joueur.nom} #{joueur.prenom}
+								<h:inputHidden id="idJoueur" value="#{joueur.id}" />
 							</h:panelGroup>
-							<p:draggable for="dragIcon" revert="true" />
 						</p:column>
 					</p:dataTable>
-					<p:droppable for="tabPoule" tolerance="touch"
-						activeStyleClass="ui-state-highlight" datasource="panelTableaux"
-						onDrop="handleDrop">
-						<p:ajax listener="#{gererPoulesTournoiBean.onCarDrop}" />
-					</p:droppable>
+
 				</p:dataGrid>
 			</p:panel>
 		</p:dataGrid>
+		<h:form>
+			<p:commandButton value="Generer les poules" action="#{routage.infosEcheancier()}"></p:commandButton>
+		</h:form>		
+		<h:form>
+			<p:remoteCommand name="deplacerJoueur"
+				action="#{gererPoulesTournoiBean.deplacerJoueur}" />
+		</h:form>
+
+		<script type="text/javascript">  
+			    
+        function initDND() {  
+        	$( "tr", $("tbody[id$='tabPoule_data']") ).draggable({
+        	      //cancel: "a.ui-icon", // clicking an icon won't initiate dragging
+        	      revert: "invalid", // when not dropped, the item will revert back to its initial position
+        	      //containment: "document",
+        	      helper: "clone",
+        	      cursor: "move",
+        	      zIndex: ++PrimeFaces.zindex  
+        	 });  
+  
+        	$("table", $("div[id$='tabPoule']")).droppable({
+        	      accept: "tr",
+        	      hoverClass: "ui-state-hover",
+        	      activeClass: "ui-state-highlight",
+        	      drop: function( event, ui ) {
+            	      
+          	        var pouleSource = ui.draggable.parent().parent().find("input[id$='idPoule']").val();
+          	        
+        	        $( "tbody",$(this)).append( ui.draggable );
+
+        	        var joueur = ui.draggable.find("input[id$='idJoueur']").val();
+        	        
+        	        var pouleDest = ui.draggable.parent().parent().find("input[id$='idPoule']").val();
+        	        
+        	        deplacerJoueur([{name:'pouleSource',value:pouleSource},
+        	            	        {name:'pouleDest',value:pouleDest},
+        	            	        {name:'joueur',value:joueur}
+        	            	        ]);
+        	      }
+        	  });
+        }  
+  
+        $(function() {  
+            initDND();  
+        });  
+    </script>
 	</ui:define>
 </ui:composition>

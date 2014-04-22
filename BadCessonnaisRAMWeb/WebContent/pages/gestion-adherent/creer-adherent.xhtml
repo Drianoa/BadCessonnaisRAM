@@ -49,6 +49,10 @@
 		 
 		<p:panel header="Coordonnées">
 			<h:panelGrid columns="3"> 
+				<p:outputLabel value="Email :" for="inputEmailAdherent" />
+				<p:inputText required="true" label="Email"  id="inputEmailAdherent" value="#{creerAdherentBean.nouveauAdherent.email}" requiredMessage="Email requis" tabindex="4"/>
+				<p:message  for="inputEmailAdherent" />
+				
 				<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
 				<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.lieuNaissance}" requiredMessage="Lieu requis" tabindex="4"/>
 				<p:message  for="inputLieuNaissanceAdherent" />
