@@ -49,5 +49,5 @@ public class Routage {
 	
 	public  String listerDroitAdherent()	{return "/pages/administration/lister-droits.xhtml" + REDIRECT;}
 	//public  String configurerSite()			{return "/pages/administration/configurer-site.xhtml" + REDIRECT;}
-	public  String getFlux()	{return "RSS";}
+	public  String getFlux()	{return "/RSS";}
 }

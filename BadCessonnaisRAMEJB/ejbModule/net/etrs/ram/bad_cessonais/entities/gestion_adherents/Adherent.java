@@ -70,10 +70,15 @@ public class Adherent implements Serializable{
 	@Column(length=10)
 	private String licenceFFBa;
 	
+	@Pattern(message="Format incorrect",regexp="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+	private String email;
+	
+	
 	@Temporal(TemporalType.DATE)
 	@Past
 	private Date dateNaissance;
 
+	
 	private String lieuNaissance;
 	
 	

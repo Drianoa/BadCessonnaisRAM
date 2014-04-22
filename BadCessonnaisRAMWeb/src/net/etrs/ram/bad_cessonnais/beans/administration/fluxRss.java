@@ -2,14 +2,19 @@ package net.etrs.ram.bad_cessonnais.beans.administration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
+import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
 import viecili.jrss.generator.RSSFeedGenerator;
 import viecili.jrss.generator.RSSFeedGeneratorFactory;
 import viecili.jrss.generator.elem.Channel;
@@ -22,7 +27,14 @@ import viecili.jrss.generator.elem.RSS;
 @WebServlet({ "/fluxRss", "/RSS" })
 public class fluxRss extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static RSSFeedGenerator rssFeed = RSSFeedGeneratorFactory.getDefault();
+	private static RSS rss = new RSS(RSS.VERSION_2_0);
+	
+	
+	@EJB
+	FacadeTournoi facadeTournoi;
+	
+	
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
@@ -31,51 +43,51 @@ public class fluxRss extends HttpServlet {
 		 response.setContentType("application/xml;charset=UTF-8");
 		PrintWriter out =  response.getWriter();
 		
-		String rss= testRss();
+		String rss= genererRss();
 		
 		out.print(rss);
 
 	}
 	
+	//Génération du fichier RSS
+	private String genererRss(){
+		Channel channel =  headerRss();
+		return contenuRss(channel);
+	}
+
+	//header du RSS
+	private Channel headerRss(){
+		 Channel channel = new Channel("Liste des tournois", "http://localhost:9090/BadCessonnaisRAMWeb/pages/gestion-tournoi/lister-tournoi.xhtml", "Voici la listes des tournois du club Badminotn Cessonnais");
+		 channel.setWebMaster("admin@badCessonnais.fr");
+		 return channel;
+	}
 	
-	 public String testRss(){
-		 final RSSFeedGenerator rssFeed = RSSFeedGeneratorFactory.getDefault();
-		 final RSS rss = new RSS(RSS.VERSION_2_0);
-		  
-		 final Channel channel = new Channel("List", "http://magicsupremacy.fr/index.jsp#!menu=deck&amp;submenu=search_by_events", "Une liste des derniers Tournois Magic l'Assemblée ajoutés, tout format confondu");
-		 channel.setWebMaster("admin@magicsupremacy.fr");
-		  
-		 final Item item1 = new Item("mon Tournoi", "http://magicsupremacy.fr/index.jsp#!menu=deck&amp;event=115", "description simplifiée du tournoi #2853353");
-		 item1.setAuthor("Admin");
-		 item1.setPubDate(new Date());
-		  
-		 final Item item2 = new Item("Tournoi 2 - Standard 2010-2011 [ZEN M11 SOM]", "http://magicsupremacy.fr/index.jsp#!menu=deck&amp;event=114", "description simplifiée du tournoi #2853358");
-		 item2.setAuthor("Admin");
-		 item2.setPubDate(new Date());
-		  
-		 channel.addItem(item1);
-		 channel.addItem(item2);
-		  
+	//On peuple le RSS 
+	private String contenuRss(Channel channel){
+		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
+		 
+		 List<Tournoi> listeTournoi =facadeTournoi.readAll();
+		 
+		 for (Tournoi t : listeTournoi) {
+			 Item item1 = new Item(t.getNom(), "http://", "Tournoi du "+sdf.format(t.getDateTournoi()));
+			 item1.setAuthor("Admin");
+			 item1.setPubDate(new Date());
+			 channel.addItem(item1);
+		}
 		 rss.addChannel(channel);
-		  
+
 		 try {
 			return rssFeed.generateAsString(rss);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			return null;
 		}
-		 
-		 
-		
-		 
-		 
-		 	
+
 	 }
 	
 	
-	
-	
+
 	
 	
 
