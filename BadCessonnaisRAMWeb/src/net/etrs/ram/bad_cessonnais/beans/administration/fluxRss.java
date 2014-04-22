@@ -1,10 +1,9 @@
-package net.etrs.ram.bad_cessonnais.beans.gestion_adherent;
+package net.etrs.ram.bad_cessonnais.beans.administration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +28,6 @@ public class fluxRss extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		 response.setContentType("application/xml;charset=UTF-8");
 		PrintWriter out =  response.getWriter();
 		
@@ -51,7 +49,7 @@ public class fluxRss extends HttpServlet {
 		 item1.setAuthor("Admin");
 		 item1.setPubDate(new Date());
 		  
-		 final Item item2 = new Item("Magic Online Premier #2853358 - Standard 2010-2011 [ZEN M11 SOM]", "http://magicsupremacy.fr/index.jsp#!menu=deck&amp;event=114", "description simplifiée du tournoi #2853358");
+		 final Item item2 = new Item("Tournoi 2 - Standard 2010-2011 [ZEN M11 SOM]", "http://magicsupremacy.fr/index.jsp#!menu=deck&amp;event=114", "description simplifiée du tournoi #2853358");
 		 item2.setAuthor("Admin");
 		 item2.setPubDate(new Date());
 		  

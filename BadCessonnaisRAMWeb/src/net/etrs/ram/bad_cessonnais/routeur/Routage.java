@@ -18,7 +18,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		@URLMapping(id = "listerDroitAdherent", pattern = "/droits", viewId = "/pages/administration/lister-droits.xhtml"),
 		@URLMapping(id = "gererPoules", pattern = "/tournois/poules", viewId = "/pages/gestion-tournoi/gerer-poules-tournoi.xhtml"),
 		@URLMapping(id = "listerAdherent", pattern = "/adherents", viewId = "/pages/gestion-adherent/lister-adherent.xhtml"),
-		@URLMapping(id = "creerAdherent", pattern = "/adherents/creer", viewId = "/pages/gestion-adherent/creer-adherent.xhtml"),
+		@URLMapping(id = "creerAdherent", pattern = "/adherents/creer", viewId = "/pages/gestion-adherent/creer-adherent.xhtml")
 		
 		
 		
@@ -49,5 +49,5 @@ public class Routage {
 	
 	public  String listerDroitAdherent()	{return "/pages/administration/lister-droits.xhtml" + REDIRECT;}
 	//public  String configurerSite()			{return "/pages/administration/configurer-site.xhtml" + REDIRECT;}
-	
+	public  String getFlux()	{return "RSS";}
 }
