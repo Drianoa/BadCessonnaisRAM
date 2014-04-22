@@ -1,4 +1,5 @@
-<ui:fragment xmlns:h="http://java.sun.com/jsf/html"
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
@@ -23,12 +24,18 @@
 			<p:menuitem value="Configurer le site" url="#" />
 
 		</p:submenu>
-
 		<f:facet name="options">
-			<p:inputText style="margin-right:10px" />
-			<p:commandButton type="button" value="Logout" icon="ui-icon-extlink" />
+			<h:outputText value="#{loginBean.userLogin}" />
+			<h:outputText value="  " />
+		
+			<h:commandButton action="#{loginBean.logout()}"  value="Logout" icon="ui-icon-extlink"  />
+		
 		</f:facet>
-	</p:menubar>
-
+		</p:menubar>
+		
+		
+		
+	
 </h:form>
+
 </ui:fragment>

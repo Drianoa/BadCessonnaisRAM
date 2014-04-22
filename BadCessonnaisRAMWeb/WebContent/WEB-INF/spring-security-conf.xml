@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:jee="http://www.springframework.org/schema/jee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        	 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                        	 http://www.springframework.org/schema/jee      http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+
+
+    <http auto-config='true' use-expressions="true" >
+		<intercept-url pattern="/pages/login/**"            access="permitAll" />     
+        <intercept-url pattern="/resources/**"            access="denyAll" />
+        <intercept-url pattern="/javax.faces.resource/**" access="permitAll" />
+        <intercept-url pattern="/tournois/**"        access="hasRole('ROLE_PRINCIPAL')" />
+ 		<intercept-url pattern="/tournois"        access="hasRole('ROLE_PRINCIPAL')" />       
+        <intercept-url pattern="/adherents/**"         access="hasRole('ROLE_PRESIDENT')" />
+        <intercept-url pattern="/adherents"         access="hasRole('ROLE_PRESIDENT')" />
+        
+    	
+<!--     <intercept-url pattern="/**"         access="permitAll" /> -->
+         
+        <form-login login-page="/pages/login/index.xhtml" 
+        			authentication-failure-url="/pages/login/index.xhtml?fail=true"
+        			default-target-url="/pages/login/index.xhtml"/>        
+  		<logout logout-success-url="/accueil" />
+    </http>
+    
+    <authentication-manager>
+        <authentication-provider>
+        	 <password-encoder hash="sha" /> 
+        	
+		
+            <user-service>
+                             
+                <user name="user"  password="12dea96fec20593566ab75692c9949596833adc9"  authorities="ROLE_UTILISATEUR" />
+                <user name="ROBERT"	  password="12e9293ec6b30c7fa8a0926af42807e929c1684f"  authorities="ROLE_PRESIDENT,ROLE_PRINCIPAL" />
+                <user name="MERLY"	  password="79296980b6a5d90d8514e82d125e1ea4cea0a9f4"  authorities="ROLE_PRINCIPAL" />				               
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+ 
+</b:beans>
+
+

@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+                xmlns:tags="http://java.sun.com/jsf/composite/tags">
+
+
+	<ui:define name="pageTitle">Authentification</ui:define>
+
+	<ui:define name="content">
+
+		Authentification
+		<h:panelGrid columns="1" style="width : 100% ;">
+		<h:panelGroup rendered="#{param.fail eq true}" style="color : red">Erreur de connexion</h:panelGroup>
+	</h:panelGrid>
+
+	<h:form id="contentForm" prependId="false" style="text-align : center">
+		<h:panelGrid columns="1" style="text-align: center">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Compte" />
+				<h:inputText id="j_username" />
+				<h:outputLabel value="Mot de passe" />				
+				<h:inputSecret id="j_password" />
+			</h:panelGrid>
+			<h:commandButton actionListener="#{loginBean.login}" value="Connexion" />
+		</h:panelGrid>
+	</h:form>
+	</ui:define>
+
+
+</ui:composition>
