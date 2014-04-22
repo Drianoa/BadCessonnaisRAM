@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
-
 import net.etrs.ram.bad_cessonais.common.AbstractFacade;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Justificatif;
@@ -26,8 +25,7 @@ public class FacadeAdherent extends AbstractFacade<Adherent>{
 		//TODO desactiver un adherent
 	}
 
-	
-	
+
 	/**
 	 * 
 	 * @param motCle
