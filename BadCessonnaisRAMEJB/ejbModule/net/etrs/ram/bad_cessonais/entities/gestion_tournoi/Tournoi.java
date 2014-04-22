@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -47,7 +48,8 @@ import org.hibernate.validator.constraints.NotBlank;
 //		}
 //)
 public class Tournoi implements Serializable{
-
+	
+	
 	//champs technique
 	@Id
 	@Column(length=36)
@@ -63,7 +65,7 @@ public class Tournoi implements Serializable{
 	//@Future 
 	Date dateTournoi;
 	
-	@OneToMany(orphanRemoval=true)
+	@OneToMany(orphanRemoval=true,cascade=CascadeType.ALL)
 	@JoinColumn(name="TOURNOI_ID")
 	List<Tableau> lstTableaux = new ArrayList<>();
 

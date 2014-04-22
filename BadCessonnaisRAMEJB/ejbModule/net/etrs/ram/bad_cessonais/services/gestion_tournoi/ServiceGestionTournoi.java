@@ -8,6 +8,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import sun.org.mozilla.javascript.internal.annotations.JSFunction;
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Joueur;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Poule;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tableau;
@@ -19,6 +22,7 @@ import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
 
 @SuppressWarnings("serial")
 @Stateless
+@Log4j
 public class ServiceGestionTournoi implements Serializable{
 	
 	@EJB
@@ -106,5 +110,31 @@ public class ServiceGestionTournoi implements Serializable{
 			facadeTableau.update(tableau);
 		}
 		facadeTournoi.refresh(tournoi);
+	}
+
+
+
+	public void deplacerJoueur(String idPouleSource, String idPouleDest,
+			String idJoueur) {
+			Poule source = facadePoule.read(idPouleSource);
+			Poule dest = facadePoule.read(idPouleDest);
+			Joueur joueur = facadeJoueur.read(idJoueur);
+			
+			
+			source.supprimerJoueur(joueur);
+			dest.ajouterJoueur(joueur);
+			facadePoule.update(dest);
+			facadePoule.update(source);
+		
+	}
+
+
+
+	public void genererEcheancier(Tournoi tournoi) {
+//		for(Tableau tableau : tournoi.getLstTableaux()){
+//			for(Poule poule : tableau.getPoules()){
+//				poule.getJoueurs()
+//			}			
+//		}
 	}
 }
