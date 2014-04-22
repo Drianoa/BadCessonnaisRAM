@@ -19,6 +19,8 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		@URLMapping(id = "gererPoules", pattern = "/tournois/poules", viewId = "/pages/gestion-tournoi/gerer-poules-tournoi.xhtml"),
 		@URLMapping(id = "listerAdherent", pattern = "/adherents", viewId = "/pages/gestion-adherent/lister-adherent.xhtml"),
 		@URLMapping(id = "creerAdherent", pattern = "/adherents/creer", viewId = "/pages/gestion-adherent/creer-adherent.xhtml"),
+		@URLMapping(id = "infosEcheancier", pattern = "/tournois/echeancier/infos", viewId = "/pages/gestion-tournoi/infos-echeancier-tournoi.xhtml"),
+
 		
 		
 		
@@ -34,6 +36,8 @@ public class Routage {
 	public  String modifierDroits()	{return "/pages/administration/modifier-droits.xhtml"  + REDIRECT;}
 	public  String listerDroits()	{return "/pages/administration/lister-droits.xhtml"  + REDIRECT;}
 	public  String gererPoules()	{return "/pages/gestion-tournoi/gerer-poules-tournoi.xhtml"  + REDIRECT;}
+	public  String infosEcheancier()	{return "/pages/gestion-tournoi/infos-echeancier-tournoi.xhtml"  + REDIRECT;}
+
 
 	
 	/**
@@ -49,5 +53,5 @@ public class Routage {
 	
 	public  String listerDroitAdherent()	{return "/pages/administration/lister-droits.xhtml" + REDIRECT;}
 	//public  String configurerSite()			{return "/pages/administration/configurer-site.xhtml" + REDIRECT;}
-	
+	public  String getFlux()	{return "/RSS";}
 }
