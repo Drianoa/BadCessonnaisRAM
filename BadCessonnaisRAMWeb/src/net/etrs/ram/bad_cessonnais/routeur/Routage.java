@@ -26,7 +26,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 //		@URLMapping(id = "visuActualite", pattern = "/actualites/visu/#{actuID}", viewId = "/pages/gestion-actualite/visualiser-actualite.xhtml"),
 //		@URLMapping(id = "creerActualite", pattern = "/actualites/creer", viewId = "/pages/gestion-actulite/creer-actualite.xhtml"),
 
-				
+
 })
 public class Routage {
 	private final static String REDIRECT = "?faces-redirect=true";

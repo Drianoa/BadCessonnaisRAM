@@ -39,7 +39,7 @@ import net.etrs.ram.bad_cessonais.interop.ServiceClassement;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 
-@Log4j
+
 @ManagedBean
 @ViewScoped
 public class AdherentPageBean {
@@ -52,10 +52,6 @@ public class AdherentPageBean {
 	@Getter	@Setter
 	Adherent adherent;
 	
-	//Partie pour le log sur la gestion des adherents
-	//private Log log = LogFactory.getLog(this.getClass());
-	
-	
 	@Getter	@Setter
 	private List<Adherent> adherentFiltres;  
 	
@@ -63,6 +59,8 @@ public class AdherentPageBean {
 	public void init(){
 		adherent = facadeAdherent.newInstance();
 	}
+	
+
 	
 	/**
 	 * Récupération de tous les adhérents
@@ -75,18 +73,19 @@ public class AdherentPageBean {
 	
 	
 	//TODO
-	public void modifierAdherent(Adherent a){
-		JsfUtils.putInFlashScope("ADHERENT", a);
+	public void putInFlash(Adherent a){		
+		System.out.println("loll");
 		
-		//return facadeAdherent.read(id);
+		
+		JsfUtils.putInFlashScope("ADHERENT", a);
+
 	}
 	
 	//TODO dans un premier temps on supprime l'adherent
 	public void desactiverAdherent(Adherent adh){
-		//JsfUtils.putInFlashScope("ADHERENT", a);
 		facadeAdherent.delete(adh);
 		JsfUtils.sendMessage(null, FacesMessage.SEVERITY_INFO, "Information","Suppresion effectuée");
-		log.info("Desactivation de l'adherent : "+ adh.toString());
+		//log.info("Desactivation de l'adherent : "+ adh.toString());
 	}	
 
 
@@ -132,7 +131,6 @@ public class AdherentPageBean {
 		response.setHeader("Content-disposition","inline; filename=\"" + nomPdf + "\"");
 		response.setHeader("Cache-Control", "public");
 	}
-	
 	public void renvoyerPDF(ByteArrayOutputStream out){
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext extCtx = facesContext.getExternalContext();
@@ -149,8 +147,6 @@ public class AdherentPageBean {
 		}
 		facesContext.responseComplete();
 	}
-	
-	
 	public void genererPDFPresenceAdherent(){
 		// etape 1
 		Document document = new Document(PageSize.A4);

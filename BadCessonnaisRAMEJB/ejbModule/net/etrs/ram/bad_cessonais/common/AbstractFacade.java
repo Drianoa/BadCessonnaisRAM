@@ -68,6 +68,7 @@ public abstract class AbstractFacade <T> implements Facade<T>
             // utilisation de l'API de reflection pour instancier 
             // le bon type paramétré par le Generic.
             return (T) parameterizedType.newInstance();
+            
         }
         catch (Exception ex)
         {

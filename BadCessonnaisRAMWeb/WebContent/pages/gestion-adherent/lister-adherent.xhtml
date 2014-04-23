@@ -28,18 +28,7 @@
 <h:form id="formTableauAdherent">
 
 
-<p:outputPanel deferred="true">  
-   <!--  
-    <h3 align="center"> Recheche : 
-    <p:inputText id="adherentRecherche" placeholder="Mots clés" value="#{rechercheBean.motcle}"     update="true">				
-				<f:ajax immediate="true"  execute="@this"   listener="#{rechercheBean.tiptapClavier}"  event="keyup" />
-    </p:inputText>  <p:commandButton  id="rechercheButton" icon="ui-icon-search" title="recherche"/>
-    </h3>  
-	-->
-
-
-
-
+<p:outputPanel >  
 
 
   <p:dataTable id="dataTable" var="adh" value="#{adherentPageBean.adherents}" widgetVar="adherentsTable" 
@@ -81,7 +70,10 @@
         <p:commandButton id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}"  update="@form"
            actionListener="#{adherentPageBean.desactiverAdherent(adh)}" >
        </p:commandButton>
-
+		<p:commandButton  action="#{routage.modifierAdherent()}" actionListener="#{adherentPageBean.putInFlash(adh)}" 
+		
+						id="adhModifier" icon="ui-icon-gear" value="fff"
+						title="Modifier  #{adh.nom} #{adh.prenom}" />
 
 
 
