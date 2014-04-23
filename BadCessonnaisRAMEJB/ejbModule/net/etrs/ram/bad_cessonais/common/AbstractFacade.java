@@ -79,22 +79,10 @@ public abstract class AbstractFacade <T> implements Facade<T>
 			T  instance = (T) parameterizedType.newInstance();
 
 			try{
-				for(Field champ :instance.getClass().getDeclaredFields()){
-					for(Annotation annotation : champ.getAnnotations()){
-						if(annotation instanceof javax.persistence.Id){
-							if(champ.getType().isAssignableFrom(String.class)){
-								Statement statement = new Statement(instance, "set" + majuscule(champ.getName()), new Object[]{UUID.randomUUID().toString()});
-								statement.execute();
-								break;
-							}
-						}
-					}				
-					
-				}			
+				attributionId(instance);			
 			}catch(Exception ex){
 				//Nous n'avons pas reussi à modifier l'id, c'est probablement au métier de le faire
 			}
-			
 			return instance;
 
 		}
@@ -105,6 +93,26 @@ public abstract class AbstractFacade <T> implements Facade<T>
 				log.error(ex);
 			}
 			return null;
+		}
+	}
+
+	/**
+	 * Attribution automatique d'un UUID si l'id est de type {@link String}
+	 * @param instance
+	 * @throws Exception
+	 */
+	private void attributionId(T instance) throws Exception {
+		for(Field champ :instance.getClass().getDeclaredFields()){
+			for(Annotation annotation : champ.getAnnotations()){
+				if(annotation instanceof javax.persistence.Id){
+					if(champ.getType().isAssignableFrom(String.class)){
+						Statement statement = new Statement(instance, "set" + majuscule(champ.getName()), new Object[]{UUID.randomUUID().toString()});
+						statement.execute();
+						break;
+					}
+				}
+			}				
+			
 		}
 	}
 
