@@ -1,4 +1,4 @@
-package net.etrs.ram.bad_cessonnais.beans.administration;
+/*package net.etrs.ram.bad_cessonnais.beans.administration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +23,7 @@ import viecili.jrss.generator.elem.RSS;
 
 /**
  * Servlet implementation class fluxRss
- */
+ 
 @WebServlet({ "/fluxRss", "/RSS" })
 public class fluxRss extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,9 +36,9 @@ public class fluxRss extends HttpServlet {
 	
 	
 
-	/**
+	*//**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
+	 *//*
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 response.setContentType("application/xml;charset=UTF-8");
 		PrintWriter out =  response.getWriter();
@@ -92,3 +92,4 @@ public class fluxRss extends HttpServlet {
 	
 
 }
+*/
