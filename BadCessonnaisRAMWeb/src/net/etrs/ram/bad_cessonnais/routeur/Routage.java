@@ -19,6 +19,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		@URLMapping(id = "gererPoules", pattern = "/tournois/poules", viewId = "/pages/gestion-tournoi/gerer-poules-tournoi.xhtml"),
 		@URLMapping(id = "listerAdherent", pattern = "/adherents", viewId = "/pages/gestion-adherent/lister-adherent.xhtml"),
 		@URLMapping(id = "creerAdherent", pattern = "/adherents/creer", viewId = "/pages/gestion-adherent/creer-adherent.xhtml"),
+		@URLMapping(id = "modifierAdherent", pattern = "/adherents/modification", viewId = "/pages/gestion-adherent/mod-adherent.xhtml"),
 		@URLMapping(id = "infosEcheancier", pattern = "/tournois/echeancier/infos", viewId = "/pages/gestion-tournoi/infos-echeancier-tournoi.xhtml"),
 
 
@@ -26,7 +27,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 public class Routage {
 	private final static String REDIRECT = "?faces-redirect=true";
 //	private final static String REDIRECT = "";
-	
+
 	public  String accueil ()		{return "/index.xhtml" + REDIRECT;}
 	public  String creerTournoi()	{return "/pages/gestion-tournoi/creer-tournoi.xhtml" + REDIRECT;}
 	public  String listerTournoi()	{return "/pages/gestion-tournoi/lister-tournoi.xhtml" + REDIRECT;}
@@ -35,15 +36,18 @@ public class Routage {
 	public  String listerDroits()	{return "/pages/administration/lister-droits.xhtml"  + REDIRECT;}
 	public  String gererPoules()	{return "/pages/gestion-tournoi/gerer-poules-tournoi.xhtml"  + REDIRECT;}
 	public  String infosEcheancier()	{return "/pages/gestion-tournoi/infos-echeancier-tournoi.xhtml"  + REDIRECT;}
-
-
+	
 	
 	/**
 	 * Routage pour l'adhérent
 	 */
+	
+	public  String modifierAdherent()	{return "/pages/gestion-adherent/mod-adherent.xhtml" + REDIRECT;}
+
 	public  String listerAdherent()	{return "/pages/gestion-adherent/lister-adherent.xhtml" + REDIRECT;}
 	public  String creerAdherent()	{return "/pages/gestion-adherent/creer-adherent.xhtml" + REDIRECT;}
 	
+		
 	
 	/**
 	 * Routage pour l'administration
