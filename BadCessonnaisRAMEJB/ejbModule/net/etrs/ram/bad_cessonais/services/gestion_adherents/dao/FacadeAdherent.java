@@ -29,7 +29,7 @@ public class FacadeAdherent extends AbstractFacade<Adherent>{
 
 
 	/**
-	 * 
+	 * Non utilisé
 	 * @param motCle
 	 * @return
 	 */

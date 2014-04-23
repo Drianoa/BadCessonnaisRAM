@@ -1,21 +1,19 @@
 package net.etrs.ram.bad_cessonnais.beans.gestion_adherent;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.namespace.QName;
@@ -28,7 +26,6 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Justificatif;
@@ -67,6 +64,7 @@ public class AdherentPageBean {
 	 * @return
 	 */
 	public List<Adherent> getAdherents(){
+	
 		return facadeAdherent.readAll();
 	
 	}

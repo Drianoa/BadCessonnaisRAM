@@ -3,7 +3,6 @@ package net.etrs.ram.bad_cessonais.entities.gestion_adherents;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -34,7 +33,8 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @NamedQueries(
 		{
-	@NamedQuery(name="findAllAdherent", query="SELECT a FROM Adherent a"),
+	@NamedQuery(name="findAllAdherent", query="SELECT a FROM Adherent a ORDER BY a.nom ASC"),
+	@NamedQuery(name="isExist", query="SELECT a FROM Adherent a WHERE a.nom LIKE :nom AND a.prenom LIKE :prenom AND a.dateNaissance = :dateN"),
 	@NamedQuery(name="countAllAdherent", query="SELECT count(a) FROM Adherent a")
 		}
 )
