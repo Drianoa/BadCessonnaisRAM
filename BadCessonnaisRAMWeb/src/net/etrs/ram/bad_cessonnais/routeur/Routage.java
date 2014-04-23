@@ -53,7 +53,6 @@ public class Routage {
 	 */
 	
 	public  String modifierAdherent()	{return "/pages/gestion-adherent/mod-adherent.xhtml" + REDIRECT;}
-
 	public  String listerAdherent()	{return "/pages/gestion-adherent/lister-adherent.xhtml" + REDIRECT;}
 	public  String creerAdherent()	{return "/pages/gestion-adherent/creer-adherent.xhtml" + REDIRECT;}
 	
@@ -65,7 +64,7 @@ public class Routage {
 	
 	public  String listerDroitAdherent()	{return "/pages/administration/lister-droits.xhtml" + REDIRECT;}
 	//public  String configurerSite()			{return "/pages/administration/configurer-site.xhtml" + REDIRECT;}
-	public  String getFlux()	{return "/RSS";}
+	//UNUSED public  String getFlux()	{return "/RSS";}
 	public String login()		{return "/pages/login/index.xhtml";}
 	
 	
