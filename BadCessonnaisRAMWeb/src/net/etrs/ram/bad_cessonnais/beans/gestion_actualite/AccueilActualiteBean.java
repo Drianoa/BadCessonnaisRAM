@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import net.etrs.ram.bad_cessonais.entities.gestion_actualite.Actualite;
 import net.etrs.ram.bad_cessonais.services.gestion_actualite.ServiceActualite;
 import net.etrs.ram.bad_cessonais.services.gestion_actualite.dao.FacadeActualite;
+import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,11 +35,13 @@ public class AccueilActualiteBean {
 
 
 	@PostConstruct
-	void init(){
+	public void init(){
 		actualites = serviceActualite.dernieresActus();
 	}
 	
-	
+	public void selectionnerActu(Actualite actualite){
+		JsfUtils.putInFlashScope("actualite", actualite);
+	}
 	
 	
 }

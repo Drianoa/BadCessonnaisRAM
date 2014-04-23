@@ -21,13 +21,14 @@ import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonais.entities.gestion_actualite.Actualite;
 import net.etrs.ram.bad_cessonais.services.gestion_actualite.ServiceActualite;
 import net.etrs.ram.bad_cessonais.services.gestion_actualite.dao.FacadeActualite;
+import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
 @SuppressWarnings("serial")
 @Log4j
 @ManagedBean
 @ViewScoped
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class VisualiserActualiteBean implements Converter, Serializable {
+public class VisualiserActualiteBean implements  Serializable {
 
 	@Getter
 	@Setter
@@ -41,34 +42,9 @@ public class VisualiserActualiteBean implements Converter, Serializable {
 
 	@PostConstruct
 	void init() {
-		// actualites = serviceActualite.dernieresActus();
+		actualiteCourante = (Actualite) JsfUtils.getFromFlashScope("actualite");
 	}
 
-	/**
-	 * convertit l'id en une véritable instance d' {@link Actualite}.
-	 */
-	@Override
-	public Object getAsObject(FacesContext ctx, UIComponent cmp, String value) {
-		List<Actualite> liste = facadeActualite.search("id", value);
-		
-		if (liste.size() == 1) {
-			return liste.get(0);
-		} else {
-			throw new ConverterException(new FacesMessage(
-					"L'actualité est introuvable"));
-		}
-	}
-
-	/**
-	 * convertir une {@link Actualite} en une représentation String : son id.
-	 */
-	@Override
-	public String getAsString(FacesContext ctx, UIComponent cmp, Object object) {
-		if (object != null && object instanceof Actualite) {
-			return ((Actualite) object).getId();
-		} else {
-			return "";
-		}
-	}
+	
 
 }

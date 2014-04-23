@@ -18,22 +18,15 @@
 			</p:breadCrumb>
 		</h:form>
 		<h:form id="frmName">
-			<p:panel header="Nouvelle actualité">
+			<p:fieldset header="#{visualiserActualiteBean.actualiteCourante.titre}">
 
-				<fx:etrs-field for="idNom" label="Titre">
-					<p:inputText id="idNom"
-						value="#{ajouterActualiteBean.actualite.titre}" required="true"
-						requiredMessage="Saisisez le titre" />
-				</fx:etrs-field><br/>
+				<h4>#{visualiserActualiteBean.actualiteCourante.titre}</h4>
 
-				<p:editor id="idText"
-							value="#{ajouterActualiteBean.actualite.texte}" />
-				<br/>
-				<p:commandButton id="idAjout"
-					actionListener="#{ajouterActualiteBean.creerActualite()}"
-					update="@form" value="Ajouter l'actualité"></p:commandButton>
-
-			</p:panel>
+				<h:outputText value="#{visualiserActualiteBean.actualiteCourante.texte}" escape="false"/>
+			
+			</p:fieldset>
+			
+			<p:commandButton value="Retour à la liste des actualités" action="#{routage.listerActualites()}"></p:commandButton>
 		</h:form>
 	</ui:define>
 

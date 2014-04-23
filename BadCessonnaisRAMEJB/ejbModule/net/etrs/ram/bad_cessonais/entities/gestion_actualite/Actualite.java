@@ -1,5 +1,6 @@
 package net.etrs.ram.bad_cessonais.entities.gestion_actualite;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
@@ -30,10 +31,9 @@ import org.hibernate.validator.constraints.NotBlank;
 @EqualsAndHashCode(of={"id"})
 @NamedQueries({
 	@NamedQuery(name="Actulite.findLast", query="SELECT a FROM Actualite a order by a.datePublication DESC"),
-//	@NamedQuery(name="Joueur.findByLicence", query="SELECT j FROM Joueur j WHERE j.licenceFcd = :licenceFcd"),
 })
 
-public class Actualite {
+public class Actualite implements Serializable {
 	//champs techniques
 	
 		@Id

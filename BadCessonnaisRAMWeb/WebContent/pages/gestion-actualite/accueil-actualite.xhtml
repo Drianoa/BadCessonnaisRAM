@@ -14,21 +14,23 @@
 		<h:form>
 			<p:breadCrumb>
 				<p:menuitem value="Accueil" action="#{routage.accueil()}" />
-				<p:menuitem value="Actualites"
-					/>
+				<p:menuitem value="Actualités" />
 			</p:breadCrumb>
 		</h:form>
 		<h:form>
-		
-			<h:dataTable var="actu" value="#{accueilActualiteBean.actualites}">
+			<p:fieldset legend="Actualités">
+				<ui:repeat var="actu" value="#{accueilActualiteBean.actualites}">
+					<h:panelGrid columns="2">
 						<h:outputText value="#{actu.datePublication}">
-								<f:convertDateTime pattern="dd/MM" />
-							</h:outputText>
-							<p:commandLink action="#{routage.visualiserActualites()}"
-								value="#{actu.titre}">
-								<f:param name="actuID" value="#{actu.id}" />
-							</p:commandLink>
-			</h:dataTable>
+							<f:convertDateTime pattern="dd/MM" />
+						</h:outputText>
+						<p:commandLink action="#{routage.visualiserActualites()}"
+							value="#{actu.titre}"
+							actionListener="#{accueilActualiteBean.selectionnerActu(actu)}">
+						</p:commandLink>
+					</h:panelGrid>
+				</ui:repeat>
+			</p:fieldset>
 		</h:form>
 	</ui:define>
 

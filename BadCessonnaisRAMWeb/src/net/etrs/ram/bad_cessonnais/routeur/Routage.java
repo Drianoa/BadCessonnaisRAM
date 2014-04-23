@@ -22,9 +22,9 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		@URLMapping(id = "modifierAdherent", pattern = "/adherents/modification", viewId = "/pages/gestion-adherent/mod-adherent.xhtml"),
 		@URLMapping(id = "infosEcheancier", pattern = "/tournois/echeancier/infos", viewId = "/pages/gestion-tournoi/infos-echeancier-tournoi.xhtml"),
 		
-//		@URLMapping(id = "accueilActualite", pattern = "/actualites", viewId = "/pages/gestion-actualite/accueil-actualite.xhtml"),
-//		@URLMapping(id = "visuActualite", pattern = "/actualites/visu/#{actuID}", viewId = "/pages/gestion-actualite/visualiser-actualite.xhtml"),
-//		@URLMapping(id = "creerActualite", pattern = "/actualites/creer", viewId = "/pages/gestion-actulite/creer-actualite.xhtml"),
+		@URLMapping(id = "accueilActualite", pattern = "/actualites", viewId = "/pages/gestion-actualite/accueil-actualite.xhtml"),
+		@URLMapping(id = "visuActualite", pattern = "/actualites/visu", viewId = "/pages/gestion-actualite/visualiser-actualite.xhtml"),
+		@URLMapping(id = "creerActualite", pattern = "/actualites/creer", viewId = "/pages/gestion-actualite/creer-actualite.xhtml"),
 
 
 })
@@ -66,5 +66,6 @@ public class Routage {
 	 * Routage des actualites
 	 */
 	public  String visualiserActualites() {return "/pages/gestion-actualite/visualiser-actualite.xhtml" + REDIRECT;}
-	//public  String accueilActualites() {return "/pages/gestion-actualite/accueil-actualite.xhtml" + REDIRECT;}
+	public  String listerActualites() {return "/pages/gestion-actualite/accueil-actualite.xhtml" + REDIRECT;}
+	public  String creerActualites() {return "/pages/gestion-actualite/creer-actualite.xhtml" + REDIRECT;}
 }

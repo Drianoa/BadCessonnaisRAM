@@ -17,6 +17,11 @@ xmlns:h="http://java.sun.com/jsf/html"
 			<p:menuitem value="Créer un tournoi" action="#{routage.creerTournoi()}"/>
 			<p:menuitem value="Lister les tournois"	action="#{routage.listerTournoi()}" />
 		</p:submenu>
+		
+		<p:submenu label="Actualités">
+			<p:menuitem value="Voir les Actus" action="#{routage.listerActualites()}" />
+			<p:menuitem value="Ecrire une Actu" action="#{routage.creerActualites()}" />
+		</p:submenu>
 
 		<p:submenu label="Administration">
 			<p:menuitem value="Lister les droits" action="#{routage.listerDroits()}" />
@@ -24,6 +29,7 @@ xmlns:h="http://java.sun.com/jsf/html"
 			<p:menuitem value="Configurer le site" url="#" />
 
 		</p:submenu>
+		
 		<f:facet name="options">
 			<h:outputText value="#{loginBean.userLogin}" />
 			<h:outputText value="  " />
