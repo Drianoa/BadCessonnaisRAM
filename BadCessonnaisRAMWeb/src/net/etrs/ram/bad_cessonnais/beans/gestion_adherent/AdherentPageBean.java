@@ -47,15 +47,15 @@ public class AdherentPageBean {
 
 	@EJB
 	FacadeAdherent facadeAdherent;
-	
+
 	@Getter	@Setter
 	Licencie licencie;
 	@Getter	@Setter
 	Adherent adherent;
-	
+
 	@Getter	@Setter
 	private List<Adherent> adherentFiltres;  
-	
+
 	/**
 	 * Initialisation d'un nouvel adhérent.
 	 */
@@ -63,19 +63,19 @@ public class AdherentPageBean {
 	public void init(){
 		adherent = facadeAdherent.newInstance();
 	}
-	
 
-	
+
+
 	/**
 	 * Récupération de tous les adhérents
 	 * @return
 	 */
 	public List<Adherent> getAdherents(){
-	
+
 		return facadeAdherent.readAll();
-	
+
 	}
-	
+
 	/**
 	 * Utilisaé pour le passage à la vue suivante.
 	 * @param a
@@ -84,21 +84,20 @@ public class AdherentPageBean {
 		JsfUtils.putInFlashScope("ADHERENT", a);
 
 	}
-	
-	
+
+
 	/**
 	 * Permet de désactiver l'adhérebnt. Dans un prmier temps il sera supprimé.
 	 * @param adh
 	 */
 	public void desactiverAdherent(Adherent adh){
-		facadeAdherent.read(adh);
 		facadeAdherent.desactiverAdherent(adh);
 		JsfUtils.sendMessage(null, FacesMessage.SEVERITY_INFO, "Information","Suppresion effectuée");
 		//log.info("Desactivation de l'adherent : "+ adh.toString());
 	}	
 
 
-	
+
 	/**
 	 * On recupere les informations de classement du licencié via le Webservice. 
 	 */
@@ -108,22 +107,22 @@ public class AdherentPageBean {
 		try {
 			URL url = new URL("http://201214-22:9090/ServeurFFbadWeb/ServiceClassement?wsdl");
 			QName qname = new QName("http://interop.mockup/","ServiceClassementService");
-			
+
 			Service service = Service.create(url, qname);
 			ServiceClassement sc = service.getPort(ServiceClassement.class);
 			licencie = sc.classementLicencie(licenceFFBa);
 
 		} catch (MalformedURLException e) {
-			
+
 			log.error("Imossible d'acceder au webservice", e);
 
 		}
 	}
-	
-	
-	
 
-	
+
+
+
+
 
 	private void ecritureFluxPdf(ByteArrayOutputStream baos,HttpServletResponse response) throws IOException {
 		ServletOutputStream os = response.getOutputStream();
@@ -134,21 +133,26 @@ public class AdherentPageBean {
 		os.flush();
 		os.close();
 	}
+	
+	
+	
 	private void mimePdf(String nomPdf, HttpServletResponse response) {
 		// Construction de la réponse
 		response.setContentType("application/pdf");
 		response.setHeader("Content-disposition","inline; filename=\"" + nomPdf + "\"");
 		response.setHeader("Cache-Control", "public");
 	}
+	
+	
 	public void renvoyerPDF(ByteArrayOutputStream out){
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext extCtx = facesContext.getExternalContext();
 		HttpServletResponse response = (HttpServletResponse) extCtx.getResponse();
 		try {
-			
+
 			mimePdf("FeuilleDePresence", response);
 			response.setContentLength(out.size());
-			
+
 			ecritureFluxPdf(out, response);
 			out.close();
 		} catch (Exception e) {
@@ -156,54 +160,57 @@ public class AdherentPageBean {
 		}
 		facesContext.responseComplete();
 	}
+	
+	
+	
 	public void genererPDFPresenceAdherent(){
 		// etape 1
 		Document document = new Document(PageSize.A4);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-	        
+
 		try {
-	            // etape 2:
-	            // creation du writer -> PDF ou HTML 
-	            //PdfWriter.getInstance(document, new FileOutputStream(out));
+			// etape 2:
+			// creation du writer -> PDF ou HTML 
+			//PdfWriter.getInstance(document, new FileOutputStream(out));
 			PdfWriter.getInstance(document, out);
-	                      	
-	            // etape 3: Ouverture du document
-	            document.open();
-	           
-	            // etape 4: Ajout du contenu au document
-	            document.add(new Phrase("Fiche de présence à l'entrainement du ..../..../...."));
-	            
-	            PdfPTable aTable = new PdfPTable(2);
-	            int[] columnWidths = {10, 50};
-	            	
-	            aTable.setWidths(columnWidths);
-	            PdfPCell c = new PdfPCell(new Phrase("Présent"));
-	            aTable.addCell(c);
-	            c = new PdfPCell(new Phrase("Nom - Prénom"));
-	            aTable.addCell(c);
 
-	    		for (Adherent a : getAdherents()) {
-		            aTable.addCell(new PdfPCell());
-	    			c = new PdfPCell(new Phrase(a.getNom()+" "+a.getPrenom()));
-		            aTable.addCell(c);
-	    		}
-	            document.add(aTable);
+			// etape 3: Ouverture du document
+			document.open();
 
-	        }
-	        catch(DocumentException de) {
-	            System.err.println(de.getMessage());
-	        }
+			// etape 4: Ajout du contenu au document
+			document.add(new Phrase("Fiche de présence à l'entrainement du ..../..../...."));
 
-	        // etape 5: Fermeture du document
-	        document.close();
+			PdfPTable aTable = new PdfPTable(2);
+			int[] columnWidths = {10, 50};
 
-	        renvoyerPDF(out);
+			aTable.setWidths(columnWidths);
+			PdfPCell c = new PdfPCell(new Phrase("Présent"));
+			aTable.addCell(c);
+			c = new PdfPCell(new Phrase("Nom - Prénom"));
+			aTable.addCell(c);
 
-}
-	
-	
-	
-	
+			for (Adherent a : getAdherents()) {
+				aTable.addCell(new PdfPCell());
+				c = new PdfPCell(new Phrase(a.getNom()+" "+a.getPrenom()));
+				aTable.addCell(c);
+			}
+			document.add(aTable);
+
+		}
+		catch(DocumentException de) {
+			System.err.println(de.getMessage());
+		}
+
+		// etape 5: Fermeture du document
+		document.close();
+
+		renvoyerPDF(out);
+
+	}
+
+
+
+
 	/**
 	 * On récupère la listes des justificatifs
 	 * @return
