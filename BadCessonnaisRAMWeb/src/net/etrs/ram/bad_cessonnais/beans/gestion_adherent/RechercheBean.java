@@ -8,16 +8,20 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 import org.primefaces.component.inputtext.InputText;
 
-@Log
+@Log4j
 @ManagedBean
+@FieldDefaults(level=AccessLevel.PRIVATE)
 public class RechercheBean {
 
 	
@@ -35,6 +39,10 @@ public class RechercheBean {
 	private List<Adherent> adherentFiltres;  
 	
 	
+	/**
+	 * Recherche ajax d'un dadhérent en fonction de mots-clés.
+	 * @param event
+	 */
 	public void tiptapClavier(AjaxBehaviorEvent event){
 		
 		InputText adherentRecherche = (InputText) event.getSource();
@@ -43,18 +51,7 @@ public class RechercheBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage("growl", new FacesMessage(FacesMessage.SEVERITY_INFO,"Info",""+motCle));
 	
-
-		System.out.println(adherentRecherche.getSubmittedValue());
-
-			
 		 facadeAdherent.recherche(motCle);
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 	

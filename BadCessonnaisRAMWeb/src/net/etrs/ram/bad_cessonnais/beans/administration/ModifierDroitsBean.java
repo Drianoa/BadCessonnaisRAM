@@ -31,7 +31,7 @@ public class ModifierDroitsBean {
 	FacadeAdherent facadeAdherent;
 	
 	/**
-	 * Retourne la liste des droits possibles
+	 * Retourne la liste des droits possibles.
 	 * @return
 	 */
 	public List<SelectItem> getListeDroits()
@@ -43,7 +43,9 @@ public class ModifierDroitsBean {
 		return liste;
 	}
 	
-
+	/**
+	 * Initialisation  du bean avec l'adherent séléctionné à la page d'avant.
+	 */
 	@PostConstruct
 	public void init()
 	{
@@ -52,7 +54,7 @@ public class ModifierDroitsBean {
 	
 	
 	/**
-	 * Modification des droits d'un adhérent
+	 * Modification des droits d'un adhérent.
 	 */
 	public void validerModification()
 	{

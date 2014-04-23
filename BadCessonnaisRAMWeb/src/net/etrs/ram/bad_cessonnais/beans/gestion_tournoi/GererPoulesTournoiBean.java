@@ -40,10 +40,6 @@ public class GererPoulesTournoiBean {
 	@Setter
 	Tournoi tournoi;
 
-	//	@Getter
-	//	@Setter
-	//	@ManagedProperty("#{param}")
-	private int x;
 
 	@PostConstruct
 	public void init(){
@@ -55,11 +51,17 @@ public class GererPoulesTournoiBean {
 		return JoueursPoule.values();
 	}
 
-
+	/**
+	 * Methode de remise à jour du tournoi.
+	 * Utile car le tournoi n
+	 */
 	private void refreshTournoi() {
 		tournoi =  facadeTournoi.read(tournoi.getId());
 	}
 
+	/**
+	 * Fonction de gestion de deplacement d'un joueur d'une poule à une autre.
+	 */
 	public void deplacerJoueur() {  
 		try{
 			Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();

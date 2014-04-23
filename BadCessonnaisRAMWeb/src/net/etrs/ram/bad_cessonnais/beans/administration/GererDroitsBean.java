@@ -6,15 +6,21 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
-
+/**
+ * Bean pour l'affichage des droits des administrés.
+ *
+ */
 @ManagedBean
 @RequestScoped
+@FieldDefaults(level=AccessLevel.PRIVATE)
 public class GererDroitsBean {
 		
 	@EJB

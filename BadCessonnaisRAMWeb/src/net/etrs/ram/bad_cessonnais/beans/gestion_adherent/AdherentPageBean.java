@@ -24,8 +24,11 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Justificatif;
@@ -36,9 +39,10 @@ import net.etrs.ram.bad_cessonais.interop.ServiceClassement;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 
 
-
+@Log4j
 @ManagedBean
 @ViewScoped
+@FieldDefaults(level=AccessLevel.PRIVATE)
 public class AdherentPageBean {
 
 	@EJB
@@ -52,6 +56,9 @@ public class AdherentPageBean {
 	@Getter	@Setter
 	private List<Adherent> adherentFiltres;  
 	
+	/**
+	 * Initialisation d'un nouvel adhérent.
+	 */
 	@PostConstruct		
 	public void init(){
 		adherent = facadeAdherent.newInstance();
@@ -69,15 +76,20 @@ public class AdherentPageBean {
 	
 	}
 	
-	
-	//TODO
-	public void putInFlash(Adherent a){		
-
+	/**
+	 * Utilisaé pour le passage à la vue suivante.
+	 * @param a
+	 */
+	public void putInFlash(Adherent a){	
 		JsfUtils.putInFlashScope("ADHERENT", a);
 
 	}
 	
-	//TODO dans un premier temps on supprime l'adherent
+	
+	/**
+	 * Permet de désactiver l'adhérebnt. Dans un prmier temps il sera supprimé.
+	 * @param adh
+	 */
 	public void desactiverAdherent(Adherent adh){
 		facadeAdherent.read(adh);
 		facadeAdherent.delete(adh);
@@ -88,7 +100,7 @@ public class AdherentPageBean {
 
 	
 	/**
-	 * On recupere les informations de classement du licencié via le WS 
+	 * On recupere les informations de classement du licencié via le Webservice. 
 	 */
 	public void getClassementLicencieFFBa(){
 		String licenceFFBa = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("formAdherent:inputFFBaAdherent");
@@ -103,7 +115,7 @@ public class AdherentPageBean {
 
 		} catch (MalformedURLException e) {
 			
-			e.printStackTrace();
+			log.error("Imossible d'acceder au webservice", e);
 
 		}
 	}

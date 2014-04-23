@@ -3,12 +3,14 @@ package net.etrs.ram.bad_cessonnais.beans.gestion_tournoi;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.ServiceGestionTournoi;
+import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +18,11 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j;
 
 
+/**
+ * Bean pour la vue de saisie des informations pour la création des écheancier.
+ * @author adrien.merly
+ *
+ */
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @ManagedBean
 @ViewScoped
@@ -35,6 +42,11 @@ public class InfosEcheancierTournoiBean {
 	
 	@EJB
 	ServiceGestionTournoi serviceGestionTournoi;
+	
+	@PostConstruct
+	public void init(){
+		tournoi = (Tournoi) JsfUtils.getFromFlashScope("tournoi");
+	}
 	
 	public void genererEcheancier(){
 		serviceGestionTournoi.genererEcheancier(tournoi);
