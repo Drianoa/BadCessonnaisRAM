@@ -79,6 +79,7 @@ public class AdherentPageBean {
 	
 	//TODO dans un premier temps on supprime l'adherent
 	public void desactiverAdherent(Adherent adh){
+		facadeAdherent.read(adh);
 		facadeAdherent.delete(adh);
 		JsfUtils.sendMessage(null, FacesMessage.SEVERITY_INFO, "Information","Suppresion effectuée");
 		//log.info("Desactivation de l'adherent : "+ adh.toString());
