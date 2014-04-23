@@ -21,9 +21,7 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		@URLMapping(id = "creerAdherent", pattern = "/adherents/creer", viewId = "/pages/gestion-adherent/creer-adherent.xhtml"),
 		@URLMapping(id = "infosEcheancier", pattern = "/tournois/echeancier/infos", viewId = "/pages/gestion-tournoi/infos-echeancier-tournoi.xhtml"),
 
-		
-		
-		
+
 })
 public class Routage {
 	private final static String REDIRECT = "?faces-redirect=true";

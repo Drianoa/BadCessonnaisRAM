@@ -2,7 +2,7 @@ package net.etrs.ram.bad_cessonnais.utils;
 
 
 /**
- * Class utilitaire
+ * Classe utilitaire
  * 
  *
  */
