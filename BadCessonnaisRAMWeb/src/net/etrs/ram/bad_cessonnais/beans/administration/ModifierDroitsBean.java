@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
@@ -31,6 +30,11 @@ public class ModifierDroitsBean {
 	@EJB
 	FacadeAdherent facadeAdherent;
 	
+	
+	/**
+	 * Retourne la liste des droits possibles
+	 * @return
+	 */
 	public List<SelectItem> getListeDroits()
 	{
 		List<SelectItem> liste = new ArrayList<>();
@@ -40,12 +44,20 @@ public class ModifierDroitsBean {
 		return liste;
 	}
 	
+	
+	/**
+	 * charge l'adhérent reçu en parametre
+	 */
 	@PostConstruct
 	public void init()
 	{
 		adherent = (Adherent) JsfUtils.getFromFlashScope("ADHERENT");
 	}
 	
+	
+	/**
+	 * Modification des droits d'un adhérent
+	 */
 	public void validerModification()
 	{
 		facadeAdherent.update(adherent);
