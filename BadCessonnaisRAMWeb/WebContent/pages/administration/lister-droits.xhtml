@@ -18,7 +18,7 @@
 			</p:breadCrumb>
 		</h:form>	
 
-Rechercher un adhérent<br />
+	<h2 align="center">Rechercher un adhérent</h2><br />
 	</ui:define>
 
 	<ui:define name="content">
@@ -26,7 +26,7 @@ Rechercher un adhérent<br />
 		<!--Mise en place d'un datatable pour la recherche d'un adherent-->
 
 		<h:form id="formTableauAdherent">
-			<span class="badge">#{gererDroitsBean.compterAdherent()} résultat(s)</span>
+			<!--  <span class="badge">#{gererDroitsBean.compterAdherent()} résultat(s)</span>-->
 			<p:dataTable id="dataTable" var="adh"
 				value="#{adherentPageBean.adherents}" widgetVar="adherentsTable"
 				emptyMessage="Pas d'adhérent avec ce critère"
