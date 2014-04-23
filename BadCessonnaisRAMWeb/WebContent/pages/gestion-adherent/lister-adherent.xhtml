@@ -67,12 +67,11 @@
         <p:column id="actionColumn" headerText="Action" footerText="Action"  style="width:20%">
            
   
-        <p:commandButton id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}"  update="@form"
-           actionListener="#{adherentPageBean.desactiverAdherent(adh)}" >
-       </p:commandButton>
 		<p:commandButton  action="#{routage.modifierAdherent()}" actionListener="#{adherentPageBean.putInFlash(adh)}" 
 						id="adhModifier" icon="ui-icon-pencil" title="Modifier  #{adh.nom} #{adh.prenom}" />
 
+        <p:commandButton id="adhDesactiver" icon="ui-icon-trash" title="Désactiver #{adh.nom} #{adh.prenom}"  update="@form"
+           actionListener="#{adherentPageBean.desactiverAdherent(adh)}" />
 
 
 
