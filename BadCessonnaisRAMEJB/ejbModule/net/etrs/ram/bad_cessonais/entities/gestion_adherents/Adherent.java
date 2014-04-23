@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -15,8 +16,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+
 import net.etrs.ram.bad_cessonais.entities.administration.Droit;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -53,12 +56,12 @@ public class Adherent implements Serializable{
 
 	
 	//@Pattern(regexp="[A-Za-z]*")
-	@Column(length=40)
+	@Column(length=40,nullable=false)
 	private String nom;
 	
 	
 	//@Pattern(regexp="[A-Za-z]*")
-	@Column(length=40)
+	@Column(length=40,nullable=false)
 	private String prenom;
 	
 	@Pattern(regexp="[0-9]*")
@@ -76,9 +79,10 @@ public class Adherent implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	@Past
+	@Column(nullable=false)
 	private Date dateNaissance;
 
-	
+	@Column(nullable=false)
 	private String lieuNaissance;
 	
 	
