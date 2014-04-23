@@ -13,11 +13,11 @@
 <h:form>
 	<p:breadCrumb>
 		<p:menuitem value="Accueil" action="/index.xhtml" />
-		<p:menuitem value="Adhérent" url="#" />
-		<p:menuitem value="Création" url="#" />
+		<p:menuitem value="Adhérent" url="#{routage.listerAdherent()}" />
+		<p:menuitem value="Modification" url="#" />
 	</p:breadCrumb>
 </h:form>	
-<h2 align="center">Inscription d'un adhérent</h2>
+<h2 align="center">Modification d'un adhérent</h2>
 </ui:define>
 <ui:define name="content">
 
@@ -32,17 +32,17 @@
 				<p:message  for="inputNomAdherent" />
 		
 				<p:outputLabel value="Prénom :" for="inputPrenomAdherent" />
-				<p:inputText required="true" label="Nom :"  id="inputPrenomAdherent" value="#{creerAdherentBean.nouveauAdherent.prenom}" requiredMessage="Prénom requis" tabindex="2"/>
+				<p:inputText required="true" label="Nom :"  id="inputPrenomAdherent" value="#{modifierAdherentBean.adherent.prenom}" requiredMessage="Prénom requis" tabindex="2"/>
 				<p:message  for="inputPrenomAdherent" />
 		
 				<p:outputLabel value="Date de naissance :" for="calendarDateNaissanceAdherent" />
-				<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.dateNaissance}" requiredMessage="Date requise" tabindex="3"/>
+				<p:calendar required="true" label="Date de naissance" id="calendarDateNaissanceAdherent" value="#{modifierAdherentBean.adherent.dateNaissance}" requiredMessage="Date requise" tabindex="3"/>
 				<p:message  for="calendarDateNaissanceAdherent" />
 		  </h:panelGrid>
 		 </p:panel>
 		
 		<p:panel header="Justificatifs" style="height: 140px;"> 
-		        <p:selectManyCheckbox  id="justificatif"  value="#{creerAdherentBean.nouveauAdherent.justificatif}" layout="grid" columns="2"  converter="#{genericConverter}">  
+		        <p:selectManyCheckbox  id="justificatif"  value="#{modifierAdherentBean.adherent.justificatif}" layout="grid" columns="2"  converter="#{genericConverter}">  
 		             <f:selectItems  value="#{adherentPageBean.listeJustificatif}" var="j" itemLabel="#{j.libelle}"/>
 		        </p:selectManyCheckbox > 
 		 </p:panel>
@@ -50,33 +50,33 @@
 		<p:panel header="Coordonnées">
 			<h:panelGrid columns="3"> 
 				<p:outputLabel value="Email :" for="inputEmailAdherent" />
-				<p:inputText required="true" label="Email"  id="inputEmailAdherent" value="#{creerAdherentBean.nouveauAdherent.email}" requiredMessage="Email requis" tabindex="4"/>
+				<p:inputText required="true" label="Email"  id="inputEmailAdherent" value="#{modifierAdherentBean.adherent.email}" requiredMessage="Email requis" tabindex="4"/>
 				<p:message  for="inputEmailAdherent" />
 				
 				<p:outputLabel value="Lieu naissance :" for="inputLieuNaissanceAdherent" />
-				<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{creerAdherentBean.nouveauAdherent.lieuNaissance}" requiredMessage="Lieu requis" tabindex="4"/>
+				<p:inputText required="true" label="Lieu naissance"  id="inputLieuNaissanceAdherent" value="#{modifierAdherentBean.adherent.lieuNaissance}" requiredMessage="Lieu requis" tabindex="4"/>
 				<p:message  for="inputLieuNaissanceAdherent" />
 				
 				<p:outputLabel value="Sexe :" for="inputSexeAdherent"/>
-				<p:selectOneRadio id="inputSexeAdherent" required="true" requiredMessage="Sexe requis" value="#{creerAdherentBean.nouveauAdherent.sexe}" converter="#{genericConverter}" tabindex="6">  
+				<p:selectOneRadio id="inputSexeAdherent" required="true" requiredMessage="Sexe requis" value="#{modifierAdherentBean.adherent.sexe}" converter="#{genericConverter}" tabindex="6">  
 		             <f:selectItems  value="#{adherentPageBean.listeSexe}" var="s" itemLabel="#{s.libelle}"/> 
 		        </p:selectOneRadio> 
 				<p:message  for="inputSexeAdherent" />
 			
 				<p:outputLabel value="Adresse :" for="inputAdresseAdherent" />
-				<p:inputText required="false" label="Adresse"  id="inputAdresseAdherent" value="#{creerAdherentBean.nouveauAdherent.adresse}" tabindex="7"/>
+				<p:inputText required="false" label="Adresse"  id="inputAdresseAdherent" value="#{modifierAdherentBean.adherent.adresse}" tabindex="7"/>
 				<p:message  for="inputAdresseAdherent" />
 				
 				<p:outputLabel value="Code postal :" for="inputCpAdherent" />
-				<p:inputText required="false" label="Adresse"  id="inputCpAdherent" value="#{creerAdherentBean.nouveauAdherent.codePostal}" tabindex="8"/>
+				<p:inputText required="false" label="Adresse"  id="inputCpAdherent" value="#{modifierAdherentBean.adherent.codePostal}" tabindex="8"/>
 				<p:message  for="inputCpAdherent" />
 				
 				<p:outputLabel value="Ville :" for="inputVilleAdherent" />
-				<p:inputText required="false" label="Adresse"  id="inputVilleAdherent" value="#{creerAdherentBean.nouveauAdherent.ville}" tabindex="9"/>
+				<p:inputText required="false" label="Adresse"  id="inputVilleAdherent" value="#{modifierAdherentBean.adherent.ville}" tabindex="9"/>
 				<p:message  for="inputVilleAdherent" />
 				
 				<p:outputLabel value="Tél. :" for="inputTelAdherent" />
-				<p:inputText required="false" label="Téléphone"  id="inputTelAdherent" value="#{creerAdherentBean.nouveauAdherent.telephone}" tabindex="10"/>
+				<p:inputText required="false" label="Téléphone"  id="inputTelAdherent" value="#{modifierAdherentBean.adherent.telephone}" tabindex="10"/>
 				<p:message  for="inputTelAdherent" />
 			
 			</h:panelGrid>
@@ -85,19 +85,19 @@
 		<p:panel header="Licence" >
 			<h:panelGrid columns="4"> 
 				<p:outputLabel value="Origine :" for="inputOrigineAdherent" />
-				<p:selectOneMenu id="inputOrigineAdherent" value="#{creerAdherentBean.nouveauAdherent.origine}" converter="#{genericConverter}">  
+				<p:selectOneMenu id="inputOrigineAdherent" value="#{modifierAdherentBean.adherent.origine}" converter="#{genericConverter}">  
 		           <f:selectItems  value="#{adherentPageBean.listeOrigine}" var="o" itemLabel="#{o.libelle}"/>
 		        </p:selectOneMenu> 
 				<p:message  for="inputOrigineAdherent" />
 				<p:outputLabel />
 			
 				<p:outputLabel value="Licence FCD :" for="inputFCDAdherent" />
-				<p:inputText required="false" label="FCD"  id="inputFCDAdherent" value="#{creerAdherentBean.nouveauAdherent.licenceFcd}"/>
+				<p:inputText required="false" label="FCD"  id="inputFCDAdherent" value="#{modifierAdherentBean.adherent.licenceFcd}"/>
 				<p:message  for="inputFCDAdherent" />
 				<p:outputLabel />
 				
 				<p:outputLabel value="Licence FFBa :" for="inputFFBaAdherent" />
-				<p:inputText required="false" label="FFBa"  id="inputFFBaAdherent" value="#{creerAdherentBean.nouveauAdherent.licenceFFBa}" >
+				<p:inputText required="false" label="FFBa"  id="inputFFBaAdherent" value="#{modifierAdherentBean.adherent.licenceFFBa}" >
 					<f:ajax immediate="true"  execute="@this"   listener="#{creerAdherentBean.buttonSearchFFBaIsEnabled}"  event="keyup" render="buttonSearchFFBa"/>
 				</p:inputText>
 				<p:message  for="inputFFBaAdherent" />
@@ -119,7 +119,7 @@
 
   		<p:commandButton value="Annuler" styleClass="btn-default" action="#{routage.accueil()}" ajax="false" immediate="true"/>
       	<p:spacer/><p:spacer/>
-  		<p:commandButton value="Enregistrer" styleClass="btn-success"  actionListener="#{creerAdherentBean.enregistrer()}" update="@form" ajax="true"/>
+  		<p:commandButton value="Enregistrer" styleClass="btn-success" action="#{routage.listerAdherent()}" actionListener="#{modifierAdherentBean.validerModification()}" update="@form" ajax="true"/>
 
 	</h:panelGrid>
 

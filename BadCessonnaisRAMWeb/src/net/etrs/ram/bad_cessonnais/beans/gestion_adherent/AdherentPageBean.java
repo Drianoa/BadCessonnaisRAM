@@ -77,7 +77,7 @@ public class AdherentPageBean {
 		System.out.println("loll");
 		
 		
-		//JsfUtils.putInFlashScope("ADHERENT", a);
+		JsfUtils.putInFlashScope("ADHERENT", a);
 
 	}
 	
