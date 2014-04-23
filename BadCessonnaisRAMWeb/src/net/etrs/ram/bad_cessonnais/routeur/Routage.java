@@ -19,33 +19,39 @@ import com.ocpsoft.pretty.faces.annotation.URLMappings;
 		@URLMapping(id = "gererPoules", pattern = "/tournois/poules", viewId = "/pages/gestion-tournoi/gerer-poules-tournoi.xhtml"),
 		@URLMapping(id = "listerAdherent", pattern = "/adherents", viewId = "/pages/gestion-adherent/lister-adherent.xhtml"),
 		@URLMapping(id = "creerAdherent", pattern = "/adherents/creer", viewId = "/pages/gestion-adherent/creer-adherent.xhtml"),
+		@URLMapping(id = "modifierAdherent", pattern = "/adherents/modification", viewId = "/pages/gestion-adherent/mod-adherent.xhtml"),
 		@URLMapping(id = "infosEcheancier", pattern = "/tournois/echeancier/infos", viewId = "/pages/gestion-tournoi/infos-echeancier-tournoi.xhtml"),
+		
+//		@URLMapping(id = "accueilActualite", pattern = "/actualites", viewId = "/pages/gestion-actualite/accueil-actualite.xhtml"),
+//		@URLMapping(id = "visuActualite", pattern = "/actualites/visu/#{actuID}", viewId = "/pages/gestion-actualite/visualiser-actualite.xhtml"),
+//		@URLMapping(id = "creerActualite", pattern = "/actualites/creer", viewId = "/pages/gestion-actulite/creer-actualite.xhtml"),
 
-		
-		
-		
+				
 })
 public class Routage {
 	private final static String REDIRECT = "?faces-redirect=true";
 //	private final static String REDIRECT = "";
-	
+
 	public  String accueil ()		{return "/index.xhtml" + REDIRECT;}
 	public  String creerTournoi()	{return "/pages/gestion-tournoi/creer-tournoi.xhtml" + REDIRECT;}
 	public  String listerTournoi()	{return "/pages/gestion-tournoi/lister-tournoi.xhtml" + REDIRECT;}
-	public  String inscritpionTournoi()	{return "/pages/gestion-tournoi/inscription-tournoi.xhtml"  + REDIRECT;}
+	public  String inscritpionTournoi()	{return "/pages/gestion-tournoi/inscription-tournoi.xhtml" + REDIRECT;}
 	public  String modifierDroits()	{return "/pages/administration/modifier-droits.xhtml"  + REDIRECT;}
 	public  String listerDroits()	{return "/pages/administration/lister-droits.xhtml"  + REDIRECT;}
 	public  String gererPoules()	{return "/pages/gestion-tournoi/gerer-poules-tournoi.xhtml"  + REDIRECT;}
 	public  String infosEcheancier()	{return "/pages/gestion-tournoi/infos-echeancier-tournoi.xhtml"  + REDIRECT;}
-
-
+	
 	
 	/**
 	 * Routage pour l'adhérent
 	 */
+	
+	public  String modifierAdherent()	{return "/pages/gestion-adherent/mod-adherent.xhtml" + REDIRECT;}
+
 	public  String listerAdherent()	{return "/pages/gestion-adherent/lister-adherent.xhtml" + REDIRECT;}
 	public  String creerAdherent()	{return "/pages/gestion-adherent/creer-adherent.xhtml" + REDIRECT;}
 	
+		
 	
 	/**
 	 * Routage pour l'administration
@@ -54,4 +60,11 @@ public class Routage {
 	public  String listerDroitAdherent()	{return "/pages/administration/lister-droits.xhtml" + REDIRECT;}
 	//public  String configurerSite()			{return "/pages/administration/configurer-site.xhtml" + REDIRECT;}
 	public  String getFlux()	{return "/RSS";}
+	
+	
+	/**
+	 * Routage des actualites
+	 */
+	public  String visualiserActualites() {return "/pages/gestion-actualite/visualiser-actualite.xhtml" + REDIRECT;}
+	//public  String accueilActualites() {return "/pages/gestion-actualite/accueil-actualite.xhtml" + REDIRECT;}
 }
