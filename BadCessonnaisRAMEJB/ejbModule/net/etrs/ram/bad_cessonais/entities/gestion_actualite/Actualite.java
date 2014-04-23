@@ -33,6 +33,10 @@ import org.hibernate.validator.constraints.NotBlank;
 	@NamedQuery(name="Actulite.findLast", query="SELECT a FROM Actualite a order by a.datePublication DESC"),
 })
 
+/**
+ * Classe Actuslité du site 
+ *
+ */
 public class Actualite implements Serializable {
 	//champs techniques
 	

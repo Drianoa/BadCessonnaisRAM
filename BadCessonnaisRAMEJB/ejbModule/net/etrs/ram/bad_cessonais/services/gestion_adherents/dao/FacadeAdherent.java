@@ -20,11 +20,12 @@ public class FacadeAdherent extends AbstractFacade<Adherent>{
 	
 	
 	/**
-	 * 
-	 * @param a
+	 * Fonction permettant de supprimer  un adherent
+	 * @param a adherent
 	 */
 	public void desactiverAdherent(Adherent a ){
-		//TODO desactiver un adherent
+		a = read(a.getId());
+		delete(a);
 	}
 
 

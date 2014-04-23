@@ -50,12 +50,18 @@ public class TableauInitSingleton {
 	}
 
 
-
+	/**
+	 * retourne le tournoi principal
+	 * @return
+	 */
 	private Tournoi getTournoiPrincipal() {
 		return facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
 	}
 
-
+	/**
+	 * Ajouter un joueur à un tableau
+	 * @param ts
+	 */
 	private void associerTableauSimple(Tableau ts) {
 		List<Joueur> listerJoueurs = facadeJoueur.readAll();
 		for (Joueur joueur : listerJoueurs) {
