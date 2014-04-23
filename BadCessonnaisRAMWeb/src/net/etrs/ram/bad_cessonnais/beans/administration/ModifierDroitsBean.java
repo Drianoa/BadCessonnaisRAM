@@ -43,13 +43,17 @@ public class ModifierDroitsBean {
 		return liste;
 	}
 	
-	
+
 	@PostConstruct
 	public void init()
 	{
 		adherent = (Adherent) JsfUtils.getFromFlashScope("ADHERENT");
 	}
 	
+	
+	/**
+	 * Modification des droits d'un adhérent
+	 */
 	public void validerModification()
 	{
 		facadeAdherent.update(adherent);

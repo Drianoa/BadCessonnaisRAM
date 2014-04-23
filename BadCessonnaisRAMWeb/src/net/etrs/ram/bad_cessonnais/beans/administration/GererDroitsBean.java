@@ -24,17 +24,27 @@ public class GererDroitsBean {
 	Adherent adherent;
 	
 	
-	
+	/**
+	 * retourne l'ensemble des adherents de la base de données
+	 * @return
+	 */
 	public List<Adherent> listerAdherents(){		
 		return facadeAdherent.readAll();
 	}
 
-	
+	/**
+	 * retourne un String contenant le nombre d'adhérents
+	 * @return
+	 */
 	public String compterAdherent()
 	{
 		return facadeAdherent.countAll().toString();
 	}
-		
+	
+	/**
+	 * passe un adhérent en paremetre pour pouvoir modifier ses droits
+	 * @param a
+	 */
 	public void modifierDroitsAdherent(Adherent a){
 		JsfUtils.putInFlashScope("ADHERENT", a);
 
