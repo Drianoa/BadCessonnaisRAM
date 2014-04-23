@@ -39,7 +39,7 @@ public class AdherentInitSingleton {
 
 	
 	private Adherent createAdherent(String licenceFCD,String nom,String prenom,String dNaiss,Sexe sexe,Droit droit){
-		Adherent a = new Adherent();
+		Adherent a = facadeAdherent.newInstance();
 		a.setLicenceFcd(licenceFCD);
 		a.setNom(nom);
 		a.setPrenom(prenom);
