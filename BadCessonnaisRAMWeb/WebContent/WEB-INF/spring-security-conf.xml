@@ -18,16 +18,17 @@
  		<intercept-url pattern="/tournois"        access="hasRole('ROLE_PRINCIPAL')" />       
         <intercept-url pattern="/adherents/**"         access="hasRole('ROLE_PRESIDENT')" />
         <intercept-url pattern="/adherents"         access="hasRole('ROLE_PRESIDENT')" />
-        <intercept-url pattern="/actualites"         access="hasRole('ROLE_ADHERENT')" />
- 		<intercept-url pattern="/actualites/visu"         access="hasRole('ROLE_ADHERENT')" />
+        <intercept-url pattern="/actualites"         access="permitAll" />
+ 		<intercept-url pattern="/actualites/visu"         access="permitAll" />
  		<intercept-url pattern="/actualites/creer"         access="hasRole('ROLE_PRINCIPAL')" />     
     	
 <!--     <intercept-url pattern="/**"         access="permitAll" /> -->
          
         <form-login login-page="/pages/login/index.xhtml" 
         			authentication-failure-url="/pages/login/index.xhtml?fail=true"
-        			default-target-url="/pages/login/index.xhtml"/>        
+        			default-target-url="/accueil"/>        
   		<logout logout-success-url="/accueil" />
+ 		
     </http>
     
     <authentication-manager>
@@ -37,7 +38,7 @@
 		
             <user-service>
                              
-                <user name="AUCHARD"  password="12dea96fec20593566ab75692c9949596833adc9"  authorities="ROLE_ADHERENT" />
+                <user name="AUCHART"  password="12dea96fec20593566ab75692c9949596833adc9"  authorities="ROLE_ADHERENT" />
                 <user name="ROBERT"	  password="12e9293ec6b30c7fa8a0926af42807e929c1684f"  authorities="ROLE_PRESIDENT,ROLE_PRINCIPAL,ROLE_ADHERENT" />
                 <user name="MERLY"	  password="79296980b6a5d90d8514e82d125e1ea4cea0a9f4"  authorities="ROLE_PRINCIPAL,ROLE_ADHERENT" />				               
             </user-service>

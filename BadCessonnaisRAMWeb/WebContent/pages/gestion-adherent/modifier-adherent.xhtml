@@ -12,8 +12,8 @@
 <ui:define name="headerContent">
 <h:form>
 	<p:breadCrumb>
-		<p:menuitem value="Accueil" action="#{routage.accueil()}" />
-		<p:menuitem value="Adhérent" url="#{routage.listerAdherent()}" />
+		<p:menuitem value="Accueil" action="/index.xhtml" />
+		<p:menuitem value="Adhérent" url="#" />
 		<p:menuitem value="Création" url="#" />
 	</p:breadCrumb>
 </h:form>	
@@ -28,7 +28,7 @@
 		<p:panel header="Identification" style="height: 140px;">
 		 <h:panelGrid columns="3"> 
 				<p:outputLabel value="Nom :" for="inputNomAdherent" />
-				<p:inputText required="true" label="Nom :"  id="inputNomAdherent" value="#{creerAdherentBean.nouveauAdherent.nom}" requiredMessage="Nom requis" tabindex="1"/>
+				<p:inputText required="true" label="Nom :"  id="inputNomAdherent" value="" requiredMessage="Nom requis" tabindex="1"/>
 				<p:message  for="inputNomAdherent" />
 		
 				<p:outputLabel value="Prénom :" for="inputPrenomAdherent" />

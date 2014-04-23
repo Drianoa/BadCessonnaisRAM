@@ -2,39 +2,42 @@
 xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:sec="http://www.springframework.org/security/facelets/tags">
 
 
 <h:form  styleClass="ariane">
 	<p:menubar autoDisplay="false">
 		<p:menuitem value="" styleClass="" />
 		<p:submenu label="Adhérent">
-			<p:menuitem value="Inscription" icon="ui-icon-pencil" action="#{routage.creerAdherent()}"/>
-			<p:menuitem value="Rechercher"  icon="ui-icon-search" action="#{routage.listerAdherent()}" />
+			
+			<p:menuitem value="Inscription" icon="ui-icon-pencil" action="#{routage.creerAdherent()}" rendered="#{loginBean.isInRole('ROLE_PRESIDENT')}"/>
+			<p:menuitem value="Rechercher"  icon="ui-icon-search" action="#{routage.listerAdherent()}" rendered="#{loginBean.isInRole('ROLE_PRESIDENT')}"/>
+			
 		</p:submenu>
 
 		<p:submenu label="Tournoi">
-			<p:menuitem value="Créer un tournoi" action="#{routage.creerTournoi()}"/>
-			<p:menuitem value="Lister les tournois"	action="#{routage.listerTournoi()}" />
+			<p:menuitem value="Créer un tournoi" action="#{routage.creerTournoi()}" rendered="#{loginBean.isInRole('ROLE_PRINCIPAL')}"/>
+			<p:menuitem value="Lister les tournois"	action="#{routage.listerTournoi()}" rendered="#{loginBean.isInRole('ROLE_PRINCIPAL')}"/>
 		</p:submenu>
 		
 		<p:submenu label="Actualités">
 			<p:menuitem value="Voir les Actus" action="#{routage.listerActualites()}" />
-			<p:menuitem value="Ecrire une Actu" action="#{routage.creerActualites()}" />
+			<p:menuitem value="Ecrire une Actu" action="#{routage.creerActualites()}" rendered="#{loginBean.isInRole('ROLE_PRINCIPAL')}"/>
 		</p:submenu>
 
 		<p:submenu label="Administration">
-			<p:menuitem value="Lister les droits" action="#{routage.listerDroits()}" />
+			<p:menuitem value="Lister les droits" action="#{routage.listerDroits()}"  rendered="#{loginBean.isInRole('ROLE_PRESIDENT')}"/>
 			<p:separator />
-			<p:menuitem value="Configurer le site" url="#" />
+			<p:menuitem value="Configurer le site" url="#"  rendered="#{loginBean.isInRole('ROLE_PRESIDENT')}"/>
 
 		</p:submenu>
 		
 		<f:facet name="options">
-			<h:outputText value="#{loginBean.userLogin}" />
+			<h:outputText value="#{loginBean.userLogin}" rendered="#{loginBean.isInRole('ROLE_ADHERENT')}" />
 			<h:outputText value="  " />
-		
-			<h:commandButton action="#{loginBean.logout()}"  value="Logout" icon="ui-icon-extlink"  />
+			<h:commandButton action="#{routage.login()}"  value="Login" icon="ui-icon-extlink" rendered="#{loginBean.isInRole('ROLE_ANONYMOUS')}" />
+			<h:commandButton action="#{loginBean.logout()}"  value="Logout" icon="ui-icon-extlink" rendered="#{loginBean.isInRole('ROLE_ADHERENT')}" />
 		
 		</f:facet>
 		</p:menubar>

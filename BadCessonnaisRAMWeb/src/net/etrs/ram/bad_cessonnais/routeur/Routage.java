@@ -6,6 +6,12 @@ import javax.faces.bean.ManagedBean;
 import com.ocpsoft.pretty.faces.annotation.URLMapping;
 import com.ocpsoft.pretty.faces.annotation.URLMappings;
 
+
+/**
+ * Bean de gestion centralisé du Routage de l'application.
+ * @author adrien.merly
+ *
+ */
 @ManagedBean
 @ApplicationScoped
 @URLMappings(mappings = {
@@ -60,6 +66,7 @@ public class Routage {
 	public  String listerDroitAdherent()	{return "/pages/administration/lister-droits.xhtml" + REDIRECT;}
 	//public  String configurerSite()			{return "/pages/administration/configurer-site.xhtml" + REDIRECT;}
 	public  String getFlux()	{return "/RSS";}
+	public String login()		{return "/pages/login/index.xhtml";}
 	
 	
 	/**

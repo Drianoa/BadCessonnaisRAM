@@ -20,8 +20,9 @@
 		</h:form>
 		<h:form>
 			<p:panel header="Liste des tournois">
+				<p:commandButton value="Créer un tournoi" styleClass="btn-success" action="#{routage.creerTournoi()}" />
 				<h:panelGrid columns="2">
-					<p:commandButton value="Créer un tournoi" action="#{routage.creerTournoi()}" />
+					
 					
 					<p:dataTable value="#{gererTournoiBean.listerTournois()}" var="t">
 						<p:column headerText="Nom">
