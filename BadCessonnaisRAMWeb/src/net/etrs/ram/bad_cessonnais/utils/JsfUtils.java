@@ -1,9 +1,13 @@
 package net.etrs.ram.bad_cessonnais.utils;
 
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.http.HttpRequest;
 
 /**
  * Outillage générique JSF.
@@ -73,8 +77,8 @@ public class JsfUtils
     public static void putInFlashScope(String key, Object data)
     {
         FacesContext ctx = FacesContext.getCurrentInstance();
-        Flash flash = ctx.getExternalContext().getFlash();
-        flash.put(key, data);
+        HttpSession session = (HttpSession) ctx.getExternalContext().getSession(true);
+        session.setAttribute(key, data);
     }
 
     /**
@@ -86,7 +90,7 @@ public class JsfUtils
     public static Object getFromFlashScope(String key)
     {
         FacesContext ctx = FacesContext.getCurrentInstance();
-        Flash flash = ctx.getExternalContext().getFlash();
-        return flash.get(key);
+        HttpSession session = (HttpSession) ctx.getExternalContext().getSession(true);
+        return session.getAttribute(key);
     }
 }
