@@ -74,9 +74,7 @@ public class AdherentPageBean {
 	
 	//TODO
 	public void putInFlash(Adherent a){		
-	
-		
-		
+
 		JsfUtils.putInFlashScope("ADHERENT", a);
 
 	}
