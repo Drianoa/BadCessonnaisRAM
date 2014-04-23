@@ -18,13 +18,16 @@ public class GererTournoiBean {
 	@EJB
 	private FacadeTournoi facadeTournoi;
 	
-	
+	/**
+	 * Liste tous les tournois.
+	 * @return
+	 */
 	public List<Tournoi> listerTournois(){		
 		return facadeTournoi.readAll();
 	}
 	
 	/**
-	 * 
+	 * passage du tournoi séléctionné à la page suivante.
 	 * @param tournoi
 	 */
 	public void putInFlash(Tournoi tournoi){

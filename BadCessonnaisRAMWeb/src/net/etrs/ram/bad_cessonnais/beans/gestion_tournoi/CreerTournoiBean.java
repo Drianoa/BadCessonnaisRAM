@@ -23,6 +23,10 @@ import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTableau;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
+/**
+ * Gestion de la vue de creation de tounoi. 
+ *
+ */
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @ManagedBean
 @ViewScoped
@@ -99,7 +103,10 @@ public class CreerTournoiBean {
 		}		
 	}
 	
-	
+	/**
+	 * Supprime un tableau de la liste es tableaux.
+	 * @param tableau
+	 */
 	public void supprimerTableau(Tableau tableau){
 		tableauxList.remove(tableau);
 	}

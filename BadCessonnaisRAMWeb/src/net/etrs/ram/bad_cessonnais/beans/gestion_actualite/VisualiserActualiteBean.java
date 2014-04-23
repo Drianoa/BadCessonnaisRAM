@@ -23,6 +23,10 @@ import net.etrs.ram.bad_cessonais.services.gestion_actualite.ServiceActualite;
 import net.etrs.ram.bad_cessonais.services.gestion_actualite.dao.FacadeActualite;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
+/**
+ * Bean de isualisation d'une actualité 
+ *
+ */
 @SuppressWarnings("serial")
 @Log4j
 @ManagedBean
@@ -40,6 +44,9 @@ public class VisualiserActualiteBean implements  Serializable {
 	@EJB
 	ServiceActualite serviceActualite;
 
+	/**
+	 * Initialisation avec l'actualité selectioné.
+	 */
 	@PostConstruct
 	void init() {
 		actualiteCourante = (Actualite) JsfUtils.getFromFlashScope("actualite");

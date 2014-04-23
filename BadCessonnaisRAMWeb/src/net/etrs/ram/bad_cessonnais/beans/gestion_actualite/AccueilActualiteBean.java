@@ -33,12 +33,18 @@ public class AccueilActualiteBean {
 	@EJB
 	ServiceActualite serviceActualite;
 
-
+	/**
+	 * Initialisation de la page d'actus avec les dernieres actus.
+	 */
 	@PostConstruct
 	public void init(){
 		actualites = serviceActualite.dernieresActus();
 	}
 	
+	/**
+	 * Utilitaire pour le passage à la page suivante.
+	 * @param actualite
+	 */
 	public void selectionnerActu(Actualite actualite){
 		JsfUtils.putInFlashScope("actualite", actualite);
 	}

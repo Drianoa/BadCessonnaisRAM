@@ -16,6 +16,11 @@ import net.etrs.ram.bad_cessonais.services.gestion_actualite.dao.FacadeActualite
 import net.etrs.ram.bad_cessonnais.beans.gestion_adherent.AdherentPageBean;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
+/**
+ * Bean pour la page de création d'actualité d'actualité.
+ * @author adrien.merly
+ *
+ */
 @Log4j
 @ManagedBean
 @ViewScoped
@@ -31,12 +36,17 @@ public class AjouterActualiteBean {
 	@EJB
 	ServiceActualite serviceActualite;
 	
+	/**
+	 * initialisation de l'objet actualité avec une nouvelle actualité.
+	 */
 	@PostConstruct
 	void init(){
 		actualite = facadeActualite.newInstance();
 	}
 	
-	
+	/**
+	 * Enregistrement de l'actualitée en base de données.
+	 */
 	public void creerActualite(){
 		try{
 			serviceActualite.creerActualite(actualite);

@@ -6,21 +6,31 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+
 import org.primefaces.component.inputtext.InputText;
+
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 import net.etrs.ram.bad_cessonnais.utils.ToolBox;
 
+/**
+ * Bean pour la création d'un adhérent.
+ *
+ */
 @ManagedBean
-
+@ViewScoped
+@FieldDefaults(level=AccessLevel.PRIVATE)
 public class CreerAdherentBean {
 
 	
