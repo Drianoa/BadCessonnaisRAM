@@ -10,11 +10,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.SelectItem;
-
 import lombok.Getter;
 import lombok.Setter;
-import net.etrs.ram.bad_cessonais.entities.administration.Droit;
 import net.etrs.ram.bad_cessonais.entities.gestion_adherents.Adherent;
 import net.etrs.ram.bad_cessonais.services.gestion_adherents.dao.FacadeAdherent;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
@@ -36,6 +33,7 @@ public class ModifierAdherentBean {
 	public void init()
 	{
 		adherent = (Adherent) JsfUtils.getFromFlashScope("ADHERENT");
+		System.out.println(adherent);
 	}
 	
 	public void validerModification()

@@ -74,6 +74,8 @@ public class JsfUtils
     {
         FacesContext ctx = FacesContext.getCurrentInstance();
         Flash flash = ctx.getExternalContext().getFlash();
+//        flash.setKeepMessages(true);
+//        flash.setRedirect(true);
         flash.put(key, data);
     }
 

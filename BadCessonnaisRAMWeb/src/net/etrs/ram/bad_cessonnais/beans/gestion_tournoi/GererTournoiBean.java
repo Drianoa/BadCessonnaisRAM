@@ -4,14 +4,15 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
+import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
 
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class GererTournoiBean {
 		
 	@EJB
@@ -20,6 +21,14 @@ public class GererTournoiBean {
 	
 	public List<Tournoi> listerTournois(){		
 		return facadeTournoi.readAll();
+	}
+	
+	/**
+	 * 
+	 * @param tournoi
+	 */
+	public void putInFlash(Tournoi tournoi){
+		JsfUtils.putInFlashScope("tournoi", tournoi.getId());
 	}
 		
 }

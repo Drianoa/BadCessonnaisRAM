@@ -10,6 +10,7 @@
 
 
     <http auto-config='true' use-expressions="true" >
+		<intercept-url pattern="/**"            access="permitAll" />     
 		<intercept-url pattern="/pages/login/**"            access="permitAll" />     
         <intercept-url pattern="/resources/**"            access="denyAll" />
         <intercept-url pattern="/javax.faces.resource/**" access="permitAll" />

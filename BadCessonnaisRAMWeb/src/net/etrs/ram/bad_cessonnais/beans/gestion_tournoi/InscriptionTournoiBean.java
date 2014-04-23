@@ -8,8 +8,6 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.primefaces.event.SelectEvent;
-
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,8 +19,9 @@ import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.ServiceGestionTournoi;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeJoueur;
 import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
-import net.etrs.ram.bad_cessonnais.routeur.Routage;
 import net.etrs.ram.bad_cessonnais.utils.JsfUtils;
+
+import org.primefaces.event.SelectEvent;
 
 @FieldDefaults(level= AccessLevel.PRIVATE)
 @ManagedBean
@@ -42,6 +41,8 @@ public class InscriptionTournoiBean {
 	@Setter
 	Tournoi tournoi;
 	
+	String tournoiId;
+	
 	@Getter @Setter
 	Joueur nouveauJoueur;
 	
@@ -50,6 +51,8 @@ public class InscriptionTournoiBean {
 	
 	@PostConstruct
 	public void init(){
+		tournoiId = (String) JsfUtils.getFromFlashScope("tournoi");
+		
 		refreshTournoi();
 		nouveauJoueur = facadeJoueur.newInstance();
 	}
@@ -71,7 +74,7 @@ public class InscriptionTournoiBean {
 	}
 
 	private void refreshTournoi() {
-		tournoi =  facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
+		tournoi =  facadeTournoi.read(tournoiId);
 	}
 	
 	public void definirtableauActif(Tableau tableau){
