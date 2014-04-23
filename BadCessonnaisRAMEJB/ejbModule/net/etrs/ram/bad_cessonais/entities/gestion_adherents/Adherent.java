@@ -53,12 +53,12 @@ public class Adherent implements Serializable{
 
 	
 	//@Pattern(regexp="[A-Za-z]*")
-	@Column(length=40)
+	@Column(length=40,nullable=false)
 	private String nom;
 	
 	
 	//@Pattern(regexp="[A-Za-z]*")
-	@Column(length=40)
+	@Column(length=40,nullable=false)
 	private String prenom;
 	
 	@Pattern(regexp="[0-9]*")
@@ -76,9 +76,9 @@ public class Adherent implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	@Past
+	@Column(nullable=false)
 	private Date dateNaissance;
 
-	
 	private String lieuNaissance;
 	
 	
