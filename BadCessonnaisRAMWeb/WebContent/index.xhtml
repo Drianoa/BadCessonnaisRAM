@@ -11,7 +11,50 @@
 
 	<ui:define name="content">
 
-		Bienvenido - Welcome 
+		<h2 align="center">Bienvenue sur le site du Badmintonien Cessonnais</h2>
+		
+
+
+ 
+	<h:panelGrid columns="5" columnClasses="label, value" styleClass="grid">
+		
+		<p:panel header="Authentification" style="height: 140px;">
+		 <h:panelGrid columns="3"> 
+				Se logger
+		  </h:panelGrid>
+		 </p:panel>
+		
+		<p:panel header="Justificatifs" style="height: 140px;"> 
+		        <p:selectManyCheckbox  id="justificatif"  value="#{creerAdherentBean.nouveauAdherent.justificatif}" layout="grid" columns="2"  converter="#{genericConverter}">  
+		             <f:selectItems  value="#{adherentPageBean.listeJustificatif}" var="j" itemLabel="#{j.libelle}"/>
+		        </p:selectManyCheckbox > 
+		 </p:panel>
+		 
+		<p:panel header="Coordonnées" style="height: 140px;">
+			<h:panelGrid columns="3"> 
+				<p:outputLabel value="Email :"/>
+				
+			
+			</h:panelGrid>
+		 </p:panel>
+	<p:panel header="Coordonnées" style="height: 140px;">
+			<h:panelGrid columns="3"> 
+				<p:outputLabel value="Email :"/>
+				
+			
+			</h:panelGrid>
+		 </p:panel>
+		<p:panel  header="Partenaire" style="height: 140px;">
+			<h:panelGrid columns="4"> 
+				<p:outputLabel value="Origine :"  />
+				<a href="http://www.plusdebad.com/"><p:graphicImage name="2bad.png" library="resources/img/" height="400px" width="600px" /></a>
+				
+
+
+			</h:panelGrid>
+		</p:panel>
+
+	</h:panelGrid> 
 	
 
 	</ui:define>
