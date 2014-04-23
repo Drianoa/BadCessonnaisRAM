@@ -2,8 +2,6 @@ package net.etrs.ram.bad_cessonais.entities.gestion_actualite;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -33,6 +31,10 @@ import org.hibernate.validator.constraints.NotBlank;
 	@NamedQuery(name="Actulite.findLast", query="SELECT a FROM Actualite a order by a.datePublication DESC"),
 })
 
+/**
+ * Classe Actualité du site 
+ *
+ */
 public class Actualite implements Serializable {
 	//champs techniques
 	

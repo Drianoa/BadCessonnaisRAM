@@ -30,8 +30,7 @@ public class TableauInitSingleton {
 	@EJB
 	private FacadeTournoi facadeTournoi;
 	
-	
-	
+		
 	@PostConstruct
 	public void init(){
 		if(facadeTableau.countAll() == 0){
@@ -39,8 +38,7 @@ public class TableauInitSingleton {
 			//Tableau td = facadeTableau.create("Senior Double Mixte NC", TypeMatch.DOUBLE);
 			associerTableauSimple(ts);
 			//associerTableauDouble(td);
-			
-			
+
 			Tournoi tournoi = getTournoiPrincipal();
 			
 			tournoi.getLstTableaux().add(ts);
@@ -50,12 +48,18 @@ public class TableauInitSingleton {
 	}
 
 
-
+	/**
+	 * retourne le tournoi principal
+	 * @return
+	 */
 	private Tournoi getTournoiPrincipal() {
 		return facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
 	}
 
-
+	/**
+	 * Ajouter un joueur à un tableau
+	 * @param ts
+	 */
 	private void associerTableauSimple(Tableau ts) {
 		List<Joueur> listerJoueurs = facadeJoueur.readAll();
 		for (Joueur joueur : listerJoueurs) {

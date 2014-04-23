@@ -1,5 +1,9 @@
 package net.etrs.ram.bad_cessonais.entities.administration;
 
+/**
+ * Enumération des droits de l'utilisateur 
+ *
+ */
 public enum Droit {
 	PRESIDENT("President"),
 	SECRETAIRE("Secrétaire"),

@@ -7,10 +7,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import sun.org.mozilla.javascript.internal.annotations.JSFunction;
-import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Joueur;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Poule;
 import net.etrs.ram.bad_cessonais.entities.gestion_tournoi.Tableau;
@@ -22,7 +18,6 @@ import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
 
 @SuppressWarnings("serial")
 @Stateless
-@Log4j
 public class ServiceGestionTournoi implements Serializable{
 	
 	@EJB
@@ -41,7 +36,12 @@ public class ServiceGestionTournoi implements Serializable{
 	EntityManager em;
 	
 	
-	
+	/**
+	 * méthode créant un tournoi
+	 * @param tournoi
+	 * @param tableaux
+	 * @return
+	 */
 	public Tournoi creerTournoi(Tournoi tournoi , List<Tableau> tableaux){
 		facadeTournoi.create(tournoi);
 		tournoi.getLstTableaux().addAll(tableaux);
@@ -50,7 +50,11 @@ public class ServiceGestionTournoi implements Serializable{
 	}
 
 
-
+	/**
+	 * méthode pour supprimer un joueur d'un tableau
+	 * @param tableau
+	 * @param joueur
+	 */
 	public void supprimerJoueur(Tableau tableau, Joueur joueur) {
 		facadeTableau.supprimerJoueur(tableau,joueur);
 	}
@@ -73,7 +77,7 @@ public class ServiceGestionTournoi implements Serializable{
 
 
 	/**
-	 * 
+	 * méthode générant les poules
 	 * @param tournoi
 	 */
 	public void genererLesPoules(Tournoi tournoi) {
@@ -101,7 +105,10 @@ public class ServiceGestionTournoi implements Serializable{
 		facadeTournoi.update(tournoi);
 	}
 
-
+	/**
+	 * Enrigistre la listes des tableaux
+	 * @param tournoi
+	 */
 	public void enregistrerTableaux(Tournoi tournoi) {
 		for(Tableau tableau : tournoi.getLstTableaux()){
 			facadeTableau.update(tableau);
@@ -110,7 +117,12 @@ public class ServiceGestionTournoi implements Serializable{
 	}
 
 
-
+	/**
+	 * méthode permettant de déplacer un joueur d'une pouel à une autre poule
+	 * @param idPouleSource
+	 * @param idPouleDest
+	 * @param idJoueur
+	 */
 	public void deplacerJoueur(String idPouleSource, String idPouleDest,
 			String idJoueur) {
 			Poule source = facadePoule.read(idPouleSource);
@@ -126,7 +138,10 @@ public class ServiceGestionTournoi implements Serializable{
 	}
 
 
-
+	/**
+	 * Generer un échéancier
+	 * @param tournoi
+	 */
 	public void genererEcheancier(Tournoi tournoi) {
 //		for(Tableau tableau : tournoi.getLstTableaux()){
 //			for(Poule poule : tableau.getPoules()){

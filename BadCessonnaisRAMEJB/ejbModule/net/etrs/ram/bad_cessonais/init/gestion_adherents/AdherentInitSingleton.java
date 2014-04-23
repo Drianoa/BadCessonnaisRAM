@@ -20,6 +20,9 @@ public class AdherentInitSingleton {
 	@EJB
 	private FacadeAdherent facadeAdherent;
 	
+	/**
+	 * Initialisation
+	 */
 	@PostConstruct
 	public void init(){
 		
@@ -37,7 +40,16 @@ public class AdherentInitSingleton {
 		
 	}
 
-	
+	/**
+	 * Classe permettant de peupler des nouveaux adherents
+	 * @param licenceFCD
+	 * @param nom
+	 * @param prenom
+	 * @param dNaiss
+	 * @param sexe
+	 * @param droit
+	 * @return
+	 */
 	private Adherent createAdherent(String licenceFCD,String nom,String prenom,String dNaiss,Sexe sexe,Droit droit){
 		Adherent a = facadeAdherent.newInstance();
 		a.setLicenceFcd(licenceFCD);

@@ -2,8 +2,6 @@ package net.etrs.ram.bad_cessonais.entities.gestion_tournoi;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +17,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-@SuppressWarnings("serial")
 @Data
 @Entity
 @NoArgsConstructor
@@ -29,6 +26,10 @@ import lombok.experimental.FieldDefaults;
 	@NamedQuery(name="Tableau.countAll", query="SELECT count(t) FROM Tableau t")
 	
 })
+/**
+ * Classe des Poules
+ *
+ */
 public class Poule {
 
 	@Id

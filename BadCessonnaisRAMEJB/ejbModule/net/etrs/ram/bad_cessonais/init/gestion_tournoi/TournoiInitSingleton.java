@@ -21,16 +21,14 @@ import net.etrs.ram.bad_cessonais.services.gestion_tournoi.dao.FacadeTournoi;
  *
  */
 @Singleton
-@Startup       //se lance au demarrage
+@Startup      
 public class TournoiInitSingleton {
 	
 	@EJB
 	private FacadeTournoi facadeTournoi;
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	
-
-	
+		
 //	@Getter
 //	private static Tournoi tournoiPrincipal;
 	

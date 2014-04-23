@@ -39,6 +39,11 @@ import lombok.experimental.FieldDefaults;
 		}
 )
 
+/**
+ * Classe adherent
+ * 
+ *
+ */
 public class Adherent implements Serializable{
 
 	
