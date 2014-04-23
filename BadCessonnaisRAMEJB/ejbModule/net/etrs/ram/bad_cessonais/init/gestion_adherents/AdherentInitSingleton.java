@@ -20,6 +20,9 @@ public class AdherentInitSingleton {
 	@EJB
 	private FacadeAdherent facadeAdherent;
 	
+	/**
+	 * Initialisation
+	 */
 	@PostConstruct
 	public void init(){
 		

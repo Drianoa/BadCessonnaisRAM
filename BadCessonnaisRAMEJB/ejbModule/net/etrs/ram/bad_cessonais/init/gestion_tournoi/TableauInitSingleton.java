@@ -30,8 +30,7 @@ public class TableauInitSingleton {
 	@EJB
 	private FacadeTournoi facadeTournoi;
 	
-	
-	
+		
 	@PostConstruct
 	public void init(){
 		if(facadeTableau.countAll() == 0){
@@ -39,8 +38,7 @@ public class TableauInitSingleton {
 			//Tableau td = facadeTableau.create("Senior Double Mixte NC", TypeMatch.DOUBLE);
 			associerTableauSimple(ts);
 			//associerTableauDouble(td);
-			
-			
+
 			Tournoi tournoi = getTournoiPrincipal();
 			
 			tournoi.getLstTableaux().add(ts);
