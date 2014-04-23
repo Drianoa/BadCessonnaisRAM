@@ -33,6 +33,9 @@
 							</h:outputText>
 						</p:column>
 						<p:column headerText="Action">
+							<p:commandButton 
+							value="Merde" action="#{routage.inscritpionTournoi()}" 
+							actionListener="#{gererTournoiBean.putInFlash(t)}"/>
 						</p:column>
 					</p:dataTable>
 				</h:panelGrid>

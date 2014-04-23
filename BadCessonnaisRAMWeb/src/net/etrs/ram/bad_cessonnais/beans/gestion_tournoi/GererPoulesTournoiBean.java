@@ -47,6 +47,7 @@ public class GererPoulesTournoiBean {
 
 	@PostConstruct
 	public void init(){
+		tournoi = (Tournoi) JsfUtils.getFromFlashScope("tournoi");
 		refreshTournoi();
 	}
 
@@ -56,7 +57,7 @@ public class GererPoulesTournoiBean {
 
 
 	private void refreshTournoi() {
-		tournoi =  facadeTournoi.search("nom", "Tournoi de l'ascension", "nom").get(0);
+		tournoi =  facadeTournoi.read(tournoi.getId());
 	}
 
 	public void deplacerJoueur() {  
