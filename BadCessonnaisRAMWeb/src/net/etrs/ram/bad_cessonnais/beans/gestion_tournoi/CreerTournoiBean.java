@@ -91,7 +91,7 @@ public class CreerTournoiBean {
 				throw new Exception( "Vous devez saisir au moins un tableau");
 			}else{
 				Tournoi tournoiCree =serviceGestionTournoi.creerTournoi(nouveauTournoi, tableauxList);
-				JsfUtils.putInFlashScope("tournoi", tournoiCree);
+				JsfUtils.putInFlashScope("tournoi", tournoiCree.getId());
 			}
 		} catch (Exception e) {
 			JsfUtils.sendMessage("growl", e);

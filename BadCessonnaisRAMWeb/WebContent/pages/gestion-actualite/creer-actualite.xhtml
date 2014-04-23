@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:tags="http://java.sun.com/jsf/composite/tags"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags">
+
+
+	<ui:define name="pageTitle">Tournoi</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="#{routage.accueil()}" />
+				<p:menuitem value="Actualites" action="#{routage.listerTournoi()}" />
+				<p:menuitem value="Créer une actu"
+					action="#{routage.creerTournoi()}" />
+			</p:breadCrumb>
+		</h:form>
+		<h:form id="frmName">
+			<p:panel header="Nouvelle actualité">
+
+				<fx:etrs-field for="idNom" label="Titre">
+					<p:inputText id="idNom"
+						value="#{ajouterActualiteBean.actualite.titre}" required="true"
+						requiredMessage="Saisisez le titre" />
+				</fx:etrs-field><br/>
+
+				<p:editor id="idText"
+							value="#{ajouterActualiteBean.actualite.texte}" />
+				<br/>
+				<p:commandButton id="idAjout"
+					actionListener="#{ajouterActualiteBean.creerActualite()}"
+					update="@form" value="Ajouter l'actualité"></p:commandButton>
+
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

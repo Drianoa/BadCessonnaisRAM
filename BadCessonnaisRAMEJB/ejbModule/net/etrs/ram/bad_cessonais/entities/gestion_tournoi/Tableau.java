@@ -39,7 +39,7 @@ public class Tableau implements Serializable {
 
 	@Id
 	@Column(length=36)
-	String id = UUID.randomUUID().toString();
+	String id;
 	
 	@Version
 	Long version;

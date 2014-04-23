@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/disposition-standard.xhtml"
+	xmlns:tags="http://java.sun.com/jsf/composite/tags"
+	xmlns:fx="http://www.ent-etrs.net/prsi/tags">
+
+
+	<ui:define name="pageTitle">Tournoi</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:breadCrumb>
+				<p:menuitem value="Accueil" action="#{routage.accueil()}" />
+				<p:menuitem value="Actualites"
+					/>
+			</p:breadCrumb>
+		</h:form>
+		<h:form>
+		
+			<h:dataTable var="actu" value="#{accueilActualiteBean.actualites}">
+						<h:outputText value="#{actu.datePublication}">
+								<f:convertDateTime pattern="dd/MM" />
+							</h:outputText>
+							<p:commandLink action="#{routage.visualiserActualites()}"
+								value="#{actu.titre}">
+								<f:param name="actuID" value="#{actu.id}" />
+							</p:commandLink>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+
+
+</ui:composition>

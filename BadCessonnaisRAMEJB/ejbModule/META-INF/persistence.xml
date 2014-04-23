@@ -3,5 +3,6 @@
 	<persistence-unit name="BadCessonnaisRAMEJB">
 		<jta-data-source>jdbc/bad_cessonnais</jta-data-source>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<shared-cache-mode>NONE</shared-cache-mode>
 	</persistence-unit>
 </persistence>

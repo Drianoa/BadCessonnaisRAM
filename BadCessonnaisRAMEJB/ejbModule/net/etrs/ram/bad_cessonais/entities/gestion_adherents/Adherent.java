@@ -46,7 +46,7 @@ public class Adherent implements Serializable{
 	//champs techniques
 	@Id
 	@Column(length=36)
-	private String id = UUID.randomUUID().toString();
+	private String id;
 	
 	@Version
 	private Long version;

@@ -103,7 +103,6 @@ public class InscriptionTournoiBean {
 	
 	public void naviguerGererPoules(){
 		facadeTournoi.update(tournoi);
-		//serviceGestionTournoi.enregistrerTableaux(tournoi);
 		serviceGestionTournoi.genererLesPoules(tournoi);
 		
 		JsfUtils.putInFlashScope("tournoi", tournoi);

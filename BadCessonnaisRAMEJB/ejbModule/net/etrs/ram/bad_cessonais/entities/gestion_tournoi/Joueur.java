@@ -33,7 +33,7 @@ import lombok.experimental.FieldDefaults;
 public class Joueur {
 	@Id
 	@Column(length=36)
-	String id = UUID.randomUUID().toString();
+	String id;
 	@Version
 	Long version;
 	

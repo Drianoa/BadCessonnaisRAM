@@ -44,9 +44,6 @@ public class ServiceGestionTournoi implements Serializable{
 	
 	public Tournoi creerTournoi(Tournoi tournoi , List<Tableau> tableaux){
 		facadeTournoi.create(tournoi);
-		for (Tableau tableau : tableaux) {
-			facadeTableau.create(tableau);
-		}
 		tournoi.getLstTableaux().addAll(tableaux);
 		facadeTournoi.update(tournoi);
 		return tournoi;

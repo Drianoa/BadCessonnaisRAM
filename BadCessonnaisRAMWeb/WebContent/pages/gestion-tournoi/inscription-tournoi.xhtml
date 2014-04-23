@@ -29,11 +29,13 @@
 			<p:accordionPanel id="tableauPanel"
 				value="#{inscriptionTournoiBean.tournoi.lstTableaux}" var="tableau">
 				<p:tab title="#{tableau.nom}">
-					<h:panelGrid columns="3">
+					<h:panelGrid columns="4">
 						<p:selectOneMenu value="#{tableau.joueursPoule}">
 							<f:selectItems value="#{inscriptionTournoiBean.listeJoueursPoule()}" var="j" itemLabel="#{j.libelle}"/>
 						</p:selectOneMenu>
-						<p:inputText value="#{tableau.tempsMatch}" size="2"></p:inputText>
+						
+						<p:outputLabel for="idTempsMatch" value="Temps par match"></p:outputLabel>
+						<p:inputText id="idTempsMatch" value="#{tableau.tempsMatch}" size="2"></p:inputText>
 						<p:commandButton icon="ui-icon-person" value="+"
 							actionListener="#{inscriptionTournoiBean.definirtableauActif(tableau)}"
 							onclick="PF('dlg').show()" />
@@ -82,7 +84,7 @@
 						<p:inputText id="idPrenom"
 							value="#{inscriptionTournoiBean.nouveauJoueur.prenom}"></p:inputText>
 					</fx:etrs-field>
-					<fx:etrs-field for="idDateNaissance" label="Date de naissance">
+					<fx:etrs-field for="idDateNaissance" label="Annee de naissance">
 						<p:inputText id="idDateNaissance"
 							value="#{inscriptionTournoiBean.nouveauJoueur.anneeNaissance}"></p:inputText>
 					</fx:etrs-field>

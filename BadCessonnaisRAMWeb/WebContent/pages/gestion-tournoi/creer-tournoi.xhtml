@@ -45,11 +45,6 @@
 							required="#{!empty param['frmName:idAjout']}"
 							requiredMessage="Veuillez saisir un nom de tableau"
 							 />
-						<!-- <p:selectOneButton value="#{creerTournoiBean.tableau.typeMatch}"
-							converter="#{genericConverter}">
-							<f:selectItems value="#{creerTournoiBean.listeTypes()}" var="t"
-							 itemLabel="#{t.libelle}" />
-						</p:selectOneButton> -->
 					</h:panelGrid>
 					<p:commandButton id="idAjout" icon="ui-icon-plus" actionListener="#{creerTournoiBean.ajouterTableau()}" update="@form"></p:commandButton>
 					
@@ -89,11 +84,7 @@
 					></p:commandButton>
 					
 				</h:panelGrid>
-
-			
 			</p:panel>
 		</h:form>
 	</ui:define>
-
-
 </ui:composition>

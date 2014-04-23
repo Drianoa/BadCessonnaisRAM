@@ -1,8 +1,14 @@
 package net.etrs.ram.bad_cessonais.common;
 
+import java.beans.Statement;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -17,6 +23,9 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.persistence.config.CacheUsage;
+import org.eclipse.persistence.config.QueryHints;
+
 
 /**
  * Facade abstraite générique CRUD pour les entités, paramétrée par "generics".
@@ -26,246 +35,275 @@ import org.apache.commons.logging.LogFactory;
 public abstract class AbstractFacade <T> implements Facade<T>
 {
 
-    private Log log = LogFactory.getLog(this.getClass());
-    /**
-     * instance de EntityManager, injectée.
-     */
-    @PersistenceContext
-    public EntityManager em;
-    
-    private PersistenceUnitUtil puu;
-    
-    /**
-     * instance de Class représentant la classe réelle du type paramétré
-     */
-    @SuppressWarnings("rawtypes")
+	private Log log = LogFactory.getLog(this.getClass());
+	/**
+	 * instance de EntityManager, injectée.
+	 */
+	@PersistenceContext
+	public EntityManager em;
+
+	private PersistenceUnitUtil puu;
+
+	/**
+	 * instance de Class représentant la classe réelle du type paramétré
+	 */
+	@SuppressWarnings("rawtypes")
 	private Class parameterizedType;
 
-    /**
-     * méthode déclenchée après construction pour déterminer la 
-     * Classe réelle du type paramétré.
-     */
-    @SuppressWarnings("rawtypes")
-    @PostConstruct
-    private void init()
-    {
+	/**
+	 * méthode déclenchée après construction pour déterminer la 
+	 * Classe réelle du type paramétré.
+	 */
+	@SuppressWarnings("rawtypes")
+	@PostConstruct
+	private void init()
+	{
 		Class thisClass =  this.getClass();
-        ParameterizedType paramType = (ParameterizedType) thisClass.getGenericSuperclass();
-        parameterizedType = (Class) paramType.getActualTypeArguments()[0];      
-        puu = em.getEntityManagerFactory().getPersistenceUnitUtil();
-    }
+		ParameterizedType paramType = (ParameterizedType) thisClass.getGenericSuperclass();
+		parameterizedType = (Class) paramType.getActualTypeArguments()[0];      
+		puu = em.getEntityManagerFactory().getPersistenceUnitUtil();
+	}
 
-    /**
-     * @see Facade#newInstance()
-     * @return
-     */
-    @SuppressWarnings("unchecked")
+	/**
+	 * @see Facade#newInstance()
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
-    public T newInstance()
-    {
-        try
-        {
-            // utilisation de l'API de reflection pour instancier 
-            // le bon type paramétré par le Generic.
-            return (T) parameterizedType.newInstance();
-            
-        }
-        catch (Exception ex)
-        {
-            if (log.isErrorEnabled())
-            {
-                log.error(ex);
-            }
-            return null;
-        }
-    }
+	public T newInstance()
+	{
+		try
+		{
+			// utilisation de l'API de reflection pour instancier 
+			// le bon type paramétré par le Generic.
+			T  instance = (T) parameterizedType.newInstance();
 
-    /**
-     * @see Facade#getBusinessClass()
-     * @return
-     */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+			try{
+				for(Field champ :instance.getClass().getDeclaredFields()){
+					for(Annotation annotation : champ.getAnnotations()){
+						if(annotation instanceof javax.persistence.Id){
+							if(champ.getType().isAssignableFrom(String.class)){
+								Statement statement = new Statement(instance, "set" + majuscule(champ.getName()), new Object[]{UUID.randomUUID().toString()});
+								statement.execute();
+								break;
+							}
+						}
+					}				
+					
+				}			
+			}catch(Exception ex){
+				//Nous n'avons pas reussi à modifier l'id, c'est probablement au métier de le faire
+			}
+			
+			return instance;
+
+		}
+		catch (Exception ex)
+		{
+			if (log.isErrorEnabled())
+			{
+				log.error(ex);
+			}
+			return null;
+		}
+	}
+
+	/**
+	 * Renvoi une chaine de caractere avec la premiere lettre en majuscule, utile pour la construction du setter. 
+	 * @param name
+	 * @return
+	 */
+	private String majuscule(String name) {
+		String premier = name.charAt(0) +"";
+		return premier.toUpperCase() + name.substring(1);
+	}
+
+	/**
+	 * @see Facade#getBusinessClass()
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-    public Class getBusinessClass()
-    {
-        return this.parameterizedType;
-    }
+	public Class getBusinessClass()
+	{
+		return this.parameterizedType;
+	}
 
-    /**
-     * @see Facade#create(entity.IdentifiableEntity)
-     * @param t
-     */
-    @Override
-    public void create(T t)
-    {
-        em.persist(t);
-        if (log.isInfoEnabled())
-        {
-            log.info("Ecriture en base de : " + t);
-        }
-    }
-
-    /**
-     * @see Facade#update(entity.IdentifiableEntity)
-     * @param t
-     */
-    @Override
-    public T update(T t)
-    {
-        t = em.merge(t);
-        if (log.isInfoEnabled())
-        {
-            log.info("Mise à jour en base de : " + t);
-        }
-        return t;
-    }
-
-    /**
-     * @see Facade#delete(entity.IdentifiableEntity)
-     * @param t
-     */
-    @SuppressWarnings("unchecked")
+	/**
+	 * @see Facade#create(entity.IdentifiableEntity)
+	 * @param t
+	 */
 	@Override
-    public void delete(T t)
-    {
-        // t est ici détaché
-        // pour le supprimé, sans influer sur la base de données
-        // il faut aller le récupérer selon son ID
-        // on récupère simplement la référence pour ne pas charger
-        // les données du Bean.
-        T attachedEntity = (T) em.getReference(parameterizedType, puu.getIdentifier(t));
+	public void create(T t)
+	{
+		em.persist(t);
+		if (log.isInfoEnabled())
+		{
+			log.info("Ecriture en base de : " + t);
+		}
+	}
 
-        // ... et demander sa suppression
-        em.remove(attachedEntity);
-        
-        if (log.isInfoEnabled())
-        {
-            log.info("Suppression en base de : " + t);
-        }
-    }
-
-    /**
-     * @see Facade#readAll()          
-     */
-    @Override
-    public List<T> readAll()
-    {
-        return this.readAll(new String[0]);
-    }
-                
-                
-    /**
-     * @see Facade#readAll(String...)
-     */
-    @SuppressWarnings("unchecked")
+	/**
+	 * @see Facade#update(entity.IdentifiableEntity)
+	 * @param t
+	 */
 	@Override
-    public List<T> readAll(String... orderBy)
-    {
-        // Usage de criteria pour executer une sorte de "findAll"
-        // en fonction du type paramétré de la classe.
-        // on aurait pu aussi contruire une requête JPQL à la volée
-        // mais je trouve cette façon plus propre.
-        CriteriaBuilder qb = em.getCriteriaBuilder();
-        CriteriaQuery<T> c = qb.createQuery(parameterizedType);
-        Root<T> from = c.from(parameterizedType);
+	public T update(T t)
+	{
+		t = em.merge(t);
+		if (log.isInfoEnabled())
+		{
+			log.info("Mise à jour en base de : " + t);
+		}
+		return t;
+	}
 
-        this.addSort(qb, c, from, orderBy);
-
-        TypedQuery<T> query = em.createQuery(c);
-        return query.getResultList();
-    }
-    
-
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public Long countAll()
-    {
-    	CriteriaBuilder qb = em.getCriteriaBuilder();
-    	CriteriaQuery<Long> cq = qb.createQuery(Long.class);
-    	cq.select(qb.count(cq.from(parameterizedType)));
-    	//cq.where(/*your stuff*/);
-    	return em.createQuery(cq).getSingleResult();
-    }
-
-    /**
-     * @see Facade#read(java.lang.Long)
-     */
-    @SuppressWarnings("unchecked")
+	/**
+	 * @see Facade#delete(entity.IdentifiableEntity)
+	 * @param t
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
-    public T read(Object id)
-    {
-        return (T) em.find(parameterizedType, id);
-    }
+	public void delete(T t)
+	{
+		// t est ici détaché
+		// pour le supprimé, sans influer sur la base de données
+		// il faut aller le récupérer selon son ID
+		// on récupère simplement la référence pour ne pas charger
+		// les données du Bean.
+		T attachedEntity = (T) em.getReference(parameterizedType, puu.getIdentifier(t));
 
-    /**
-     * @see Facade#search(java.lang.String, java.lang.Object, java.lang.String[]) 
-     */
-    @SuppressWarnings("unchecked")
+		// ... et demander sa suppression
+		em.remove(attachedEntity);
+
+		if (log.isInfoEnabled())
+		{
+			log.info("Suppression en base de : " + t);
+		}
+	}
+
+	/**
+	 * @see Facade#readAll()          
+	 */
 	@Override
-    public List<T> search(String parameterName, 
-                          Object parameterValue, 
-                          String... orderBy)
-    {
-        CriteriaBuilder qb = em.getCriteriaBuilder();
-        CriteriaQuery<T> c = qb.createQuery(parameterizedType);
-        Root<T> from = c.from(parameterizedType);
-        Predicate restriction = qb.equal(from.get(parameterName), parameterValue);
-        c.where(restriction);
+	public List<T> readAll()
+	{
+		return this.readAll(new String[0]);
+	}
 
-        this.addSort(qb, c, from, orderBy);
 
-        TypedQuery<T> query = em.createQuery(c);
-        return query.getResultList();
-    }
+	/**
+	 * @see Facade#readAll(String...)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> readAll(String... orderBy)
+	{
+		// Usage de criteria pour executer une sorte de "findAll"
+		// en fonction du type paramétré de la classe.
+		// on aurait pu aussi contruire une requête JPQL à la volée
+		// mais je trouve cette façon plus propre.
+		CriteriaBuilder qb = em.getCriteriaBuilder();
+		CriteriaQuery<T> c = qb.createQuery(parameterizedType);
+		Root<T> from = c.from(parameterizedType);
 
-    /**
-     * Méthode privée qui ajouter un critère de tri à une requête Criteria. 
-     * Cette méthode est utilisée en interne par readAll() et search().
-     * 
-     * @param criteriaBuilder
-     * @param query
-     * @param from
-     * @param orderBy 
-     */
-    private void addSort(CriteriaBuilder criteriaBuilder, 
-                         CriteriaQuery<T> query, 
-                         Root<T> from, 
-                         String... orderBy)
-    {
-        // ajout du tri, si éventuellement des paramètres de tri sont passés en paramètre
-        if (orderBy!=null && orderBy.length > 0)
-        {
-            List<Order> orders = new ArrayList<Order>();
-            for (String orderParameter : orderBy)
-            {
-                Order order = criteriaBuilder.asc(from.get(orderParameter));
-                orders.add(order);
-            }
-            query.orderBy(orders);
-        }
-    }
-    
-    /**
-     * Rafraichit l'instance en mémoire par rapport à la base de données.
-     * 
-     * @param t 
-     */
-    @SuppressWarnings("unchecked")
+		this.addSort(qb, c, from, orderBy);
+
+		TypedQuery<T> query = em.createQuery(c);
+		return query.getResultList();
+	}
+
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Long countAll()
+	{
+		CriteriaBuilder qb = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cq = qb.createQuery(Long.class);
+		cq.select(qb.count(cq.from(parameterizedType)));
+		//cq.where(/*your stuff*/);
+		return em.createQuery(cq).getSingleResult();
+	}
+
+	/**
+	 * @see Facade#read(java.lang.Long)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public T read(Object id)
+	{
+		return (T) em.find(parameterizedType, id);
+	}
+
+	/**
+	 * @see Facade#search(java.lang.String, java.lang.Object, java.lang.String[]) 
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> search(String parameterName, 
+			Object parameterValue, 
+			String... orderBy)
+			{
+		CriteriaBuilder qb = em.getCriteriaBuilder();
+		CriteriaQuery<T> c = qb.createQuery(parameterizedType);
+		Root<T> from = c.from(parameterizedType);
+		Predicate restriction = qb.equal(from.get(parameterName), parameterValue);
+		c.where(restriction);
+
+		this.addSort(qb, c, from, orderBy);
+
+		TypedQuery<T> query = em.createQuery(c);
+		return query.getResultList();
+			}
+
+	/**
+	 * Méthode privée qui ajouter un critère de tri à une requête Criteria. 
+	 * Cette méthode est utilisée en interne par readAll() et search().
+	 * 
+	 * @param criteriaBuilder
+	 * @param query
+	 * @param from
+	 * @param orderBy 
+	 */
+	private void addSort(CriteriaBuilder criteriaBuilder, 
+			CriteriaQuery<T> query, 
+			Root<T> from, 
+			String... orderBy)
+	{
+		// ajout du tri, si éventuellement des paramètres de tri sont passés en paramètre
+		if (orderBy!=null && orderBy.length > 0)
+		{
+			List<Order> orders = new ArrayList<Order>();
+			for (String orderParameter : orderBy)
+			{
+				Order order = criteriaBuilder.asc(from.get(orderParameter));
+				orders.add(order);
+			}
+			query.orderBy(orders);
+		}
+	}
+
+	/**
+	 * Rafraichit l'instance en mémoire par rapport à la base de données.
+	 * 
+	 * @param t 
+	 */
+	@SuppressWarnings("unchecked")
 	public void refresh(T t)
-    {
-        t = (T) this.em.getReference(parameterizedType, puu.getIdentifier(t));
-        this.em.refresh(t);
-    }
-    
-    /**
-     * retourne une instance du log de la façade.
-     * @return instance de Log.
-     */
-    public Log getLog()
-    {
-        return this.log;
-    }
-    
-   
+	{
+		t = (T) this.em.getReference(parameterizedType, puu.getIdentifier(t));
+		this.em.refresh(t);
+	}
+
+	/**
+	 * retourne une instance du log de la façade.
+	 * @return instance de Log.
+	 */
+	public Log getLog()
+	{
+		return this.log;
+	}
+
+
 }
