@@ -6,6 +6,12 @@ import javax.faces.bean.ManagedBean;
 import com.ocpsoft.pretty.faces.annotation.URLMapping;
 import com.ocpsoft.pretty.faces.annotation.URLMappings;
 
+
+/**
+ * Bean de gestion centralisé du Routage de l'application.
+ * @author adrien.merly
+ *
+ */
 @ManagedBean
 @ApplicationScoped
 @URLMappings(mappings = {

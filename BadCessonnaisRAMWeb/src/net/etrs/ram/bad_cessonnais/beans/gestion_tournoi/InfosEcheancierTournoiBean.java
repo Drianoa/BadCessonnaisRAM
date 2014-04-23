@@ -48,10 +48,17 @@ public class InfosEcheancierTournoiBean {
 		tournoi = (Tournoi) JsfUtils.getFromFlashScope("tournoi");
 	}
 	
+	/**
+	 * appel du service de generation de l'échéancier.
+	 */
 	public void genererEcheancier(){
 		serviceGestionTournoi.genererEcheancier(tournoi);
 	}
 	
+	/**
+	 * Permet d'arrondir l'heure de  depart du tournoi environ 15 minutes à partir du lancement de la page.
+	 * @return
+	 */
 	private Date roundAssist(){
 		Calendar c = Calendar.getInstance();
 		int offset = 0;
