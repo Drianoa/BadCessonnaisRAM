@@ -108,8 +108,8 @@ public abstract class AbstractFacade <T> implements Facade<T>
 					if(champ.getType().isAssignableFrom(String.class)){
 						Statement statement = new Statement(instance, "set" + majuscule(champ.getName()), new Object[]{UUID.randomUUID().toString()});
 						statement.execute();
-						break;
 					}
+					break;
 				}
 			}				
 			
